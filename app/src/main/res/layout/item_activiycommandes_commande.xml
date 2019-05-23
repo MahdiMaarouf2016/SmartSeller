@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="9dp"
+    android:background="@color/colorPrimaryDark">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/lab_command_num"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Numero "
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_commandeitem_numero"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_commandeitem_numero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/default_textvalue"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/lab_command_num"
+        app:layout_constraintEnd_toStartOf="@+id/txt_commandeitem_montant" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_commandeitem_etat"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/default_textvalue"
+        android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/txt_commandeitem_numero"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_commandeitem_datesynchro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/default_textvalue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/txt_commandeitem_numero"
+        app:layout_constraintStart_toStartOf="@+id/lab_command_num" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_commandeitem_montant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
+        android:text="@string/default_textvalue"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_commandeitem_goprofile" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_commandeitem_goprofile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txt_commandeitem_etat"
+        app:layout_constraintTop_toBottomOf="@+id/txt_commandeitem_etat"
+        app:layout_constraintVertical_bias="0.48000002"
+        app:srcCompat="@drawable/ic_go" />
+</android.support.constraint.ConstraintLayout>
+<!--
+lab_command_num
+-->

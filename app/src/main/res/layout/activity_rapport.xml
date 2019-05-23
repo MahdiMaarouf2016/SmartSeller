@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".modules.Vente.RapportActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_produit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="none"
+            app:layout_collapseParallaxMultiplier="1.0"
+            app:title="ECRIRE UN RAPPORT"
+            app:titleMargins="3dp">
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="Rapport visite"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/abl_produit" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/appCompatSpinner"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="23dp"
+        android:background="#FF89B0B5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+    </android.support.v7.widget.AppCompatSpinner>
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="0dp"
+        android:padding="20dp"
+        android:layout_height="239dp"
+        android:layout_marginTop="23dp"
+        android:background="#5abcc9"
+        android:text="Ecrire quelque chose"
+        app:layout_constraintEnd_toEndOf="@+id/appCompatSpinner"
+        app:layout_constraintStart_toStartOf="@+id/appCompatSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatSpinner" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:background="#FF449B4A"
+        android:text="VALIDER"
+        app:layout_constraintEnd_toEndOf="@+id/multiAutoCompleteTextView"
+        app:layout_constraintStart_toStartOf="@+id/multiAutoCompleteTextView"
+        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextView" />
+</android.support.constraint.ConstraintLayout>

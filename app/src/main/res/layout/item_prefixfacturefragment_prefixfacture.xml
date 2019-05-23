@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:listSeparatorTextViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/shap_facture_item"
+    android:orientation="horizontal"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_prefixfacture_numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="NUM"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_prefixfacture_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="CLIENT"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_prefixfacture_paie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="PAIE"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_prefixfacture_valeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="VALEUR"
+        android:textColor="@color/white"
+        android:textSize="17dp" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/img_prefixfacture_print"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_print" />
+</LinearLayout>

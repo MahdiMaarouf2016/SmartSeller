@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".modules.Synchronisation.SynchronisationActivity">
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_caisse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="none"
+            app:layout_collapseParallaxMultiplier="1.0"
+            app:title="SYNCHRONISATION"
+            app:titleMargins="3dp" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="VOEZ D ABORD EXPORTER VOS FACTURES POUR POUVOIR IMPORTER VOS STOCK "
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/abl_caisse" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView25"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="EXPORTER DES FACTURES ET BLS"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/imgbtn_synchronactivity_export"
+        app:layout_constraintStart_toStartOf="@+id/imgbtn_synchronactivity_export"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn_synchronactivity_export" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:text="IMPORTER DU STOCK"
+        app:layout_constraintEnd_toEndOf="@+id/imgbtn_synchronactivity_import"
+        app:layout_constraintStart_toStartOf="@+id/imgbtn_synchronactivity_import"
+        app:layout_constraintTop_toBottomOf="@+id/imgbtn_synchronactivity_import" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_synchronactivity_export"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_planning_item"
+        android:src="@drawable/ic_export"
+        app:layout_constraintEnd_toStartOf="@+id/imgbtn_synchronactivity_import"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_synchronactivity_import"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginEnd="36dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_planning_item"
+        android:src="@drawable/ic_import"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbtn_synchronactivity_export"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imgbtn_synchronactivity_export"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_synchronactivity_print"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_planning_item"
+        android:src="@drawable/ic_print"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
+<!--
+                <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textView25"
+                android:layout_width="143dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="EXPORTER DES FACTURES ET BLS"
+                android:textAlignment="center" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="IMPORTER DU STOCK" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/shape_planning_item"
+                android:src="@drawable/ic_export"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+                app:layout_constraintStart_toStartOf="@+id/textView24"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_planning_item"
+                android:src="@drawable/ic_import"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                app:layout_constraintEnd_toEndOf="@+id/textView24"
+                app:layout_constraintTop_toTopOf="@+id/imageButton"
+                app:layout_constraintVertical_bias="0.0" />
+-->

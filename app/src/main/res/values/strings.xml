@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SmartSeller</string>
+    <string name="title_activity_planning">planning</string>
+    <string name="title_activity_produit">Produit</string>
+    <string name="title_activity_vente">Vente</string>
+    <string name="title_activity_rapport">Rapport</string>
+    <string name="title_activity_factures">Factures</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_stock">Stock</string>
+    <string name="title_activity_detail_commande">DetailCommande</string>
+    <string name="title_activity_create_vente">CreateVente</string>
+    <string name="title_activity_codes">Codes</string>
+    <string name="title_activity_facture">facture</string>
+    <string name="title_activity_caisse">Caisse</string>
+    <string name="title_activity_synchronisation">Synchronisation</string>
+    <string name="title_activity_parametres">Parametres</string>
+    <string name="title_activity_clients">Clients</string>
+    <string name="title_activity_payement_facture">PayementFacture</string>
+    <string name="title_activity_ajouter_client">AjouterClient</string>
+    <string name="default_textvalue">.??????</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

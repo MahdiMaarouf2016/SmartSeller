@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".modules.Commandes.DetailCommandeActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/abl_planning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="none"
+            app:layout_collapseParallaxMultiplier="1.0"
+            app:title="DETAILS"
+            app:titleMargins="3dp">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_detailscommande_listdetailscommande"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/abl_planning" />
+
+
+</android.support.constraint.ConstraintLayout>
+<!--
+<android.support.constraint.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="172dp"
+android:layout_marginTop="8dp"
+android:layout_marginBottom="8dp"
+android:background="#54000000"
+app:layout_constraintBottom_toBottomOf="@+id/img_panieritem_prodbackimg"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent">
+
+<android.support.v7.widget.AppCompatTextView
+    android:id="@+id/txt_panieritiem_prodlibelle"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:text="JADIDA 5L HUIT DE MAIS"
+    android:textSize="20dp"
+    app:layout_constraintEnd_toStartOf="@+id/txt_prod_total"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<android.support.v7.widget.AppCompatTextView
+    android:id="@+id/txt_produitiem_prodcode"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="24dp"
+    android:text="12.987"
+    android:textSize="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/txt_panieritiem_prodlibelle" />
+
+<android.support.v7.widget.AppCompatTextView
+    android:id="@+id/txt_prod_total"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:text="HUIL DE MAIS"
+    android:textSize="20dp"
+    app:layout_constraintBaseline_toBaselineOf="@+id/txt_produitiem_prodcode"
+    app:layout_constraintEnd_toEndOf="parent" />
+</android.support.constraint.ConstraintLayout>
+-->

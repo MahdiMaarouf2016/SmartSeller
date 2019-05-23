@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?android:listSeparatorTextViewStyle"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_marginBottom="3dp"
+    android:background="@drawable/shap_facture_item"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp"
+    android:orientation="horizontal"
+    android:weightSum="5">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_caisseblitem_numero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="@string/default_textvalue"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_caisseblitem_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="@string/default_textvalue"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_caisseblitem_valeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="@string/default_textvalue"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txt_caisseblitem_paie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text="@string/default_textvalue"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/imgbtn_caisseblitem_print"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:src="@drawable/ic_print" />
+
+</android.support.v7.widget.LinearLayoutCompat>
