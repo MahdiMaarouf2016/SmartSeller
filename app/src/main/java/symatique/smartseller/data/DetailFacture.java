@@ -21,6 +21,11 @@ public class DetailFacture implements Serializable {
     @DatabaseField(foreign = true)
     private DetailVente detailVente;
 
+    // *
+    @DatabaseField(foreign = true)
+    private PrefixBL prefixBL;
+
     public DetailFacture() {
+
     }
 }

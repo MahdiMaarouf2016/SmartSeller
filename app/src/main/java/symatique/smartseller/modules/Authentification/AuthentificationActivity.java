@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
@@ -66,33 +67,42 @@ public class AuthentificationActivity extends AppCompatActivity {
         apiService.getAuthentificated(livreur.getCode(),livreur.getPassword(),"0000","123").enqueue(new Callback<AuthenticationResponse>() {
             @Override
             public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
-                AuthenticationResponse authenticationResponse = response.body();
-                AuthentificationActivity.authenticationResponse = authenticationResponse;
-                switch (authenticationResponse.getEtatCompte()){
-                    case 0:{
-                        Intent intent = new Intent(getBaseContext(), HomeActivity.class);
-                        startActivity(intent);
-                    }break;
-                    case 1:{
+                Log.v("RESPONSE MESSAGE ",response.message());
+                Log.v("RESPONSE CODE ", String.valueOf(response.code()));
+                Log.v("RESPONSE isSuc" , String.valueOf(response.isSuccessful()));
+                if(!response.isSuccessful()){
+                    Log.e("RESPONSE ERROR",response.errorBody().toString());
+                }else{
+                    AuthenticationResponse authenticationResponse = response.body();
+                    AuthentificationActivity.authenticationResponse = authenticationResponse;
+                    switch (authenticationResponse.getEtatCompte()){
+                        case 0:{
+                            Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                            startActivity(intent);
+                        }break;
+                        case 1:{
 
-                    }
-                    case 2:{
+                        }
+                        case 2:{
 
-                    }
-                    case 3:{
+                        }
+                        case 3:{
 
-                    }
-                    case 4:{
+                        }
+                        case 4:{
 
-                    }
-                    default:{
-                        Toast.makeText(getApplication(),"Authentification errorné",Toast.LENGTH_LONG).show();
+                        }
+                        default:{
+                            Toast.makeText(getApplication(),"Authentification errorné",Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
+
             }
 
             @Override
             public void onFailure(Call<AuthenticationResponse> call, Throwable t) {
+                ApiService.standartNotifyFailerResponse(t);
                 Toast.makeText(getApplication()," Connexion attendu ",Toast.LENGTH_LONG).show();
             }
         });

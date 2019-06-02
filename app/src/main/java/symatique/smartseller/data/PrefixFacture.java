@@ -73,13 +73,6 @@ public class PrefixFacture implements Serializable {
     @ForeignCollectionField(eager = true)
     private ForeignCollection<DetailFacture> detailFactures;
 
-
-    // @JsonProperty("listPacketsVendus")
-    //private ArrayList<PacketVenduPendingParam> listPacketsVendus = new ArrayList<>();
-    // @JsonProperty("listPaiements")
-    // ArrayList<PaiementParam> listPaiements = new ArrayList<>();
-
-
     public PrefixFacture(String id) {
         this.id = id;
     }

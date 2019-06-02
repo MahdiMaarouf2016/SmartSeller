@@ -60,7 +60,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<DetailBonDeSortie,Integer> detailBonDeSorties;
 	private Dao<Livreur,Integer> livreurs;
 	private Dao<NatureVente,Integer> natureVentes;
-	private Dao<PanierAdapter.PanierItem.PanierPacket,Integer> panierPackets;
 	private Dao<PrefixBL,Integer> prefixBLS;
 	private Dao<PrefixFacture,Integer> prefixFactures;
 	private Dao<RapportVisite,Integer> rapportVisites;
@@ -94,7 +93,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Livreur.class);
 			TableUtils.createTable(connectionSource, MotifRapportVisite.class);
 			TableUtils.createTable(connectionSource, NatureVente.class);
-            TableUtils.createTable(connectionSource, PanierAdapter.PanierItem.PanierPacket.class);
 			TableUtils.createTable(connectionSource, PrefixBL.class);
 			TableUtils.createTable(connectionSource, PrefixFacture.class);
 			TableUtils.createTable(connectionSource, RapportVisite.class);
@@ -131,7 +129,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, Livreur.class,true);
 			TableUtils.dropTable(connectionSource, MotifRapportVisite.class,true);
 			TableUtils.dropTable(connectionSource, NatureVente.class,true);
-            TableUtils.dropTable(connectionSource, PanierAdapter.PanierItem.PanierPacket.class,true);
 			TableUtils.dropTable(connectionSource, PrefixBL.class,true);
 			TableUtils.dropTable(connectionSource, PrefixFacture.class,true);
 			TableUtils.dropTable(connectionSource, RapportVisite.class,true);
@@ -216,12 +213,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			natureVentes = getDao(NatureVente.class);
 		return natureVentes;
 	}
-
-	public Dao<PanierAdapter.PanierItem.PanierPacket,Integer> getPanierPackets() throws SQLException {
-	    if(panierPackets == null)
-	        panierPackets = getDao(PanierAdapter.PanierItem.PanierPacket.class);
-	    return panierPackets;
-    }
 
 	public Dao<PrefixBL, Integer> getPrefixBLS() throws SQLException {
 		if(prefixBLS == null)

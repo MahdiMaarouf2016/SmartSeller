@@ -17,5 +17,6 @@ public class DetailBL implements Serializable {
     private PrefixBL prefixBL;
 
     public DetailBL() {
+
     }
 }

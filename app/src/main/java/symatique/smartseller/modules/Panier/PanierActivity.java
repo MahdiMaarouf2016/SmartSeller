@@ -53,7 +53,7 @@ public class PanierActivity extends AppCompatActivity {
 
     public void setUpPaniers() {
 
-        try {
+        /*try {
 
             List<PanierAdapter.PanierItem.PanierPacket> panierPackets = DataBaseManager.getInstance().getHelper().getPanierPackets().queryForAll();
             PanierAdapter panierAdapter = new PanierAdapter(panierPackets);
@@ -65,5 +65,6 @@ public class PanierActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        */
     }
 }
