@@ -39,18 +39,11 @@ public class SmartSeller extends Application {
     }
 
     private void setUpDataBase() {
-        DataBaseManager.init(this);
-        DatabaseHelper databaseHelper = DataBaseManager.getInstance().getHelper();
+        DatabaseHelper databaseHelper = DataBaseManager.getInstance(this).getHelper();
+        databaseHelper.onCreate(databaseHelper.getWritableDatabase(),databaseHelper.getConnectionSource());
         Logger logger = LoggerFactory.getLogger(QueryBuilder.class);
         //logger.debug(databaseHelper.toString());
+        //databaseHelper.onCreate();
 
-        try {
-            databaseHelper.getArticles().countOf();
-            Log.v("MAIN","Articles" + String.valueOf(databaseHelper.getArticles().countOf()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        Log.v("MAIN","SET UP DATABASE");
     }
 }

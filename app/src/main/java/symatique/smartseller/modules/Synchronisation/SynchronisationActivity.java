@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import retrofit2.Response;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Article;
 import symatique.smartseller.data.Banque;
+import symatique.smartseller.data.BonDeSortie;
 import symatique.smartseller.data.CategorieArticle;
 import symatique.smartseller.data.Client;
 import symatique.smartseller.data.Commande;
@@ -48,6 +50,7 @@ public class SynchronisationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_synchronisation);
         ButterKnife.bind(this);
         setupToolBar();
+        setUpDelegates();
     }
 
     private void setupToolBar() {
@@ -88,15 +91,17 @@ public class SynchronisationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // IMPORT DELEAGTE
+                Log.v("Handler button action","IMPORTING");
                 synchroniseClients();
                 synchroniseCategorieArticles();
                 synchroniseArticles();
                 synchroniseCommandes();
                 synchroniseNatureVentes();
                 synchroniseTypeEncaissementVente();
-                synchronisePrefixBls();
-                synchronisePrefixFactures();
+                //synchronisePrefixBls();
+                //synchronisePrefixFactures();
                 synchroniseBanques();
+                synchroniseBonDeSorties();
 
             }
         });
@@ -113,11 +118,17 @@ public class SynchronisationActivity extends AppCompatActivity {
         ApiService.getApiService().getClients(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<Client>>() {
             @Override
             public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getClients().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if(response.isSuccessful()){
+                    try {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Log.v("CLIENT IN DB", response.body().get(i).getLibelle());
+                            DataBaseManager.getInstance(getApplicationContext()).getHelper().getClients().createOrUpdate(response.body().get(i));
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                   Log.e("Failed sync clients",response.code() + response.message());
                 }
             }
 
@@ -129,14 +140,21 @@ public class SynchronisationActivity extends AppCompatActivity {
     }
 
     public void synchroniseArticles() {
+        Log.v("synchroniseArticles","begin");
         ApiService.getApiService().getArticles(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<Article>>() {
             @Override
             public void onResponse(Call<List<Article>> call, Response<List<Article>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getArticles().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if(response.isSuccessful()) {
+                    try {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Log.v("ARTICLE IN DB ", response.body().get(i).getLibelle());
+                            DataBaseManager.getInstance(getApplicationContext()).getHelper().getArticles().createOrUpdate(response.body().get(i));
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.e("Failed sync articles ",response.code() + response.message());
                 }
             }
 
@@ -145,17 +163,25 @@ public class SynchronisationActivity extends AppCompatActivity {
                 ApiService.standartNotifyFailerResponse(t);
             }
         });
+        Log.v("synchroniseArticles","finished");
     }
 
     public void synchroniseCategorieArticles() {
+
         ApiService.getApiService().getAllCategory(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<CategorieArticle>>() {
             @Override
             public void onResponse(Call<List<CategorieArticle>> call, Response<List<CategorieArticle>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getCategorieArtices().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if(response.isSuccessful()){
+                    try {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Log.v("CATEGORIE IN DB",response.body().get(i).getLibelleArb());
+                            DataBaseManager.getInstance(getApplicationContext()).getHelper().getCategorieArtices().createOrUpdate(response.body().get(i));
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.e("Failed sync categories",response.code() + response.message());
                 }
             }
 
@@ -170,12 +196,18 @@ public class SynchronisationActivity extends AppCompatActivity {
         ApiService.getApiService().synchroniserNatureVentes(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<NatureVente>>() {
             @Override
             public void onResponse(Call<List<NatureVente>> call, Response<List<NatureVente>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getNatureVentes().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+               if(response.isSuccessful()){
+                   try {
+                       for (int i = 0; i < response.body().size(); i++) {
+                           Log.v("NATURE VENTE IN DB",response.body().get(i).getLibelle());
+                           DataBaseManager.getInstance(getApplicationContext()).getHelper().getNatureVentes().createOrUpdate(response.body().get(i));
+                       }
+                   } catch (SQLException e) {
+                       e.printStackTrace();
+                   }
+               } else {
+                   Log.e("Failed sync naturevente",response.code() + response.message());
+               }
             }
 
             @Override
@@ -189,12 +221,18 @@ public class SynchronisationActivity extends AppCompatActivity {
         ApiService.getApiService().synchroniserTypeEncaissementVente(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<TypeEncaissementVente>>() {
             @Override
             public void onResponse(Call<List<TypeEncaissementVente>> call, Response<List<TypeEncaissementVente>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getTypeEncaissementVentes().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+               if(response.isSuccessful()){
+                   try {
+                       for (int i = 0; i < response.body().size(); i++){
+                           Log.v("TYPE ENCAISS IN DB",response.body().get(i).getLibelle());
+                           DataBaseManager.getInstance(getApplicationContext()).getHelper().getTypeEncaissementVentes().createOrUpdate(response.body().get(i));
+                       }
+                   } catch (SQLException e) {
+                       e.printStackTrace();
+                   }
+               }else{
+                   Log.e("Failed sync typeencaiss",response.code() + response.message());
+               }
             }
 
             @Override
@@ -210,7 +248,7 @@ public class SynchronisationActivity extends AppCompatActivity {
             public void onResponse(Call<List<Commande>> call, Response<List<Commande>> response) {
                 try {
                     for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getCommandes().createOrUpdate(response.body().get(i));
+                        DataBaseManager.getInstance(getApplicationContext()).getHelper().getCommandes().createOrUpdate(response.body().get(i));
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -229,7 +267,7 @@ public class SynchronisationActivity extends AppCompatActivity {
             public void onResponse(Call<List<PrefixFacture>> call, Response<List<PrefixFacture>> response) {
                 try {
                     for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getPrefixFactures().createOrUpdate(response.body().get(i));
+                        DataBaseManager.getInstance(getApplicationContext()).getHelper().getPrefixFactures().createOrUpdate(response.body().get(i));
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -245,11 +283,15 @@ public class SynchronisationActivity extends AppCompatActivity {
         ApiService.getApiService().getPrefixsBL(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<PrefixBL>>() {
             @Override
             public void onResponse(Call<List<PrefixBL>> call, Response<List<PrefixBL>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getPrefixBLS().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if(response.isSuccessful()){
+                    try {
+                        for (int i = 0; i < response.body().size(); i++)
+                            DataBaseManager.getInstance(getApplicationContext()).getHelper().getPrefixBLS().createOrUpdate(response.body().get(i));
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.v("FAILD SYNC BLS",response.code() + response.message() );
                 }
             }
 
@@ -264,16 +306,44 @@ public class SynchronisationActivity extends AppCompatActivity {
         ApiService.getApiService().synchroniserBanque(new Date().getTime(), Long.parseLong(AuthentificationActivity.authenticationResponse.getCodeEntreprise())).enqueue(new Callback<List<Banque>>() {
             @Override
             public void onResponse(Call<List<Banque>> call, Response<List<Banque>> response) {
-                try {
-                    for (int i = 0; i < response.body().size(); i++)
-                        DataBaseManager.getInstance().getHelper().getBanques().createOrUpdate(response.body().get(i));
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                if(response.isSuccessful()){
+                    try {
+                        for (int i = 0; i < response.body().size(); i++) {
+                            Log.v("BANQUE IN DB",response.body().get(i).getLibelle());
+                            DataBaseManager.getInstance(getApplicationContext()).getHelper().getBanques().createOrUpdate(response.body().get(i));
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.v("FAILD SYNC BANQUES",response.code() + response.message() );
                 }
             }
 
             @Override
             public void onFailure(Call<List<Banque>> call, Throwable t) {
+                ApiService.standartNotifyFailerResponse(t);
+            }
+        });
+    }
+    public void synchroniseBonDeSorties(){
+        ApiService.getApiService().getBonSortie(AuthentificationActivity.authenticationResponse.getCode(),AuthentificationActivity.authenticationResponse.getIdEntreprise(),false).enqueue(new Callback<BonDeSortie>() {
+            @Override
+            public void onResponse(Call<BonDeSortie> call, Response<BonDeSortie> response) {
+                if(response.isSuccessful()){
+                    try {
+                        Log.v("BONDESORTIE IN DB",response.body().toString());
+                        DataBaseManager.getInstance(getApplicationContext()).getHelper().getBonDeSortieDao().createOrUpdate(response.body());
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    Log.v("FAILD SYNC BONDESORTIE",response.code() + response.message() );
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BonDeSortie> call, Throwable t) {
                 ApiService.standartNotifyFailerResponse(t);
             }
         });

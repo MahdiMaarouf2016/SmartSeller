@@ -12,9 +12,6 @@ public class DetailStock implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
-    @JsonProperty("stockParVendeur")
-    @DatabaseField(foreign = true)
-    private StockParVendeur stockParVendeur;
 
     public DetailStock() {
     }

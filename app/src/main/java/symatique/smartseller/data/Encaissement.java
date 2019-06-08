@@ -7,6 +7,8 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable
 public class Encaissement implements Serializable {
@@ -15,20 +17,8 @@ public class Encaissement implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
-    @JsonProperty("banque")
-    @DatabaseField(foreign = true)
-    private Banque banque;
-
-    @JsonProperty("ventes")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Vente> ventes;
-    @JsonProperty("typeEncaissementVentes")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<TypeEncaissementVente> typeEncaissementVentes;
-    @DatabaseField(foreign = true)
-    private TypeEncaissementVente typeEncaissementVente;
-
     public Encaissement() {
 
     }
+
 }

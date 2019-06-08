@@ -29,13 +29,11 @@ import symatique.smartseller.data.EtatCommande;
 import symatique.smartseller.data.PrefixFacture;
 import symatique.smartseller.data.DetailCommande;
 import symatique.smartseller.data.Livreur;
-import symatique.smartseller.data.MotifRapportVisite;
 import symatique.smartseller.data.NatureVente;
 import symatique.smartseller.data.PrefixBL;
 import symatique.smartseller.data.RapportVisite;
 import symatique.smartseller.data.TypeEncaissementVente;
 import symatique.smartseller.data.Vente;
-import symatique.smartseller.modules.Panier.PanierAdapter;
 
 import static symatique.smartseller.bases.SQLiteBases.DATABASE_NAME;
 import static symatique.smartseller.bases.SQLiteBases.DATABASE_VERSION;
@@ -72,6 +70,29 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase sqliteDatabase, ConnectionSource connectionSource) {
 		try {
+            TableUtils.dropTable(connectionSource, Article.class,true);
+            TableUtils.dropTable(connectionSource, Banque.class,true);
+            TableUtils.dropTable(connectionSource, BonDeSortie.class,true);
+            TableUtils.dropTable(connectionSource, CategorieArticle.class,true);
+            TableUtils.dropTable(connectionSource, Client.class,true);
+            TableUtils.dropTable(connectionSource, Commande.class,true);
+            TableUtils.dropTable(connectionSource, DetailBL.class,true);
+            TableUtils.dropTable(connectionSource, DetailBonDeSortie.class,true);
+            TableUtils.dropTable(connectionSource, DetailCommande.class,true);
+            TableUtils.dropTable(connectionSource, DetailFacture.class,true);
+            TableUtils.dropTable(connectionSource, DetailStock.class,true);
+            TableUtils.dropTable(connectionSource, DetailVente.class,true);
+            TableUtils.dropTable(connectionSource, Domaine.class,true);
+            TableUtils.dropTable(connectionSource, Encaissement.class,true);
+            TableUtils.dropTable(connectionSource, Entreprise.class,true);
+            TableUtils.dropTable(connectionSource, EtatCommande.class,true);
+            TableUtils.dropTable(connectionSource, Livreur.class,true);
+            TableUtils.dropTable(connectionSource, NatureVente.class,true);
+            TableUtils.dropTable(connectionSource, PrefixBL.class,true);
+            TableUtils.dropTable(connectionSource, PrefixFacture.class,true);
+            TableUtils.dropTable(connectionSource, RapportVisite.class,true);
+            TableUtils.dropTable(connectionSource, TypeEncaissementVente.class,true);
+            TableUtils.dropTable(connectionSource, Vente.class,true);
 
 			TableUtils.createTable(connectionSource, Article.class);
 			TableUtils.createTable(connectionSource, Banque.class);
@@ -89,9 +110,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Encaissement.class);
 			TableUtils.createTable(connectionSource, Entreprise.class);
 			TableUtils.createTable(connectionSource, EtatCommande.class);
-			TableUtils.createTable(connectionSource, PrefixFacture.class);
 			TableUtils.createTable(connectionSource, Livreur.class);
-			TableUtils.createTable(connectionSource, MotifRapportVisite.class);
 			TableUtils.createTable(connectionSource, NatureVente.class);
 			TableUtils.createTable(connectionSource, PrefixBL.class);
 			TableUtils.createTable(connectionSource, PrefixFacture.class);
@@ -127,7 +146,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, EtatCommande.class,true);
 			TableUtils.dropTable(connectionSource, PrefixFacture.class,true);
 			TableUtils.dropTable(connectionSource, Livreur.class,true);
-			TableUtils.dropTable(connectionSource, MotifRapportVisite.class,true);
 			TableUtils.dropTable(connectionSource, NatureVente.class,true);
 			TableUtils.dropTable(connectionSource, PrefixBL.class,true);
 			TableUtils.dropTable(connectionSource, PrefixFacture.class,true);

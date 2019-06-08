@@ -14,19 +14,11 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.DetailCommande;
 
 public class DetailsCommandeAdapter extends RecyclerView.Adapter<DetailsCommandeAdapter.DetailCommandeItem> {
-
-    @BindView(R.id.img_detailcommandeitem_imgarticle)
-     ImageView imgDetailcommandeitemImgarticle;
-    @BindView(R.id.txt_detailcommandeitem_libelarticle)
-     TextView txtDetailcommandeitemLibelarticle;
-    @BindView(R.id.txt_detailcommandeitem_datesynchro)
-     TextView txtDetailcommandeitemDatesynchro;
-    @BindView(R.id.txt_detailcommandeitem_categoritearticle)
-     TextView txtDetailcommandeitemCategoritearticle;
 
     private List<DetailCommande> detailCommandes;
 
@@ -59,8 +51,18 @@ public class DetailsCommandeAdapter extends RecyclerView.Adapter<DetailsCommande
 
     public class DetailCommandeItem extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.img_detailcommandeitem_imgarticle)
+        ImageView imgDetailcommandeitemImgarticle;
+        @BindView(R.id.txt_detailcommandeitem_libelarticle)
+        TextView txtDetailcommandeitemLibelarticle;
+        @BindView(R.id.txt_detailcommandeitem_datesynchro)
+        TextView txtDetailcommandeitemDatesynchro;
+        @BindView(R.id.txt_detailcommandeitem_categoritearticle)
+        TextView txtDetailcommandeitemCategoritearticle;
+
         public DetailCommandeItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(DetailCommande detailCommande) {

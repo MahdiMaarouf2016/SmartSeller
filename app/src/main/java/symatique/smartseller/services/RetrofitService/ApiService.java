@@ -143,6 +143,6 @@ public class ApiService implements ApiRegister {
     }
 
     public static void standartNotifyFailerResponse(Throwable t){
-        Log.v("RETROFT RESPONSE FAILER","->Throwable" + t.getMessage());
+        Log.v("RETROFT RESPONSE FAILER","Throwable->" + t.getMessage());
     }
 }

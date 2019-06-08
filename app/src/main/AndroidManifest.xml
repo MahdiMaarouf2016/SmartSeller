@@ -91,8 +91,8 @@
             android:label="@string/title_activity_clients"
             android:parentActivityName=".modules.Home.HomeActivity" />
         <activity
-            android:name=".modules.Factures.PayementFactureActivity"
-            android:label="@string/title_activity_payement_facture" />
+        android:name=".modules.Factures.PayementFactureActivity"
+        android:label="@string/title_activity_payement_facture" />
     </application>
 
 </manifest>

@@ -15,21 +15,12 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Commande;
 
 public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.CommandeItem> {
 
-    @BindView(R.id.txt_commandeitem_numero)
-     AppCompatTextView txtCommandeitemNumero;
-    @BindView(R.id.txt_commandeitem_etat)
-     AppCompatTextView txtCommandeitemEtat;
-    @BindView(R.id.txt_commandeitem_datesynchro)
-     AppCompatTextView txtCommandeitemDatesynchro;
-    @BindView(R.id.txt_commandeitem_montant)
-     AppCompatTextView txtCommandeitemMontant;
-    @BindView(R.id.fab_commandeitem_goprofile)
-     FloatingActionButton fabCommandeitemGoprofile;
     private List<Commande> commandes;
 
     public CommandesAdapter() {
@@ -60,18 +51,27 @@ public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.Comm
     }
 
     public class CommandeItem extends RecyclerView.ViewHolder {
-        private View itemView;
+        @BindView(R.id.txt_commandeitem_numero)
+        AppCompatTextView txtCommandeitemNumero;
+        @BindView(R.id.txt_commandeitem_etat)
+        AppCompatTextView txtCommandeitemEtat;
+        @BindView(R.id.txt_commandeitem_datesynchro)
+        AppCompatTextView txtCommandeitemDatesynchro;
+        @BindView(R.id.txt_commandeitem_montant)
+        AppCompatTextView txtCommandeitemMontant;
+        @BindView(R.id.fab_commandeitem_goprofile)
+        FloatingActionButton fabCommandeitemGoprofile;
 
         public CommandeItem(@NonNull View itemView) {
             super(itemView);
-            this.itemView = itemView;
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(final Commande commande) {
             txtCommandeitemNumero.setText(commande.getNumero());
             Date date = new Date(commande.getDateSynch());
             txtCommandeitemDatesynchro.setText(date.getDay() + "/" + date.getMonth() + "/" + date.getYear());
-            txtCommandeitemEtat.setText(commande.getEtatCommande().getLibelle());
+            txtCommandeitemEtat.setText("PAS ENCORE PROGRAMMME");
             txtCommandeitemMontant.setText(commande.getMontantHT().toString());
             fabCommandeitemGoprofile.setOnClickListener(new View.OnClickListener() {
                 @Override

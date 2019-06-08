@@ -49,7 +49,7 @@ public class DialogChequePayement extends AppCompatDialog {
 
     public void setupBanquesSpinner() {
         try {
-            DataBaseManager.getInstance().getHelper().getBanques();
+            DataBaseManager.getInstance(getContext()).getHelper().getBanques();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -58,7 +58,7 @@ public class DialogChequePayement extends AppCompatDialog {
 
     public void setUpSocietesSpinner(){
         try {
-            DataBaseManager.getInstance().getHelper().getClients();
+            DataBaseManager.getInstance(getContext()).getHelper().getClients();
         } catch (SQLException e) {
             e.printStackTrace();
         }

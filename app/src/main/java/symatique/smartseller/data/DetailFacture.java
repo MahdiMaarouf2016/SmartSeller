@@ -13,17 +13,6 @@ public class DetailFacture implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
-    @JsonProperty("facture")
-    @DatabaseField(foreign = true)
-    private PrefixFacture facture;
-
-    @JsonProperty("detailVente")
-    @DatabaseField(foreign = true)
-    private DetailVente detailVente;
-
-    // *
-    @DatabaseField(foreign = true)
-    private PrefixBL prefixBL;
 
     public DetailFacture() {
 

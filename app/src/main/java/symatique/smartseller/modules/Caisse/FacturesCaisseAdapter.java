@@ -12,23 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import symatique.smartseller.BuildConfig;
 import symatique.smartseller.R;
 import symatique.smartseller.data.PrefixFacture;
 
 public class FacturesCaisseAdapter extends RecyclerView.Adapter<FacturesCaisseAdapter.FactureCaisseItem> {
-
-    @BindView(R.id.txt_caissefactureitem_numero)
-     AppCompatTextView txtCaissefactureitemNumero;
-    @BindView(R.id.txt_caissefactureitem_client)
-     AppCompatTextView txtCaissefactureitemClient;
-    @BindView(R.id.txt_caissefactureitem_valeur)
-     AppCompatTextView txtCaissefactureitemValeur;
-    @BindView(R.id.txt_caissefactureitem_paie)
-     AppCompatTextView txtCaissefactureitemPaie;
-    @BindView(R.id.txt_caissefactureitem_numbl)
-     AppCompatTextView txtCaissefactureitemNumbl;
-    @BindView(R.id.imgbtn_caissefactureitem_print)
-     AppCompatImageButton imgbtnCaissefactureitemPrint;
 
     private List<PrefixFacture> prefixFactures;
 
@@ -60,8 +49,22 @@ public class FacturesCaisseAdapter extends RecyclerView.Adapter<FacturesCaisseAd
 
     public class FactureCaisseItem extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.txt_caissefactureitem_numero)
+        AppCompatTextView txtCaissefactureitemNumero;
+        @BindView(R.id.txt_caissefactureitem_client)
+        AppCompatTextView txtCaissefactureitemClient;
+        @BindView(R.id.txt_caissefactureitem_valeur)
+        AppCompatTextView txtCaissefactureitemValeur;
+        @BindView(R.id.txt_caissefactureitem_paie)
+        AppCompatTextView txtCaissefactureitemPaie;
+        @BindView(R.id.txt_caissefactureitem_numbl)
+        AppCompatTextView txtCaissefactureitemNumbl;
+        @BindView(R.id.imgbtn_caissefactureitem_print)
+        AppCompatImageButton imgbtnCaissefactureitemPrint;
+
         public FactureCaisseItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(PrefixFacture prefixFacture) {

@@ -12,9 +12,6 @@ public class DetailBL implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
-    @JsonProperty("prefixBL")
-    @DatabaseField(foreign = true,canBeNull = false)
-    private PrefixBL prefixBL;
 
     public DetailBL() {
 

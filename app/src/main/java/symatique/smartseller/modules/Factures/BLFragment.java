@@ -43,7 +43,7 @@ public class BLFragment extends Fragment {
 
     private void setUpRecycle() {
         try {
-            List<PrefixBL> prefixBLS = DataBaseManager.getInstance().getHelper().getPrefixBLS().queryForAll();
+            List<PrefixBL> prefixBLS = DataBaseManager.getInstance(getContext()).getHelper().getPrefixBLS().queryForAll();
 
             PrefixBlsAdapter facturesAdapter = new PrefixBlsAdapter(prefixBLS);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());

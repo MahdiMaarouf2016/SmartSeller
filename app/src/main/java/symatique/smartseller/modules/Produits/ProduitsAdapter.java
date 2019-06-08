@@ -14,20 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Article;
 
-
 public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.ProduitItem> {
 
-    @BindView(R.id.img_panieritem_prodbackimg) AppCompatImageView imgProdbackimg;
-    @BindView(R.id.txt_panieritiem_prodlibelle) AppCompatTextView txtProduitiemProdlibelle;
-    @BindView(R.id.txt_produitiem_prodcode) AppCompatTextView txtProduitiemProdcode;
-    @BindView(R.id.txt_produitiem_categorie) AppCompatTextView txtProduitiemCategorie;
-    @BindView(R.id.btn_panieritiem_plus) AppCompatButton btnProduitiemPlus;
-    @BindView(R.id.txtedt_produitiem_quantite) TextInputEditText txtedtProduitiemQuantite;
-    @BindView(R.id.btn_panieritiem_moin) AppCompatButton btnProduitiemMoin;
-    @BindView(R.id.linearLayoutCompat) AppCompatButton btnProduitiemAjouter;
 
     private List<Article> articles;
 
@@ -69,9 +61,26 @@ public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.Produi
     }
 
     public class ProduitItem extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_panieritem_prodbackimg)
+        AppCompatImageView imgPanieritemProdbackimg;
+        @BindView(R.id.txt_panieritiem_prodlibelle)
+        AppCompatTextView txtPanieritiemProdlibelle;
+        @BindView(R.id.txt_produitiem_prodcode)
+        AppCompatTextView txtProduitiemProdcode;
+        @BindView(R.id.txt_produitiem_categorie)
+        AppCompatTextView txtProduitiemCategorie;
+        @BindView(R.id.btn_panieritiem_plus)
+        AppCompatButton btnPanieritiemPlus;
+        @BindView(R.id.txtedt_produitiem_quantite)
+        TextInputEditText txtedtProduitiemQuantite;
+        @BindView(R.id.btn_panieritiem_moin)
+        AppCompatButton btnPanieritiemMoin;
+        @BindView(R.id.btn_produitiem_ajouter)
+        AppCompatButton btnProduitiemAjouter;
 
         public ProduitItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
 
         public ProduitItem(@NonNull View itemView, Article articles) {
@@ -82,21 +91,22 @@ public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.Produi
         public void clone(final Article article) {
 
             txtedtProduitiemQuantite.setText("0");
-            txtProduitiemCategorie.setText(article.getCategorieArticle().getLibelle());
+            txtProduitiemCategorie.setText(article.getLibelleCategorie());
             txtProduitiemProdcode.setText(article.getCode());
-            txtProduitiemProdlibelle.setText(article.getLibelle());
-            btnProduitiemPlus.setOnClickListener(new View.OnClickListener() {
+            txtPanieritiemProdlibelle.setText(article.getLibelle());
+            btnPanieritiemPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     double currentqe = Integer.parseInt(txtedtProduitiemQuantite.getText().toString());
                     txtedtProduitiemQuantite.setText(String.valueOf(currentqe + 1));
                 }
             });
-            btnProduitiemMoin.setOnClickListener(new View.OnClickListener() {
+            btnPanieritiemMoin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     double currentqe = Integer.parseInt(txtedtProduitiemQuantite.getText().toString());
-                    if(currentqe - 1 >= 0)txtedtProduitiemQuantite.setText(String.valueOf(currentqe - 1));
+                    if (currentqe - 1 >= 0)
+                        txtedtProduitiemQuantite.setText(String.valueOf(currentqe - 1));
                 }
             });
 
@@ -104,8 +114,12 @@ public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.Produi
                 @Override
                 public void onClick(View v) {
 
-                    if(articles.remove(article)){
+                    if (articles.remove(article)) {
                         setArticles(articles);
+                        // PanierAdapter.PanierItem.PanierPacket panierPacket = new PanierAdapter.PanierItem.PanierPacket();
+
+                        //panierPacket.setArticle(article);
+                        //PanierActivity.panierPackets.add(panierPacket);
                     }
 
                 }

@@ -51,7 +51,7 @@ public class StockActivity extends AppCompatActivity {
 
         try {
 
-            List<DetailStock> detailStocks = DataBaseManager.getInstance().getHelper().getDetailStocks().queryForAll();
+            List<DetailStock> detailStocks = DataBaseManager.getInstance(getApplicationContext()).getHelper().getDetailStocks().queryForAll();
             StockAdapter stockAdapter = new StockAdapter(detailStocks);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

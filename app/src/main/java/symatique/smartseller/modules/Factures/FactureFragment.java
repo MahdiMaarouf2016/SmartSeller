@@ -46,7 +46,7 @@ public class FactureFragment extends Fragment {
 
     void setUpListFactures() {
         try {
-            List<PrefixFacture> prefixFactures = DataBaseManager.getInstance().getHelper().getPrefixFactures().queryForAll();
+            List<PrefixFacture> prefixFactures = DataBaseManager.getInstance(getContext()).getHelper().getPrefixFactures().queryForAll();
 
             PrefixFacturesAdapter facturesAdapter = new PrefixFacturesAdapter(prefixFactures);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());

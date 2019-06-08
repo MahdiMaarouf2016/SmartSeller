@@ -12,22 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.PrefixFacture;
 
 public class PrefixFacturesAdapter extends RecyclerView.Adapter<PrefixFacturesAdapter.FactureItem> {
-
-    @BindView(R.id.img_prefixfacture_print)
-     AppCompatImageView imgPrefixfacturePrint;
-    @BindView(R.id.txt_prefixfacture_numero)
-     AppCompatTextView txtPrefixfactureNumero;
-    @BindView(R.id.txt_prefixfacture_client)
-     AppCompatTextView txtPrefixfactureClient;
-    @BindView(R.id.txt_prefixfacture_paie)
-     AppCompatTextView txtPrefixfacturePaie;
-    @BindView(R.id.txt_prefixfacture_valeur)
-     AppCompatTextView txtPrefixfactureValeur;
-
 
     private List<PrefixFacture> factures;
 
@@ -59,9 +48,20 @@ public class PrefixFacturesAdapter extends RecyclerView.Adapter<PrefixFacturesAd
     }
 
     public class FactureItem extends RecyclerView.ViewHolder {
+        @BindView(R.id.img_prefixfacture_print)
+        AppCompatImageView imgPrefixfacturePrint;
+        @BindView(R.id.txt_prefixfacture_numero)
+        AppCompatTextView txtPrefixfactureNumero;
+        @BindView(R.id.txt_prefixfacture_client)
+        AppCompatTextView txtPrefixfactureClient;
+        @BindView(R.id.txt_prefixfacture_paie)
+        AppCompatTextView txtPrefixfacturePaie;
+        @BindView(R.id.txt_prefixfacture_valeur)
+        AppCompatTextView txtPrefixfactureValeur;
 
         public FactureItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(PrefixFacture facture) {

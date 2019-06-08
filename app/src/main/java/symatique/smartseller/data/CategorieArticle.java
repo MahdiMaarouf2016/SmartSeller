@@ -6,6 +6,9 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @DatabaseTable
 public class CategorieArticle implements Serializable {
 
@@ -13,26 +16,33 @@ public class CategorieArticle implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
+    @JsonProperty("activer")
+    @DatabaseField
+    private boolean activer;
     @JsonProperty("dateSynchro")
     @DatabaseField
     private Long dateSynchro;
+    @JsonProperty("dernierRang")
+    @DatabaseField
+    private boolean dernierRang;
+    @JsonProperty("idEntreprise")
+    @DatabaseField
+    private long idEntreprise;
     @JsonProperty("libelle")
     @DatabaseField
     private String libelle;
     @JsonProperty("libelleArb")
     @DatabaseField
     private String libelleArb;
+    @JsonProperty("rang")
+    @DatabaseField
+    private int rang;
+    @JsonProperty("specialClient")
+    @DatabaseField
+    private boolean specialClient;
     @JsonProperty("supprimer")
     @DatabaseField
     private Boolean supprimer;
-
-    @JsonProperty("idEntreprise")
-    @DatabaseField
-    private long idEntreprise;
-
-    @JsonProperty("articles")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Article> articles;
 
     public CategorieArticle() {
 
@@ -42,8 +52,16 @@ public class CategorieArticle implements Serializable {
         return id;
     }
 
+    public boolean isActiver() {
+        return activer;
+    }
+
     public Long getDateSynchro() {
         return dateSynchro;
+    }
+
+    public boolean isDernierRang() {
+        return dernierRang;
     }
 
     public String getLibelle() {
@@ -58,20 +76,32 @@ public class CategorieArticle implements Serializable {
         return supprimer;
     }
 
-    public long getIdEntreprise() {
-        return idEntreprise;
+    public int getRang() {
+        return rang;
     }
 
-    public ForeignCollection<Article> getArticles() {
-        return articles;
+    public boolean isSpecialClient() {
+        return specialClient;
+    }
+
+    public long getIdEntreprise() {
+        return idEntreprise;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
+    public void setActiver(boolean activer) {
+        this.activer = activer;
+    }
+
     public void setDateSynchro(Long dateSynchro) {
         this.dateSynchro = dateSynchro;
+    }
+
+    public void setDernierRang(boolean dernierRang) {
+        this.dernierRang = dernierRang;
     }
 
     public void setLibelle(String libelle) {
@@ -86,11 +116,15 @@ public class CategorieArticle implements Serializable {
         this.supprimer = supprimer;
     }
 
-    public void setIdEntreprise(long idEntreprise) {
-        this.idEntreprise = idEntreprise;
+    public void setRang(int rang) {
+        this.rang = rang;
     }
 
-    public void setArticles(ForeignCollection<Article> articles) {
-        this.articles = articles;
+    public void setSpecialClient(boolean specialClient) {
+        this.specialClient = specialClient;
+    }
+
+    public void setIdEntreprise(long idEntreprise) {
+        this.idEntreprise = idEntreprise;
     }
 }

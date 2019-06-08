@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import symatique.smartseller.R;
+import symatique.smartseller.services.RetrofitService.ApiService;
 
 public class ChargementActivity extends AppCompatActivity {
 
@@ -23,9 +24,11 @@ public class ChargementActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+
             for (int i = 0; i < 4; i++) {
                 try {
                     Thread.sleep(1000);
+
                 } catch (InterruptedException e) {
                     Thread.interrupted();
                 }

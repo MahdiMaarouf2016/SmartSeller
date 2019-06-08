@@ -7,6 +7,9 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @DatabaseTable
 public class EtatCommande implements Serializable {
 
@@ -36,10 +39,6 @@ public class EtatCommande implements Serializable {
     @DatabaseField
     private long idEntreprise;
 
-
-    @JsonProperty("commandes")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Commande> commandes;
 
     public EtatCommande() {
     }
@@ -80,10 +79,6 @@ public class EtatCommande implements Serializable {
         return idEntreprise;
     }
 
-    public ForeignCollection<Commande> getCommandes() {
-        return commandes;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -116,7 +111,4 @@ public class EtatCommande implements Serializable {
         this.idEntreprise = idEntreprise;
     }
 
-    public void setCommandes(ForeignCollection<Commande> commandes) {
-        this.commandes = commandes;
-    }
 }

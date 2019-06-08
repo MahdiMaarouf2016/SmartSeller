@@ -36,7 +36,7 @@ public class CommandesActivity extends AppCompatActivity {
 
     private void setUpCommandes() {
         try {
-            List<Commande> commandes = DataBaseManager.getInstance().getHelper().getCommandes().queryForAll();
+            List<Commande> commandes = DataBaseManager.getInstance(getApplicationContext()).getHelper().getCommandes().queryForAll();
             CommandesAdapter commandesAdapter = new CommandesAdapter(commandes);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

@@ -1,9 +1,7 @@
 package symatique.smartseller.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
 
@@ -14,16 +12,18 @@ public class Client implements Serializable {
     @DatabaseField(id = true)
     protected long id;
 
-
     @JsonProperty("adresse")
     @DatabaseField
     protected String adresse = "";
     @JsonProperty("code")
     @DatabaseField
     protected String code = "";
-    @JsonProperty("codeAdminVente")
+    @JsonProperty("codeVendeur")
     @DatabaseField
-    protected String codeAdminVente = "";
+    private String codeVendeur;
+    @JsonProperty("dateSynchro")
+    @DatabaseField
+    protected long dateSynchro;
     @JsonProperty("email")
     @DatabaseField
     protected String email = "";
@@ -33,15 +33,33 @@ public class Client implements Serializable {
     @JsonProperty("gsm")
     @DatabaseField
     protected String gsm = "";
+    @JsonProperty("idEntreprise")
+    @DatabaseField
+    private long idEntreprise;
+    @JsonProperty("idVendeur")
+    @DatabaseField
+    private long idVendeur ;
+    @JsonProperty("latitude")
+    @DatabaseField
+    private String latitude;
     @JsonProperty("libelle")
     @DatabaseField
     protected String libelle = "";
+    @JsonProperty("longitude")
+    @DatabaseField
+    private String longitude;
     @JsonProperty("matriculeFiscale")
     @DatabaseField
     protected String matriculeFiscale = "";
     @JsonProperty("nature")
     @DatabaseField
     protected String nature = "";
+    @JsonProperty("planificationVenteWS")
+    @DatabaseField(foreign = true)
+    private PlanificationVenteWS planificationVenteWS;
+    @JsonProperty("precision")
+    @DatabaseField
+    private int precision;
     @JsonProperty("registreCommerce")
     @DatabaseField
     protected String registreCommerce = "";
@@ -51,21 +69,6 @@ public class Client implements Serializable {
     @JsonProperty("supprimer")
     @DatabaseField
     protected boolean supprimer = false;
-    @JsonProperty("dateSynchro")
-    @DatabaseField
-    protected long dateSynchro;
-    @JsonProperty("longitude")
-    @DatabaseField
-    private String longitude;
-    @JsonProperty("latitude")
-    @DatabaseField
-    private String latitude;
-    @JsonProperty("precision")
-    @DatabaseField
-    private int precision;
-    @JsonProperty("codeTemp")
-    @DatabaseField
-    private String codeTemp;
     @JsonProperty("nom")
     @DatabaseField
     private String nom;
@@ -78,20 +81,9 @@ public class Client implements Serializable {
     @JsonProperty("cin")
     @DatabaseField
     private String cin;
-    @JsonProperty("idEntreprise")
+    @JsonProperty("type")
     @DatabaseField
-    private long idEntreprise;
-
-    @JsonProperty("livreurs")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Livreur> livreurs;
-    @JsonProperty("prefixBLS")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<PrefixBL> prefixBLS;
-
-    @DatabaseField(foreign = true)
-    private Livreur livreur;
-
+    private int type;
 
     public Client() {
 
@@ -107,10 +99,6 @@ public class Client implements Serializable {
 
     public String getCode() {
         return code;
-    }
-
-    public String getCodeAdminVente() {
-        return codeAdminVente;
     }
 
     public String getEmail() {
@@ -165,10 +153,6 @@ public class Client implements Serializable {
         return precision;
     }
 
-    public String getCodeTemp() {
-        return codeTemp;
-    }
-
     public String getNom() {
         return nom;
     }
@@ -189,18 +173,6 @@ public class Client implements Serializable {
         return idEntreprise;
     }
 
-    public ForeignCollection<Livreur> getLivreurs() {
-        return livreurs;
-    }
-
-    public ForeignCollection<PrefixBL> getPrefixBLS() {
-        return prefixBLS;
-    }
-
-    public Livreur getLivreur() {
-        return livreur;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -211,10 +183,6 @@ public class Client implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public void setCodeAdminVente(String codeAdminVente) {
-        this.codeAdminVente = codeAdminVente;
     }
 
     public void setEmail(String email) {
@@ -269,10 +237,6 @@ public class Client implements Serializable {
         this.precision = precision;
     }
 
-    public void setCodeTemp(String codeTemp) {
-        this.codeTemp = codeTemp;
-    }
-
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -291,17 +255,5 @@ public class Client implements Serializable {
 
     public void setIdEntreprise(long idEntreprise) {
         this.idEntreprise = idEntreprise;
-    }
-
-    public void setLivreurs(ForeignCollection<Livreur> livreurs) {
-        this.livreurs = livreurs;
-    }
-
-    public void setPrefixBLS(ForeignCollection<PrefixBL> prefixBLS) {
-        this.prefixBLS = prefixBLS;
-    }
-
-    public void setLivreur(Livreur livreur) {
-        this.livreur = livreur;
     }
 }

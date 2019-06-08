@@ -46,7 +46,7 @@ public class ProduitsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_produit);
         ButterKnife.bind(this);
         setupToolBar();
-        setupProductsList();
+        setupProduitsList();
         setUpDelegates();
     }
 
@@ -61,9 +61,9 @@ public class ProduitsActivity extends AppCompatActivity {
         return true;
     }
 
-    public void setupProductsList() {
+    public void setupProduitsList() {
 
-        DatabaseHelper database = DataBaseManager.getInstance().getHelper();
+        DatabaseHelper database = DataBaseManager.getInstance(getApplicationContext()).getHelper();
         try {
 
             List<Article> articles = database.getArticles().queryForAll();

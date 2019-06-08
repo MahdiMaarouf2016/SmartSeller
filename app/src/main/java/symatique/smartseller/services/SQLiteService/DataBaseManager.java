@@ -6,13 +6,10 @@ public class DataBaseManager {
     private DatabaseHelper helper;
     static private DataBaseManager instance;
 
-    static public void init(Context ctx) {
+    static public DataBaseManager getInstance(Context context) {
         if (null == instance) {
-            instance = new DataBaseManager(ctx);
+            instance = new DataBaseManager(context);
         }
-    }
-
-    static public DataBaseManager getInstance() {
         return instance;
     }
 

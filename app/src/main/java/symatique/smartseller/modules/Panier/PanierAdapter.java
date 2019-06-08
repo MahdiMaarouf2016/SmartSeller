@@ -14,36 +14,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Article;
+import symatique.smartseller.data.CategorieArticle;
+import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem> {
-    @BindView(R.id.img_panieritem_prodbackimg)
-     AppCompatImageView imgPanieritemProdbackimg;
-    @BindView(R.id.txt_panieritiem_prodlibelle)
-     AppCompatTextView txtPanieritiemProdlibelle;
-    @BindView(R.id.txt_produitiem_prodcode)
-     AppCompatTextView txtProduitiemProdcode;
-    @BindView(R.id.txt_panieritiem_categorie)
-     AppCompatTextView txtPanieritiemCategorie;
-    @BindView(R.id.txt_panieritiem_prix)
-     AppCompatTextView txtPanieritiemPrix;
-    @BindView(R.id.btn_panieritiem_plus)
-     AppCompatButton btnPanieritiemPlus;
-    @BindView(R.id.txtedit_panieritiem_prodqte)
-     TextInputEditText txteditPanieritiemProdqte;
-    @BindView(R.id.btn_panieritiem_moin)
-     AppCompatButton btnPanieritiemMoin;
-    @BindView(R.id.linearLayoutCompat)
-     LinearLayoutCompat linearLayoutCompat;
-    @BindView(R.id.fab_panier_delete)
-     FloatingActionButton fabPanierDelete;
-    @BindView(R.id.guideline7)
-     Guideline guideline7;
+
 
 
     private List<PanierItem.PanierPacket> panierElements = null;
@@ -82,17 +65,43 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
 
     @Override
     public int getItemCount() {
-        return 0;
+        return panierElements.size();
     }
 
     public class PanierItem extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.img_panieritem_prodbackimg)
+        AppCompatImageView imgPanieritemProdbackimg;
+        @BindView(R.id.txt_panieritiem_prodlibelle)
+        AppCompatTextView txtPanieritiemProdlibelle;
+        @BindView(R.id.txt_produitiem_prodcode)
+        AppCompatTextView txtProduitiemProdcode;
+        @BindView(R.id.txt_panieritiem_categorie)
+        AppCompatTextView txtPanieritiemCategorie;
+        @BindView(R.id.txt_panieritiem_prix)
+        AppCompatTextView txtPanieritiemPrix;
+        @BindView(R.id.btn_panieritiem_plus)
+        AppCompatButton btnPanieritiemPlus;
+        @BindView(R.id.txtedit_panieritiem_prodqte)
+        TextInputEditText txteditPanieritiemProdqte;
+        @BindView(R.id.btn_panieritiem_moin)
+        AppCompatButton btnPanieritiemMoin;
+        @BindView(R.id.linearLayoutCompat)
+        LinearLayoutCompat linearLayoutCompat;
+        @BindView(R.id.fab_panier_delete)
+        FloatingActionButton fabPanierDelete;
+        @BindView(R.id.guideline7)
+        Guideline guideline7;
+
         public PanierItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(final PanierPacket panierPacket) {
+
             txteditPanieritiemProdqte.setText(String.valueOf(panierPacket.getQuantite()));
-            txtPanieritiemCategorie.setText(panierPacket.getArticle().getCategorieArticle().getLibelle());
+            txtPanieritiemCategorie.setText(panierPacket.getArticle().getLibelleArb());
             txtPanieritiemPrix.setText(String.valueOf(panierPacket.getArticle().getPromoUnitaire()));
             txtProduitiemProdcode.setText(panierPacket.getArticle().getCode());
             txtPanieritiemProdlibelle.setText(panierPacket.getArticle().getLibelle());
@@ -100,15 +109,15 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
             btnPanieritiemPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    double currentqe = Integer.parseInt(txteditPanieritiemProdqte.getText().toString());
-                    txteditPanieritiemProdqte.setText(String.valueOf(currentqe + 1));
+                    double currenqte = Integer.parseInt(txteditPanieritiemProdqte.getText().toString());
+                    txteditPanieritiemProdqte.setText(String.valueOf(currenqte + 1));
                 }
             });
             btnPanieritiemMoin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    double currentqe = Integer.parseInt(txteditPanieritiemProdqte.getText().toString());
-                    if(currentqe - 1 >= 0)txteditPanieritiemProdqte.setText(String.valueOf(currentqe - 1));
+                    double currenqte = Integer.parseInt(txteditPanieritiemProdqte.getText().toString());
+                    if(currenqte - 1 >= 0)txteditPanieritiemProdqte.setText(String.valueOf(currenqte - 1));
                 }
             });
 
@@ -122,6 +131,7 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
             });
 
         }
+
         public class PanierPacket implements Serializable {
 
             private long quantite;

@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.j256.ormlite.dao.ForeignCollection;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -61,15 +63,15 @@ public class DetailCommandeActivity extends AppCompatActivity {
     public void setUp(Bundle savedInstanceState) {
         try {
 
-            Commande commande = (Commande) getIntent().getExtras().get("Commande");
-            List<DetailCommande> detailCommandes = commande.getDetailCommandes().getDao().queryForAll();
+            /*Commande commande = (Commande) getIntent().getExtras().get("Commande");
+            List<DetailCommande> detailCommandes = ((ForeignCollection)commande.getDetailCommandes()).getDao().queryForAll();
             DetailsCommandeAdapter detailsCommandeAdapter = new DetailsCommandeAdapter(detailCommandes);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             recDetailscommandeListdetailscommande.setLayoutManager(layoutManager);
             recDetailscommandeListdetailscommande.setItemAnimator(new DefaultItemAnimator());
             recDetailscommandeListdetailscommande.setAdapter(detailsCommandeAdapter);
-
+            */
         } catch (Exception ex) {
             Log.v("COMMANDE DATA MESSAGE", ex.getMessage());
         }

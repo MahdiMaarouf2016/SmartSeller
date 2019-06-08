@@ -7,6 +7,8 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable
 public class Banque implements Serializable {
@@ -15,24 +17,18 @@ public class Banque implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
-
-    @JsonProperty("libelle")
-    @DatabaseField
-    private String libelle;
-    @JsonProperty("description")
-    @DatabaseField
-    private String description;
     @JsonProperty("dateSynchro")
     @DatabaseField
     private Long dateSynchro;
+    @JsonProperty("idEntreprise")
+    @DatabaseField
+    private long idEntreprise;
+    @JsonProperty("libelle")
+    @DatabaseField
+    private String libelle;
     @JsonProperty("supprimer")
     @DatabaseField
     private boolean supprimer;
-
-
-    @JsonProperty("encaissements")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Encaissement> encaissements;
 
     public Banque() {
 
@@ -42,47 +38,39 @@ public class Banque implements Serializable {
         return id;
     }
 
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public Long getDateSynchro() {
         return dateSynchro;
+    }
+
+    public long getIdEntreprise() {
+        return idEntreprise;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
 
     public boolean isSupprimer() {
         return supprimer;
     }
 
-    public ForeignCollection<Encaissement> getEncaissements() {
-        return encaissements;
-    }
-
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setLibelle(String libelle) {
-        this.libelle = libelle;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void setDateSynchro(Long dateSynchro) {
         this.dateSynchro = dateSynchro;
     }
 
-    public void setSupprimer(boolean supprimer) {
-        this.supprimer = supprimer;
+    public void setIdEntreprise(long idEntreprise) {
+        this.idEntreprise = idEntreprise;
     }
 
-    public void setEncaissements(ForeignCollection<Encaissement> encaissements) {
-        this.encaissements = encaissements;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+    public void setSupprimer(boolean supprimer) {
+        this.supprimer = supprimer;
     }
 }

@@ -12,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.CategorieArticle;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesItem> {
 
     private List<CategorieArticle> categories;
-    @BindView(R.id.btn_categorieitem_lebelcategorie)
-     AppCompatButton btnCategorieitemLebelcategorie;
+
 
     CategoriesAdapter() {
         this.categories = new ArrayList<>();
@@ -61,8 +61,12 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     public class CategoriesItem extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.btn_categorieitem_lebelcategorie)
+        AppCompatButton btnCategorieitemLebelcategorie;
+
         public CategoriesItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public CategoriesItem clone(CategorieArticle categorie) {

@@ -9,6 +9,8 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable
 public class PrefixFacture implements Serializable {
@@ -68,10 +70,6 @@ public class PrefixFacture implements Serializable {
     @JsonProperty("appVersion")
     @DatabaseField
     private String appVersion = "";
-
-    @JsonProperty("detailFactures")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<DetailFacture> detailFactures;
 
     public PrefixFacture(String id) {
         this.id = id;
@@ -153,10 +151,6 @@ public class PrefixFacture implements Serializable {
         return appVersion;
     }
 
-    public ForeignCollection<DetailFacture> getDetailFactures() {
-        return detailFactures;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -229,7 +223,4 @@ public class PrefixFacture implements Serializable {
         this.appVersion = appVersion;
     }
 
-    public void setDetailFactures(ForeignCollection<DetailFacture> detailFactures) {
-        this.detailFactures = detailFactures;
-    }
 }

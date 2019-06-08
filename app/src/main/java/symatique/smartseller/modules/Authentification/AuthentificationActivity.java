@@ -64,24 +64,23 @@ public class AuthentificationActivity extends AppCompatActivity {
 
         Livreur livreur = getLivreur();
         ApiService apiService = new ApiService();
+
         apiService.getAuthentificated(livreur.getCode(),livreur.getPassword(),"0000","123").enqueue(new Callback<AuthenticationResponse>() {
             @Override
             public void onResponse(Call<AuthenticationResponse> call, Response<AuthenticationResponse> response) {
-                Log.v("RESPONSE MESSAGE ",response.message());
-                Log.v("RESPONSE CODE ", String.valueOf(response.code()));
-                Log.v("RESPONSE isSuc" , String.valueOf(response.isSuccessful()));
+
                 if(!response.isSuccessful()){
-                    Log.e("RESPONSE ERROR",response.errorBody().toString());
+                    Toast.makeText(getApplication(),"Connexion internet attendu ",Toast.LENGTH_LONG).show();
                 }else{
                     AuthenticationResponse authenticationResponse = response.body();
                     AuthentificationActivity.authenticationResponse = authenticationResponse;
                     switch (authenticationResponse.getEtatCompte()){
                         case 0:{
-                            Intent intent = new Intent(getBaseContext(), HomeActivity.class);
-                            startActivity(intent);
+                            Toast.makeText(getApplication(),"Authentification errorné",Toast.LENGTH_LONG).show();
                         }break;
                         case 1:{
-
+                            Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                            startActivity(intent);
                         }
                         case 2:{
 
@@ -91,9 +90,6 @@ public class AuthentificationActivity extends AppCompatActivity {
                         }
                         case 4:{
 
-                        }
-                        default:{
-                            Toast.makeText(getApplication(),"Authentification errorné",Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -105,6 +101,7 @@ public class AuthentificationActivity extends AppCompatActivity {
                 ApiService.standartNotifyFailerResponse(t);
                 Toast.makeText(getApplication()," Connexion attendu ",Toast.LENGTH_LONG).show();
             }
+
         });
     }
 }

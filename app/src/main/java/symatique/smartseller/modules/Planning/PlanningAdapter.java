@@ -12,17 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Client;
 
 
 public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.PlanningItem> {
-
-
-    @BindView(R.id.txt_planningitem_sctname) AppCompatTextView txtPlanningitemSctname;
-    @BindView(R.id.txt_planningitem_sctcode) AppCompatTextView txtPlanningitemSctcode;
-    @BindView(R.id.txt_planningitem_stcgsm) AppCompatTextView txtPlanningitemStcgsm;
-    @BindView(R.id.btn_planningitem_call) AppCompatImageView btnPlanningitemCall;
 
     private List<Client> clients;
 
@@ -64,10 +59,15 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
     }
 
     public class PlanningItem extends RecyclerView.ViewHolder {
-        private View itemView;
+
+        @BindView(R.id.txt_planningitem_sctname) AppCompatTextView txtPlanningitemSctname;
+        @BindView(R.id.txt_planningitem_sctcode) AppCompatTextView txtPlanningitemSctcode;
+        @BindView(R.id.txt_planningitem_stcgsm) AppCompatTextView txtPlanningitemStcgsm;
+        @BindView(R.id.btn_planningitem_call) AppCompatImageView btnPlanningitemCall;
+
         public PlanningItem(@NonNull View itemView) {
             super(itemView);
-            this.itemView = itemView;
+            ButterKnife.bind(this, itemView);
         }
 
         public PlanningItem(@NonNull View itemView, Client client) {
@@ -78,7 +78,7 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
         public PlanningItem clone(final Client client) {
 
             txtPlanningitemSctcode.setText(client.getCode());
-            txtPlanningitemSctname.setText(client.getNom());
+            txtPlanningitemSctname.setText(client.getLibelle());
             txtPlanningitemStcgsm.setText(client.getGsm());
             btnPlanningitemCall.setOnClickListener(new View.OnClickListener() {
                 @Override

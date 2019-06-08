@@ -11,21 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.DetailStock;
 import symatique.smartseller.data.StockParVendeur;
 
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
-
-
-    @BindView(R.id.txt_stockitem_code)
-     AppCompatTextView txtStockitemCode;
-    @BindView(R.id.txt_stockitem_produit)
-     AppCompatTextView txtStockitemProduit;
-    @BindView(R.id.txt_stockitem_qte)
-     AppCompatTextView txtStockitemQte;
-    @BindView(R.id.txt_stockitem_prix)
-     AppCompatTextView txtStockitemPrix;
 
     private List<DetailStock> stockParVendeurs;
 
@@ -57,13 +48,18 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
     }
 
     public class StockItem extends RecyclerView.ViewHolder {
-
-        private View itemView;
+        @BindView(R.id.txt_stockitem_code)
+        AppCompatTextView txtStockitemCode;
+        @BindView(R.id.txt_stockitem_produit)
+        AppCompatTextView txtStockitemProduit;
+        @BindView(R.id.txt_stockitem_qte)
+        AppCompatTextView txtStockitemQte;
+        @BindView(R.id.txt_stockitem_prix)
+        AppCompatTextView txtStockitemPrix;
 
         public StockItem(@NonNull View itemView) {
             super(itemView);
-            this.itemView = itemView;
-
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(DetailStock detailStock) {

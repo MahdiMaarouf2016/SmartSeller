@@ -7,6 +7,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 @DatabaseTable
 public class StockParVendeur implements Serializable {
@@ -70,16 +71,16 @@ public class StockParVendeur implements Serializable {
         return idEntreprise;
     }
 
-    public ForeignCollection<BonDeSortie> getBonDeSorties() {
-        return bonDeSorties;
+    public List<BonDeSortie> getBonDeSorties() {
+        return (ArrayList<BonDeSortie>)bonDeSorties;
     }
 
-    public ForeignCollection<DetailStock> getDetailStocks() {
-        return detailStocks;
+    public List<DetailStock> getDetailStocks() {
+        return (ArrayList<DetailStock>)detailStocks;
     }
 
-    public ForeignCollection<Vente> getVentes() {
-        return ventes;
+    public List<Vente> getVentes() {
+        return (ArrayList<Vente>)ventes;
     }
 
     public Vente getVente() {

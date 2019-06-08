@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -77,10 +78,11 @@ public class PlanningActivity extends AppCompatActivity {
 
     public void setUpPlaningList() {
 
-        DatabaseHelper database = DataBaseManager.getInstance().getHelper();
+        DatabaseHelper database = DataBaseManager.getInstance(getApplicationContext()).getHelper();
         try {
 
             List<Client> clients = database.getClients().queryForAll();
+            Log.v("ListClients size 0",clients.size() + "");
             PlanningAdapter planningAdapter = new PlanningAdapter(clients);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

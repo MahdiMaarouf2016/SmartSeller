@@ -22,9 +22,9 @@ public class DialogCategories extends AppCompatDialog {
 
 
     @BindView(R.id.btn_dialogcategorie_toutcategorie)
-     AppCompatButton btnDialogcategorieToutcategorie;
+    AppCompatButton btnDialogcategorieToutcategorie;
     @BindView(R.id.rec_dialogcategorie_categories)
-     RecyclerView recDialogcategorieCategories;
+    RecyclerView recDialogcategorieCategories;
 
     public DialogCategories(Context context) {
         super(context);
@@ -39,13 +39,9 @@ public class DialogCategories extends AppCompatDialog {
     }
 
     public void setupCategories() {
-
-        DatabaseHelper database = DataBaseManager.getInstance().getHelper();
-
+        DatabaseHelper database = DataBaseManager.getInstance(getContext()).getHelper();
         try {
-
             List<CategorieArticle> categories = database.getCategorieArtices().queryForAll();
-
             CategoriesAdapter adapter = new CategoriesAdapter(categories);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             recDialogcategorieCategories.setLayoutManager(layoutManager);

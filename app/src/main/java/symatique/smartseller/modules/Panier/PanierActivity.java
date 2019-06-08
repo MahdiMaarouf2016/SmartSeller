@@ -11,30 +11,30 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class PanierActivity extends AppCompatActivity {
 
     @BindView(R.id.rec_panier_listarticles)
-     RecyclerView recPanierListarticles;
+    RecyclerView recPanierListarticles;
     @BindView(R.id.txt_panier_labeltotalcommande)
-     AppCompatTextView txtPanierLabeltotalcommande;
+    AppCompatTextView txtPanierLabeltotalcommande;
     @BindView(R.id.txt_panier_totalcommandes)
-     AppCompatTextView txtPanierTotalcommandes;
+    AppCompatTextView txtPanierTotalcommandes;
     @BindView(R.id.txt_panier_quantitearticles)
-     AppCompatTextView txtPanierQuantitearticles;
+    AppCompatTextView txtPanierQuantitearticles;
     @BindView(R.id.txt_panier_labelquantite)
-     AppCompatTextView txtPanierLabelquantite;
+    AppCompatTextView txtPanierLabelquantite;
     @BindView(R.id.btn_panier_commander)
-     AppCompatButton btnPanierCommander;
+    AppCompatButton btnPanierCommander;
     @BindView(R.id.constraintLayout)
-     ConstraintLayout constraintLayout;
-
+    ConstraintLayout constraintLayout;
+    public static List<PanierAdapter.PanierItem.PanierPacket> panierPackets = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,6 @@ public class PanierActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setupToolBar();
         setUpPaniers();
-
     }
 
     private void setupToolBar() {
@@ -53,18 +52,11 @@ public class PanierActivity extends AppCompatActivity {
 
     public void setUpPaniers() {
 
-        /*try {
+        PanierAdapter panierAdapter = new PanierAdapter(panierPackets);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recPanierListarticles.setLayoutManager(layoutManager);
+        recPanierListarticles.setItemAnimator(new DefaultItemAnimator());
+        recPanierListarticles.setAdapter(panierAdapter);
 
-            List<PanierAdapter.PanierItem.PanierPacket> panierPackets = DataBaseManager.getInstance().getHelper().getPanierPackets().queryForAll();
-            PanierAdapter panierAdapter = new PanierAdapter(panierPackets);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            recPanierListarticles.setLayoutManager(layoutManager);
-            recPanierListarticles.setItemAnimator(new DefaultItemAnimator());
-            recPanierListarticles.setAdapter(panierAdapter);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        */
     }
 }

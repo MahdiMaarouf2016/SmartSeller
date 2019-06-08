@@ -36,16 +36,6 @@ public class RapportVisite implements Serializable {
     @DatabaseField
     private long idEntreprise ;
 
-    @JsonProperty("client")
-    @DatabaseField(foreign = true)
-    private Client client;
-    @JsonProperty("livreur")
-    @DatabaseField(foreign = true)
-    private Livreur livreur;
-    @JsonProperty("motifRapportVisite")
-    @DatabaseField(foreign = true)
-    private MotifRapportVisite motifRapportVisite;
-
     public RapportVisite() {
     }
 
@@ -89,18 +79,6 @@ public class RapportVisite implements Serializable {
         return idEntreprise;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public Livreur getLivreur() {
-        return livreur;
-    }
-
-    public MotifRapportVisite getMotifRapportVisite() {
-        return motifRapportVisite;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -137,15 +115,4 @@ public class RapportVisite implements Serializable {
         this.idEntreprise = idEntreprise;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public void setLivreur(Livreur livreur) {
-        this.livreur = livreur;
-    }
-
-    public void setMotifRapportVisite(MotifRapportVisite motifRapportVisite) {
-        this.motifRapportVisite = motifRapportVisite;
-    }
 }

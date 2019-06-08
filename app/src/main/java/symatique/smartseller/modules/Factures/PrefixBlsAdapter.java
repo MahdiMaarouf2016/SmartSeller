@@ -12,20 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.PrefixBL;
 
 public class PrefixBlsAdapter extends RecyclerView.Adapter<PrefixBlsAdapter.PrefixBlItem> {
-    @BindView(R.id.txt_prefixblitem_numero)
-     AppCompatTextView txtPrefixblitemNumero;
-    @BindView(R.id.txt_prefixblitem_client)
-     AppCompatTextView txtPrefixblitemClient;
-    @BindView(R.id.txt_prefixblitem_valeur)
-     AppCompatTextView txtPrefixblitemValeur;
-    @BindView(R.id.txt_prefixblitem_paie)
-     AppCompatTextView txtPrefixblitemPaie;
-    @BindView(R.id.img_prefixblitem_print)
-     AppCompatImageView imgPrefixblitemPrint;
 
     private List<PrefixBL> prefixBLS;
 
@@ -57,12 +48,24 @@ public class PrefixBlsAdapter extends RecyclerView.Adapter<PrefixBlsAdapter.Pref
     }
 
     public class PrefixBlItem extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_prefixblitem_numero)
+        AppCompatTextView txtPrefixblitemNumero;
+        @BindView(R.id.txt_prefixblitem_client)
+        AppCompatTextView txtPrefixblitemClient;
+        @BindView(R.id.txt_prefixblitem_valeur)
+        AppCompatTextView txtPrefixblitemValeur;
+        @BindView(R.id.txt_prefixblitem_paie)
+        AppCompatTextView txtPrefixblitemPaie;
+        @BindView(R.id.img_prefixblitem_print)
+        AppCompatImageView imgPrefixblitemPrint;
+
         public PrefixBlItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
         public void clone(PrefixBL prefixBL) {
-            txtPrefixblitemClient.setText(prefixBL.getClient().getNom());
+            txtPrefixblitemClient.setText("PAS ENCORE PROGRAAME");
             txtPrefixblitemNumero.setText(prefixBL.getNumero());
             //txtPrefixblitemPaie.setText(prefixBL.);
             //txtPrefixblitemValeur.setText(prefixBL.getNumeroFact());

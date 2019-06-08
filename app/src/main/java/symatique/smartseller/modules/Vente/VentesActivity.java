@@ -52,7 +52,7 @@ public class VentesActivity extends AppCompatActivity {
     public void setUpClients() {
 
         try {
-            List<Client> clients = DataBaseManager.getInstance().getHelper().getClients().queryForAll();
+            List<Client> clients = DataBaseManager.getInstance(getApplicationContext()).getHelper().getClients().queryForAll();
             PlanningAdapter planningAdapter = new PlanningAdapter(clients);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             recVenteListclients.setLayoutManager(layoutManager);

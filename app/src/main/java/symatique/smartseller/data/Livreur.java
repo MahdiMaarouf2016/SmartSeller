@@ -6,6 +6,8 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @DatabaseTable
 public class Livreur implements Serializable {
@@ -48,21 +50,6 @@ public class Livreur implements Serializable {
     @DatabaseField
     private String password = "";
 
-
-    @JsonProperty("entreprise")
-    @DatabaseField(canBeNull = false, foreign = true)
-    private Entreprise entreprise;
-    @JsonProperty("rapportVisites")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<RapportVisite> rapportVisites;
-    @JsonProperty("commandes")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Commande> commandes;
-    @JsonProperty("clients")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<Client> clients;
-    @DatabaseField(foreign = true)
-    private Client client;
 
     public Livreur(){
 
@@ -120,26 +107,6 @@ public class Livreur implements Serializable {
         return password;
     }
 
-    public Entreprise getEntreprise() {
-        return entreprise;
-    }
-
-    public ForeignCollection<RapportVisite> getRapportVisites() {
-        return rapportVisites;
-    }
-
-    public ForeignCollection<Commande> getCommandes() {
-        return commandes;
-    }
-
-    public ForeignCollection<Client> getClients() {
-        return clients;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
@@ -186,25 +153,5 @@ public class Livreur implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public void setEntreprise(Entreprise entreprise) {
-        this.entreprise = entreprise;
-    }
-
-    public void setRapportVisites(ForeignCollection<RapportVisite> rapportVisites) {
-        this.rapportVisites = rapportVisites;
-    }
-
-    public void setCommandes(ForeignCollection<Commande> commandes) {
-        this.commandes = commandes;
-    }
-
-    public void setClients(ForeignCollection<Client> clients) {
-        this.clients = clients;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

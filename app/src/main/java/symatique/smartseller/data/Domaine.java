@@ -7,6 +7,9 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @DatabaseTable
 public class Domaine implements Serializable {
     @JsonProperty("id")
@@ -32,12 +35,9 @@ public class Domaine implements Serializable {
     @DatabaseField
     private Long dateSynch;
 
-    @JsonProperty("entreprise")
-    @DatabaseField(foreign = true)
-    private Entreprise entreprise;
-    @JsonProperty("bonDeSorties")
-    @ForeignCollectionField(eager = true)
-    private ForeignCollection<BonDeSortie> bonDeSorties;
+    @JsonProperty("idEntreprise")
+    @DatabaseField
+    private long idEntreprise;
 
     public Domaine() {
     }
@@ -74,12 +74,8 @@ public class Domaine implements Serializable {
         return dateSynch;
     }
 
-    public Entreprise getEntreprise() {
-        return entreprise;
-    }
-
-    public ForeignCollection<BonDeSortie> getBonDeSorties() {
-        return bonDeSorties;
+    public long getIdEntreprise() {
+        return idEntreprise;
     }
 
     public void setId(Long id) {
@@ -110,11 +106,8 @@ public class Domaine implements Serializable {
         this.dateSynch = dateSynch;
     }
 
-    public void setEntreprise(Entreprise entreprise) {
-        this.entreprise = entreprise;
+    public void setIdEntreprise(long idEntreprise) {
+        this.idEntreprise = idEntreprise;
     }
 
-    public void setBonDeSorties(ForeignCollection<BonDeSortie> bonDeSorties) {
-        this.bonDeSorties = bonDeSorties;
-    }
 }

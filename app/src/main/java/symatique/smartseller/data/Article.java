@@ -11,6 +11,8 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
+import symatique.smartseller.services.SQLiteService.DataBaseManager;
+
 @DatabaseTable
 public class Article implements Serializable {
 
@@ -18,30 +20,39 @@ public class Article implements Serializable {
     @DatabaseField(id = true)
     private long id;
 
+    @JsonProperty("articlePFR")
+    @DatabaseField
+    private boolean articlePFR;
     @JsonProperty("code")
     @DatabaseField
     private String code;
-    @JsonProperty("codeEntreprise")
-    @DatabaseField
-    private String codeEntreprise;
     @JsonProperty("dateSynchro")
     @DatabaseField
     private long dateSynchro;
     @JsonProperty("description")
     @DatabaseField
     private String description;
-    @JsonProperty("descriptionArb")
-    @DatabaseField
-    private String descriptionArb;
     @JsonProperty("enPromo")
     @DatabaseField
     private Boolean enPromo;
+    @JsonProperty("idCategorie")
+    @DatabaseField
+    private long idCategorie;
+    @JsonProperty("idEntreprise")
+    @DatabaseField
+    private long idEntreprise;
     @JsonProperty("libelle")
     @DatabaseField
     private String libelle;
     @JsonProperty("libelleArb")
     @DatabaseField
     private String libelleArb;
+    @JsonProperty("libelleCategorie")
+    @DatabaseField
+    private String libelleCategorie;
+    @JsonProperty("libelleEntreprise")
+    @DatabaseField
+    private String libelleEntreprise;
     @JsonProperty("photo1")
     @DatabaseField
     private String photo1;
@@ -72,22 +83,15 @@ public class Article implements Serializable {
     @JsonProperty("tva")
     @DatabaseField
     private String tva;
+    @JsonProperty("typeForm")
+    @DatabaseField
+    private int typeForm;
     @JsonProperty("typeMesure")
     @DatabaseField
     private String typeMesure;
     @JsonProperty("typeMesureArabe")
     @DatabaseField
     private String typeMesureArabe;
-    @JsonProperty("idEntreprise")
-    @DatabaseField
-    private long idEntreprise;
-
-    @JsonProperty("domaine")
-    @DatabaseField(canBeNull = false, foreign = true)
-    private Domaine domaine;
-    @JsonProperty("categorieArticle")
-    @DatabaseField(canBeNull = false, foreign = true)
-    private CategorieArticle categorieArticle;
 
     public Article() {
 
@@ -97,12 +101,12 @@ public class Article implements Serializable {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public boolean isArticlePFR() {
+        return articlePFR;
     }
 
-    public String getCodeEntreprise() {
-        return codeEntreprise;
+    public String getCode() {
+        return code;
     }
 
     public long getDateSynchro() {
@@ -113,12 +117,16 @@ public class Article implements Serializable {
         return description;
     }
 
-    public String getDescriptionArb() {
-        return descriptionArb;
-    }
-
     public Boolean getEnPromo() {
         return enPromo;
+    }
+
+    public long getIdCategorie() {
+        return idCategorie;
+    }
+
+    public long getIdEntreprise() {
+        return idEntreprise;
     }
 
     public String getLibelle() {
@@ -127,6 +135,14 @@ public class Article implements Serializable {
 
     public String getLibelleArb() {
         return libelleArb;
+    }
+
+    public String getLibelleCategorie() {
+        return libelleCategorie;
+    }
+
+    public String getLibelleEntreprise() {
+        return libelleEntreprise;
     }
 
     public String getPhoto1() {
@@ -169,6 +185,10 @@ public class Article implements Serializable {
         return tva;
     }
 
+    public int getTypeForm() {
+        return typeForm;
+    }
+
     public String getTypeMesure() {
         return typeMesure;
     }
@@ -177,28 +197,16 @@ public class Article implements Serializable {
         return typeMesureArabe;
     }
 
-    public long getIdEntreprise() {
-        return idEntreprise;
-    }
-
-    public Domaine getDomaine() {
-        return domaine;
-    }
-
-    public CategorieArticle getCategorieArticle() {
-        return categorieArticle;
-    }
-
     public void setId(long id) {
         this.id = id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setArticlePFR(boolean articlePFR) {
+        this.articlePFR = articlePFR;
     }
 
-    public void setCodeEntreprise(String codeEntreprise) {
-        this.codeEntreprise = codeEntreprise;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public void setDateSynchro(long dateSynchro) {
@@ -209,12 +217,16 @@ public class Article implements Serializable {
         this.description = description;
     }
 
-    public void setDescriptionArb(String descriptionArb) {
-        this.descriptionArb = descriptionArb;
-    }
-
     public void setEnPromo(Boolean enPromo) {
         this.enPromo = enPromo;
+    }
+
+    public void setIdCategorie(long idCategorie) {
+        this.idCategorie = idCategorie;
+    }
+
+    public void setIdEntreprise(long idEntreprise) {
+        this.idEntreprise = idEntreprise;
     }
 
     public void setLibelle(String libelle) {
@@ -223,6 +235,14 @@ public class Article implements Serializable {
 
     public void setLibelleArb(String libelleArb) {
         this.libelleArb = libelleArb;
+    }
+
+    public void setLibelleCategorie(String libelleCategorie) {
+        this.libelleCategorie = libelleCategorie;
+    }
+
+    public void setLibelleEntreprise(String libelleEntreprise) {
+        this.libelleEntreprise = libelleEntreprise;
     }
 
     public void setPhoto1(String photo1) {
@@ -265,6 +285,10 @@ public class Article implements Serializable {
         this.tva = tva;
     }
 
+    public void setTypeForm(int typeForm) {
+        this.typeForm = typeForm;
+    }
+
     public void setTypeMesure(String typeMesure) {
         this.typeMesure = typeMesure;
     }
@@ -272,16 +296,5 @@ public class Article implements Serializable {
     public void setTypeMesureArabe(String typeMesureArabe) {
         this.typeMesureArabe = typeMesureArabe;
     }
-
-    public void setIdEntreprise(long idEntreprise) {
-        this.idEntreprise = idEntreprise;
-    }
-
-    public void setDomaine(Domaine domaine) {
-        this.domaine = domaine;
-    }
-
-    public void setCategorieArticle(CategorieArticle categorieArticle) {
-        this.categorieArticle = categorieArticle;
-    }
 }
+
