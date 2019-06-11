@@ -2,11 +2,11 @@ package symatique.smartseller.modules.Produits;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.CategorieArticle;
+import symatique.smartseller.data.Articles.CategorieArticle;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesItem> {
 
@@ -61,8 +61,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
     public class CategoriesItem extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.btn_categorieitem_lebelcategorie)
-        AppCompatButton btnCategorieitemLebelcategorie;
+        @BindView(R.id.txt_categorieitem_lebelcategorie) AppCompatTextView txtCategorieitemLebelcategorie;
 
         public CategoriesItem(@NonNull View itemView) {
             super(itemView);
@@ -70,7 +69,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
         }
 
         public CategoriesItem clone(CategorieArticle categorie) {
-            btnCategorieitemLebelcategorie.setText(categorie.getLibelle());
+            txtCategorieitemLebelcategorie.setText(categorie.getLibelle());
             return this;
         }
     }

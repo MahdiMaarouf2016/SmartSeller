@@ -11,29 +11,25 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
-import symatique.smartseller.data.Article;
-import symatique.smartseller.data.Banque;
-import symatique.smartseller.data.BonDeSortie;
-import symatique.smartseller.data.CategorieArticle;
-import symatique.smartseller.data.Client;
-import symatique.smartseller.data.DetailBL;
-import symatique.smartseller.data.DetailBonDeSortie;
-import symatique.smartseller.data.Commande;
-import symatique.smartseller.data.DetailFacture;
-import symatique.smartseller.data.DetailStock;
-import symatique.smartseller.data.DetailVente;
-import symatique.smartseller.data.Domaine;
-import symatique.smartseller.data.Encaissement;
-import symatique.smartseller.data.Entreprise;
-import symatique.smartseller.data.EtatCommande;
-import symatique.smartseller.data.PrefixFacture;
-import symatique.smartseller.data.DetailCommande;
-import symatique.smartseller.data.Livreur;
-import symatique.smartseller.data.NatureVente;
-import symatique.smartseller.data.PrefixBL;
-import symatique.smartseller.data.RapportVisite;
-import symatique.smartseller.data.TypeEncaissementVente;
-import symatique.smartseller.data.Vente;
+import symatique.smartseller.data.Articles.Article;
+import symatique.smartseller.data.Articles.CategorieArticle;
+import symatique.smartseller.data.Articles.Domaine;
+import symatique.smartseller.data.Articles.Entreprise;
+import symatique.smartseller.data.Stocks.BonDeSortie;
+import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Commandes.Commande;
+import symatique.smartseller.data.Commandes.EtatCommande;
+import symatique.smartseller.data.Commandes.LigneCommande;
+import symatique.smartseller.data.Encaissements.Banque;
+import symatique.smartseller.data.Encaissements.Encaissement;
+import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
+import symatique.smartseller.data.Factures.DetailBL;
+import symatique.smartseller.data.Factures.DetailFacture;
+import symatique.smartseller.data.Factures.PrefixBL;
+import symatique.smartseller.data.Factures.PrefixFacture;
+import symatique.smartseller.data.Stocks.Packet;
+import symatique.smartseller.data.Utilisateurs.Livreur;
+import symatique.smartseller.data.Ventes.*;
 
 import static symatique.smartseller.bases.SQLiteBases.DATABASE_NAME;
 import static symatique.smartseller.bases.SQLiteBases.DATABASE_VERSION;
@@ -42,20 +38,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 	private Dao<Article,Integer> articles;
 	private Dao<Banque,Integer> banques;
-	private Dao<BonDeSortie,Integer> bonDeSortieDao;
-	private Dao<DetailBonDeSortie,Integer> bonSorties;
 	private Dao<CategorieArticle,Integer> categorieArtices;
 	private Dao<Client,Integer> clients;
 	private Dao<Commande,Integer> commandes;
 	private Dao<Domaine,Integer> domaines;
 	private Dao<EtatCommande,Integer> etatCommandes;
 	private Dao<PrefixFacture,Integer> factures;
-	private Dao<DetailCommande,Integer> detailCommandes;
+	private Dao<LigneCommande,Integer> detailCommandes;
 	private Dao<DetailBL,Integer> detailBLS;
     private Dao<DetailFacture,Integer> detailFactures;
-    private Dao<DetailStock,Integer> detailStocks;
+    private Dao<BonDeSortie,Integer> bonDeSorties;
+    private Dao<Packet,Integer> packetsStock;
     private Dao<DetailVente,Integer> detailVentes;
-    private Dao<DetailBonDeSortie,Integer> detailBonDeSorties;
 	private Dao<Livreur,Integer> livreurs;
 	private Dao<NatureVente,Integer> natureVentes;
 	private Dao<PrefixBL,Integer> prefixBLS;
@@ -72,15 +66,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		try {
             TableUtils.dropTable(connectionSource, Article.class,true);
             TableUtils.dropTable(connectionSource, Banque.class,true);
-            TableUtils.dropTable(connectionSource, BonDeSortie.class,true);
             TableUtils.dropTable(connectionSource, CategorieArticle.class,true);
             TableUtils.dropTable(connectionSource, Client.class,true);
             TableUtils.dropTable(connectionSource, Commande.class,true);
             TableUtils.dropTable(connectionSource, DetailBL.class,true);
-            TableUtils.dropTable(connectionSource, DetailBonDeSortie.class,true);
-            TableUtils.dropTable(connectionSource, DetailCommande.class,true);
+            TableUtils.dropTable(connectionSource, LigneCommande.class,true);
             TableUtils.dropTable(connectionSource, DetailFacture.class,true);
-            TableUtils.dropTable(connectionSource, DetailStock.class,true);
+            TableUtils.dropTable(connectionSource, Packet.class,true);
             TableUtils.dropTable(connectionSource, DetailVente.class,true);
             TableUtils.dropTable(connectionSource, Domaine.class,true);
             TableUtils.dropTable(connectionSource, Encaissement.class,true);
@@ -96,15 +88,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 			TableUtils.createTable(connectionSource, Article.class);
 			TableUtils.createTable(connectionSource, Banque.class);
-			TableUtils.createTable(connectionSource, BonDeSortie.class);
 			TableUtils.createTable(connectionSource, CategorieArticle.class);
 			TableUtils.createTable(connectionSource, Client.class);
 			TableUtils.createTable(connectionSource, Commande.class);
-			TableUtils.createTable(connectionSource, DetailCommande.class);
+			TableUtils.createTable(connectionSource, LigneCommande.class);
 			TableUtils.createTable(connectionSource, DetailBL.class);
-			TableUtils.createTable(connectionSource, DetailBonDeSortie.class);
 			TableUtils.createTable(connectionSource, DetailFacture.class);
-			TableUtils.createTable(connectionSource, DetailStock.class);
+			TableUtils.createTable(connectionSource, Packet.class);
 			TableUtils.createTable(connectionSource, DetailVente.class);
 			TableUtils.createTable(connectionSource, Domaine.class);
 			TableUtils.createTable(connectionSource, Encaissement.class);
@@ -130,15 +120,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 			TableUtils.dropTable(connectionSource, Article.class,true);
 			TableUtils.dropTable(connectionSource, Banque.class,true);
-			TableUtils.dropTable(connectionSource, BonDeSortie.class,true);
+			TableUtils.dropTable(connectionSource, BonDeSortiesResponse.class,true);
 			TableUtils.dropTable(connectionSource, CategorieArticle.class,true);
 			TableUtils.dropTable(connectionSource, Client.class,true);
 			TableUtils.dropTable(connectionSource, Commande.class,true);
 			TableUtils.dropTable(connectionSource, DetailBL.class,true);
-			TableUtils.dropTable(connectionSource, DetailBonDeSortie.class,true);
-			TableUtils.dropTable(connectionSource, DetailCommande.class,true);
+			TableUtils.dropTable(connectionSource, LigneCommande.class,true);
 			TableUtils.dropTable(connectionSource, DetailFacture.class,true);
-			TableUtils.dropTable(connectionSource, DetailStock.class,true);
+			TableUtils.dropTable(connectionSource, Packet.class,true);
 			TableUtils.dropTable(connectionSource, DetailVente.class,true);
 			TableUtils.dropTable(connectionSource, Domaine.class,true);
 			TableUtils.dropTable(connectionSource, Encaissement.class,true);
@@ -170,18 +159,6 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		if(banques == null)
 			banques = getDao(Banque.class);
 		return banques;
-	}
-
-	public Dao<BonDeSortie, Integer> getBonDeSortieDao() throws SQLException {
-		if(bonDeSortieDao == null)
-			bonDeSortieDao = getDao(BonDeSortie.class);
-		return bonDeSortieDao;
-	}
-
-	public Dao<DetailBonDeSortie, Integer> getBonSorties() throws SQLException {
-		if(bonSorties == null)
-			bonSorties = getDao(DetailBonDeSortie.class);
-		return bonSorties;
 	}
 
 	public Dao<CategorieArticle, Integer> getCategorieArtices() throws SQLException {
@@ -256,7 +233,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return typeEncaissementVentes;
 	}
 
-    public Dao<DetailCommande, Integer> getDetailCommandes() {
+    public Dao<LigneCommande, Integer> getDetailCommandes() {
         return detailCommandes;
     }
 
@@ -272,10 +249,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return detailFactures;
     }
 
-    public Dao<DetailStock, Integer> getDetailStocks() throws SQLException {
-        if(detailStocks == null)
-            detailStocks = getDao(DetailStock.class);
-        return detailStocks;
+    public Dao<Packet, Integer> getPacketsStock() throws SQLException {
+        if(packetsStock == null)
+			packetsStock = getDao(Packet.class);
+        return packetsStock;
     }
 
     public Dao<DetailVente, Integer> getDetailVentes() throws SQLException {
@@ -284,9 +261,9 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return detailVentes;
     }
 
-    public Dao<DetailBonDeSortie, Integer> getDetailBonDeSorties() throws SQLException {
-        if(detailBonDeSorties == null)
-            detailBonDeSorties = getDao(DetailBonDeSortie.class);
-        return detailBonDeSorties;
-    }
+	public Dao getBonDeSorties() throws SQLException {
+		if(bonDeSorties == null)
+			bonDeSorties = getDao(BonDeSortie.class);
+		return  bonDeSorties;
+	}
 }

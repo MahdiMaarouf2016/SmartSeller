@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Commandes.DetailCommandeActivity">
+    tools:context="symatique.smartseller.modules.Commandes.DetailCommandeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_planning"

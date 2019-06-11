@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Panier.PanierActivity">
+    tools:context="symatique.smartseller.modules.Panier.PanierActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_planning"

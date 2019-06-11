@@ -10,15 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import symatique.smartseller.R;
-import symatique.smartseller.data.PrefixBL;
-import symatique.smartseller.data.PrefixFacture;
+import symatique.smartseller.data.Factures.PrefixBL;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class BLFragment extends Fragment {

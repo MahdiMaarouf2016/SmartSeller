@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Commandes.CommandesActivity">
+    tools:context="symatique.smartseller.modules.Commandes.CommandesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_planning"
@@ -26,15 +26,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rec_commandes_listcommandes"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abl_planning">
+            android:id="@+id/rec_commandes_listcommandes"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abl_planning" android:layout_margin="0dp">
 
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

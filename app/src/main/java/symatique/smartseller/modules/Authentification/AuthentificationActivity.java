@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText;
@@ -17,8 +16,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import symatique.smartseller.R;
-import symatique.smartseller.data.AuthenticationResponse;
-import symatique.smartseller.data.Livreur;
+import symatique.smartseller.data.Utilisateurs.AuthenticationResponse;
+import symatique.smartseller.data.Utilisateurs.Livreur;
 import symatique.smartseller.modules.Home.HomeActivity;
 import symatique.smartseller.services.RetrofitService.ApiService;
 

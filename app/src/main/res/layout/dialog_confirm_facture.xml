@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:id="@+id/linearLayout11"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,41 +22,42 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView41"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@android:color/background_dark" />
+                android:id="@+id/txt_confirmfacturedialog_totalHT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:text="@string/default_textvalue"
+                android:textColor="@android:color/background_dark"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView42"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@android:color/background_dark" />
+                android:id="@+id/txt_confirmfacturedialog_totaltva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:text="@string/default_textvalue"
+
+                android:textColor="@android:color/background_dark"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView43"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@android:color/background_dark" />
+                android:id="@+id/txt_confirmfacturedialog_totalTimbre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:text="@string/default_textvalue"
+                android:textColor="@android:color/background_dark"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView44"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="TextView"
-            android:textColor="@android:color/background_dark" />
-    </LinearLayout>
+                android:id="@+id/txt_confirmfacturedialog_totalTTC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:text="@string/default_textvalue"
+                android:textColor="@android:color/background_dark"/>
+    </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/button6"

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Stock.StockActivity">
+    tools:context="symatique.smartseller.modules.Stock.StockActivity">
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_stock"
         android:layout_width="match_parent"

@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="symatique.smartseller">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:name=".SmartSeller"
         android:allowBackup="true"
@@ -63,7 +64,7 @@
             android:label="@string/title_activity_detail_commande"
             android:parentActivityName=".modules.Commandes.CommandesActivity" />
         <activity
-            android:name=".modules.Vente.CreateVenteActivity"
+            android:name=".modules.Vente.PanierClientActivity"
             android:label="@string/title_activity_create_vente"
             android:parentActivityName=".modules.Home.HomeActivity" />
         <activity

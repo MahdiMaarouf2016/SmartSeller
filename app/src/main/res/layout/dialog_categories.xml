@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingEnd="24dp"
+        android:paddingStart="24dp">
+
+    <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_dialogcategorie_toutcategorie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_btn_ttcategorie"
+            android:text="TOUTES LES CATEGORIE"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="@+id/rec_dialogcategorie_categories"
+            app:layout_constraintStart_toStartOf="@+id/rec_dialogcategorie_categories"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="16dp" android:paddingEnd="32dp"
+            android:paddingStart="32dp"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_dialogcategorie_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_dialogcategorie_toutcategorie"
+            android:layout_marginBottom="24dp" android:layout_marginLeft="16dp" android:layout_marginRight="8dp">
+
+    </android.support.v7.widget.RecyclerView>
+</android.support.v7.widget.LinearLayoutCompat>

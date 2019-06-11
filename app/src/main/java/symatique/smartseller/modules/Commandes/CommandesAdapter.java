@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Commande;
+import symatique.smartseller.data.Commandes.Commande;
 
 public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.CommandeItem> {
 
@@ -51,16 +51,11 @@ public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.Comm
     }
 
     public class CommandeItem extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_commandeitem_numero)
-        AppCompatTextView txtCommandeitemNumero;
-        @BindView(R.id.txt_commandeitem_etat)
-        AppCompatTextView txtCommandeitemEtat;
-        @BindView(R.id.txt_commandeitem_datesynchro)
-        AppCompatTextView txtCommandeitemDatesynchro;
-        @BindView(R.id.txt_commandeitem_montant)
-        AppCompatTextView txtCommandeitemMontant;
-        @BindView(R.id.fab_commandeitem_goprofile)
-        FloatingActionButton fabCommandeitemGoprofile;
+        @BindView(R.id.txt_commandeitem_numero) AppCompatTextView txtCommandeitemNumero;
+        @BindView(R.id.txt_commandeitem_etat) AppCompatTextView txtCommandeitemEtat;
+        @BindView(R.id.txt_commandeitem_datesynchro) AppCompatTextView txtCommandeitemDatesynchro;
+        @BindView(R.id.txt_commandeitem_montant) AppCompatTextView txtCommandeitemMontant;
+        @BindView(R.id.fab_commandeitem_goprofile) FloatingActionButton fabCommandeitemGoprofile;
 
         public CommandeItem(@NonNull View itemView) {
             super(itemView);
@@ -70,14 +65,15 @@ public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.Comm
         public void clone(final Commande commande) {
             txtCommandeitemNumero.setText(commande.getNumero());
             Date date = new Date(commande.getDateSynch());
-            txtCommandeitemDatesynchro.setText(date.getDay() + "/" + date.getMonth() + "/" + date.getYear());
-            txtCommandeitemEtat.setText("PAS ENCORE PROGRAMMME");
+            txtCommandeitemDatesynchro.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(commande.getDateSynch())));
+            txtCommandeitemEtat.setText(commande.getLibelleEtatCommande());
             txtCommandeitemMontant.setText(commande.getMontantHT().toString());
             fabCommandeitemGoprofile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    DetailCommandeActivity.WORKING_COMMANDE = commande;
                     Intent intent = new Intent(v.getContext(),DetailCommandeActivity.class);
-                    intent.putExtra("Commande",commande);
+                    //intent.putExtra(DetailCommandeActivity.KEY_COMMANDE_EXTRA,commande);
                     v.getContext().startActivity(intent);
                 }
             });

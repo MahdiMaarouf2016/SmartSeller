@@ -10,13 +10,11 @@ import android.view.Window;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.RapportVisite;
+import symatique.smartseller.utils.DialogResultDelegates;
 
-public class DialogRapportVisite extends AppCompatDialog {
-    @BindView(R.id.btn_rapporvistdialog_vente)
-     AppCompatButton btnRapporvistdialogVente;
-    @BindView(R.id.btn_rapporvistdialog_rapport)
-     AppCompatButton btnRapporvistdialogRapport;
+public abstract class DialogRapportVisite extends AppCompatDialog implements DialogResultDelegates {
+    @BindView(R.id.btn_rapporvistdialog_vente) AppCompatButton btnRapporvistdialogVente;
+    @BindView(R.id.btn_rapporvistdialog_rapport) AppCompatButton btnRapporvistdialogRapport;
 
     public DialogRapportVisite(Context context) {
         super(context);
@@ -34,15 +32,13 @@ public class DialogRapportVisite extends AppCompatDialog {
         btnRapporvistdialogRapport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),RapportVisite.class);
-                getContext().startActivity(intent);
+                OnAccepted();
             }
         });
         btnRapporvistdialogVente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(),CreateVenteActivity.class);
-                getContext().startActivity(intent);
+                OnRejected();
             }
         });
 

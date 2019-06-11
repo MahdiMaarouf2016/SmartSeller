@@ -1,20 +1,39 @@
 package symatique.smartseller.modules.Vente;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
+import symatique.smartseller.data.Stocks.Packet;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CodesAdapter extends RecyclerView.Adapter<CodesAdapter.CodeItem> {
-   // ArrayList<Packet> codes;
+
+     List<Packet> packets;
 
     public CodesAdapter() {
-
+        this.packets = new ArrayList<>();
     }
 
+    public CodesAdapter(final List<Packet> packets) {
+        this.packets = packets;
+    }
+
+    public List<Packet> getPackets() {
+        return packets;
+    }
+
+    public void setPackets(List<Packet> packets) {
+        this.packets = packets;
+    }
 
     @NonNull
     @Override
@@ -26,31 +45,31 @@ public class CodesAdapter extends RecyclerView.Adapter<CodesAdapter.CodeItem> {
 
     @Override
     public void onBindViewHolder(@NonNull CodeItem codeItem, int i) {
-        //Packet code = codes.get(i);
-
-        //codeItem.clone(code);
+        Packet packet = packets.get(i);
+        codeItem.clone(packet);
     }
 
     @Override
     public int getItemCount() {
-        return  0;
+        return packets.size();
     }
 
     public class CodeItem extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.txt_code_code) AppCompatTextView txtCodeCode;
+        @BindView(R.id.txt_code_produit) AppCompatTextView txtCodeProduit;
+        @BindView(R.id.txt_code_qte) AppCompatTextView txtCodeQte;
+
         public CodeItem(@NonNull View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
 
-    /*public void clone(Packet code) {
-
-        AppCompatTextView textView = itemView.findViewById(R.id.txt_code_code);
-        AppCompatTextView textView1 = itemView.findViewById(R.id.txt_code_produit);
-        AppCompatTextView textView2 = itemView.findViewById(R.id.txt_code_qte);
-
-        textView.setText(code.getCodeArticle());
-        textView1.setText(code.getLibelleArticle());
-        textView2.setText(String.valueOf(code.getQuantite()));
-    }*/
+        public void clone(Packet packet) {
+            txtCodeCode.setText(packet.getCodeArticle());
+            txtCodeQte.setText(String.valueOf(packet.getQuantite()));
+            txtCodeProduit.setText(packet.getLibelleArticle());
+        }
     }
 
 }

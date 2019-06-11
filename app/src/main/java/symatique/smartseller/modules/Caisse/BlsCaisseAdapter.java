@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.PrefixBL;
+import symatique.smartseller.data.Factures.PrefixBL;
 
 public class BlsCaisseAdapter extends RecyclerView.Adapter<BlsCaisseAdapter.BlCaisseItem> {
 

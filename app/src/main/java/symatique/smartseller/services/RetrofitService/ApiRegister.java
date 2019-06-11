@@ -3,22 +3,25 @@ package symatique.smartseller.services.RetrofitService;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
-import symatique.smartseller.data.Article;
-import symatique.smartseller.data.AuthenticationResponse;
-import symatique.smartseller.data.Banque;
-import symatique.smartseller.data.BonDeSortie;
-import symatique.smartseller.data.CategorieArticle;
-import symatique.smartseller.data.Client;
-import symatique.smartseller.data.Commande;
-import symatique.smartseller.data.Entreprise;
-import symatique.smartseller.data.EtatCommande;
-import symatique.smartseller.data.NatureVente;
-import symatique.smartseller.data.PrefixBL;
-import symatique.smartseller.data.PrefixFacture;
-import symatique.smartseller.data.TypeEncaissementVente;
+import symatique.smartseller.data.Articles.Article;
+import symatique.smartseller.data.Articles.Domaine;
+import symatique.smartseller.data.Stocks.BonDeSortie;
+import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Utilisateurs.AuthenticationResponse;
+import symatique.smartseller.data.Encaissements.Banque;
+import symatique.smartseller.data.Articles.CategorieArticle;
+import symatique.smartseller.data.Ventes.Client;
+import symatique.smartseller.data.Commandes.Commande;
+import symatique.smartseller.data.Articles.Entreprise;
+import symatique.smartseller.data.Commandes.EtatCommande;
+import symatique.smartseller.data.Ventes.NatureVente;
+import symatique.smartseller.data.Factures.PrefixBL;
+import symatique.smartseller.data.Factures.PrefixFacture;
+import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
 
 
 public interface ApiRegister {
@@ -33,11 +36,12 @@ public interface ApiRegister {
     public final  String APP_VERSION = "appversion";
     public final  String PREMIER_UTILISATION = "premierutilisation";
     public final  String DOMAIN =  "SmartSeller/RetrofitGet/";
+    public final  String DOMAIN2 =  "SmartSeller/RetrofitSet/";
 
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/
 //______________________________ AUTHENTICATION ____________________________________________________
 
-    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/autentification/379101/81dc9bdb52d04dc20036dbd8313ed055/0000/1.0     DONE
+    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/autentification/379101/81dc9bdb52d04dc20036dbd8313ed055/0000/1.0     DONE with DATA
 
     @GET(DOMAIN + "autentification.php")
     Call<AuthenticationResponse> getAuthentificated(@Query(CODE_LIVREUR) String code, @Query(PWD_LIVREUR) String pwd, @Query(IMEI) String imei, @Query(APP_VERSION) String appVersion) ;
@@ -47,7 +51,7 @@ public interface ApiRegister {
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/bonSorties/379101/378701/PREMIER_UTILISATION"    DONE with NO DATA
 
     @GET(DOMAIN + "bonSorties.php")
-    Call<BonDeSortie> getBonSortie(@Query(ID_LIVREUR) String idLivreur, @Query(ID_ENTREPRISE) long idEntreprise, @Query(PREMIER_UTILISATION) boolean premier_utilisation);
+    Call<BonDeSortiesResponse> getBonSortie(@Query(ID_LIVREUR) String idLivreur, @Query(ID_ENTREPRISE) long idEntreprise, @Query(PREMIER_UTILISATION) boolean premier_utilisation);
 
 //______________________________ update Prix Article ____________________________________________________
 
@@ -138,8 +142,11 @@ public interface ApiRegister {
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/synchroniserPaquetsSupprime/378701   DONE with NO DATA
 
     @GET(DOMAIN + "synchroniserPaquetsSupprime.php")
-    Call<List<BonDeSortie>> synchroniserPaquetSupprimer(@Query(ID_LIVREUR) long id_Livreur);
+    Call<List<BonDeSortiesResponse>> synchroniserPaquetSupprimer(@Query(ID_LIVREUR) long id_Livreur);
 
+
+    @POST(DOMAIN2 + "postdebugger.php")
+    Call<BonDeSortie> exportBonDeSorties(@Body BonDeSortie bonDeSortie);
 }
 
 /*
@@ -165,7 +172,7 @@ public interface ApiRegister {
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/bonSorties/379101/378701/PREMIER_UTILISATION"    DONE with NO DATA
 
     @GET(DOMAIN + "bonSorties/{" + ID_LIVREUR + "}/{" + ID_ENTREPRISE + "}/{" + PREMIER_UTILISATION + "}")
-    Call<BonDeSortie> getBonSortie(@Query(ID_LIVREUR) String idLivreur, @Query(ID_ENTREPRISE) long idEntreprise, @Query(PREMIER_UTILISATION) boolean premier_utilisation);
+    Call<BonDeSortiesResponse> getBonSortie(@Query(ID_LIVREUR) String idLivreur, @Query(ID_ENTREPRISE) long idEntreprise, @Query(PREMIER_UTILISATION) boolean premier_utilisation);
 
 //______________________________ update Prix Article ____________________________________________________
 
@@ -256,5 +263,5 @@ public interface ApiRegister {
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/synchroniserPaquetsSupprime/378701   VIDE
 
     @GET(DOMAIN + "synchroniserPaquetsSupprime/{" + ID_LIVREUR + "}")
-    Call<List<BonDeSortie>> synchroniserPaquetSupprimer(@Query(ID_LIVREUR) long id_Livreur);
+    Call<List<BonDeSortiesResponse>> synchroniserPaquetSupprimer(@Query(ID_LIVREUR) long id_Livreur);
  */

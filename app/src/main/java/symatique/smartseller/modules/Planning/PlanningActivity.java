@@ -9,27 +9,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Client;
-import symatique.smartseller.data.Livreur;
+import symatique.smartseller.data.Ventes.Client;
 import symatique.smartseller.modules.Panier.PanierActivity;
-import symatique.smartseller.services.RetrofitService.ApiRegister;
-import symatique.smartseller.services.RetrofitService.ApiService;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 import symatique.smartseller.services.SQLiteService.DatabaseHelper;
 
@@ -47,6 +39,7 @@ public class PlanningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_planning);
         ButterKnife.bind(this);
         setupToolBar();
+        setUpDatePlanning();
         setUpPlaningList();
     }
 
@@ -55,7 +48,9 @@ public class PlanningActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
+    private void setUpDatePlanning(){
+        txtPlanningDate.setText("Planning du : " + new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         this.getMenuInflater().inflate(R.menu.menu_panier_search, menu);
@@ -82,7 +77,7 @@ public class PlanningActivity extends AppCompatActivity {
         try {
 
             List<Client> clients = database.getClients().queryForAll();
-            Log.v("ListClients size 0",clients.size() + "");
+            //Log.v("ListClients size 0",clients.size() + "");
             PlanningAdapter planningAdapter = new PlanningAdapter(clients);
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

@@ -13,21 +13,33 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.DetailStock;
-import symatique.smartseller.data.StockParVendeur;
+import symatique.smartseller.data.Stocks.Packet;
+import symatique.smartseller.modules.Panier.PanierAdapter;
 
 public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
 
-    private List<DetailStock> stockParVendeurs;
+    private List<Packet> stockParVendeurs;
 
     public StockAdapter() {
         this.stockParVendeurs = new ArrayList<>();
     }
 
-    public StockAdapter(List<DetailStock> stockRows) {
+    public StockAdapter(List<Packet> stockRows) {
         this.stockParVendeurs = stockRows;
     }
 
+    public int getNombreArticles(){
+     return stockParVendeurs.size();
+    }
+
+    public double getValeurTotale(){
+        double valeurTotale = 0;
+        for(Packet packet:stockParVendeurs){
+            valeurTotale += packet.getQuantite() * packet.getPrixUnitaireHT().doubleValue();
+        }
+
+        return PanierAdapter.round(valeurTotale,3);
+    }
     @NonNull
     @Override
     public StockItem onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -48,31 +60,23 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
     }
 
     public class StockItem extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_stockitem_code)
-        AppCompatTextView txtStockitemCode;
-        @BindView(R.id.txt_stockitem_produit)
-        AppCompatTextView txtStockitemProduit;
-        @BindView(R.id.txt_stockitem_qte)
-        AppCompatTextView txtStockitemQte;
-        @BindView(R.id.txt_stockitem_prix)
-        AppCompatTextView txtStockitemPrix;
+        @BindView(R.id.txt_stockitem_code) AppCompatTextView txtStockitemCode;
+        @BindView(R.id.txt_stockitem_produit) AppCompatTextView txtStockitemProduit;
+        @BindView(R.id.txt_stockitem_qte) AppCompatTextView txtStockitemQte;
+        @BindView(R.id.txt_stockitem_prix) AppCompatTextView txtStockitemPrix;
 
         public StockItem(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
 
-        public void clone(DetailStock detailStock) {
+        public void clone(Packet packet) {
 
-            //txtStockitemCode.setText();
-            //txtStockitemPrix.setText();
-            //txtStockitemProduit.setText(detailStock.getCode());
-            /*
-            textView.setText(stockRow.getCodeArticle());
-            textView1.setText(stockRow.getLibelleArticle());
-            textView2.setText(String.valueOf(stockRow.getQuantite()));
-            textView3.setText(String.valueOf(stockRow.getPrixUnitaireHT()));
-            */
+            txtStockitemCode.setText(packet.getCodeArticle());
+            txtStockitemPrix.setText(packet.getPrixUnitaireHT().toString());
+            txtStockitemProduit.setText(packet.getLibelleArticle());
+            txtStockitemQte.setText(String.valueOf(packet.getQuantite()));
+
         }
     }
 

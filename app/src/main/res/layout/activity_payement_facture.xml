@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Factures.PayementFactureActivity">
+    tools:context="symatique.smartseller.modules.Factures.PayementFactureActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_ajouter_client"
@@ -48,7 +48,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_panier_client"
+            android:id="@+id/txt_panierclient_clientlabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
@@ -116,17 +116,17 @@
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rec_ventes"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+                android:id="@+id/rec_payementfactureactivity_ventes"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
@@ -152,33 +152,46 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="@string/default_textvalue"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView37"
-            app:layout_constraintStart_toEndOf="@+id/textView37"
-            app:layout_constraintTop_toTopOf="@+id/textView37" />
+                android:id="@+id/txt_payementfactureactivity_nbr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/default_textvalue"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView37"
+                app:layout_constraintStart_toEndOf="@+id/textView37"
+                app:layout_constraintTop_toTopOf="@+id/textView37" android:layout_marginEnd="186dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView39"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:text="TOTALE : 0.0 DT"
-            android:textAlignment="center"
-            android:textColor="#FFE6DC47"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_number"
-            app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+                android:id="@+id/lab_payementfactureactivity_totale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="TOTALE : "
+                android:textAlignment="center"
+                android:textColor="#FFE6DC47"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_payementfactureactivity_nbr"
+                app:layout_constraintTop_toBottomOf="@+id/txt_payementfactureactivity_nbr"
+                app:layout_constraintEnd_toStartOf="@+id/txt_payementfactureactivity_totale" android:layout_marginEnd="26dp"/>
+        <TextView
+                android:text="0.0 DT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_payementfactureactivity_totale" android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lab_payementfactureactivity_totale"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lab_payementfactureactivity_totale"
+                app:layout_constraintStart_toEndOf="@+id/lab_payementfactureactivity_totale"
+                android:textAlignment="textEnd" android:textColor="#FFE6DC47" android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
     </android.support.constraint.ConstraintLayout>
 
     <TableLayout
@@ -186,7 +199,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_verifier"
+        app:layout_constraintBottom_toTopOf="@+id/btn_payementfactureactivity_verifier"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout6"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout6">
 
@@ -195,20 +208,20 @@
             android:padding="10dp">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_cheque"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/shap_green_white3dp_8dp"
-                android:text="CHEQUE" />
+                    android:id="@+id/btn_payementfactureactivity_cheque"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shap_green_white3dp_8dp"
+                    android:text="CHEQUE"/>
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_espece"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/shap_green_white3dp_8dp"
-                android:text="ESPECE" />
+                    android:id="@+id/btn_payementfactureactivity_espece"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shap_green_white3dp_8dp"
+                    android:text="ESPECE"/>
         </TableRow>
 
         <TableRow
@@ -216,17 +229,17 @@
             android:padding="10dp">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_credit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/shap_green_white3dp_8dp"
-                android:text="CHEQUE" />
+                    android:id="@+id/btn_payementfactureactivity_credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shap_green_white3dp_8dp"
+                    android:text="CREDITS"/>
         </TableRow>
 
     </TableLayout>
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_verifier"
+        android:id="@+id/btn_payementfactureactivity_verifier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

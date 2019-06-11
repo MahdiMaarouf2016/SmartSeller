@@ -37,12 +37,12 @@
         android:textSize="24sp" />
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
 
-        android:src="@android:drawable/ic_menu_delete"
-        app:backgroundTint="@color/transparent" />
+            android:src="@android:drawable/ic_menu_delete"
+            app:backgroundTint="@color/transparent" android:id="@+id/fab_venterow_delete"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

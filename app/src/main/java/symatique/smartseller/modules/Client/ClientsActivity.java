@@ -11,31 +11,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Client;
+import symatique.smartseller.data.Ventes.Client;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.modules.Planning.PlanningAdapter;
-import symatique.smartseller.services.RetrofitService.ApiService;
+import symatique.smartseller.services.SQLiteService.DataBaseManager;
+import symatique.smartseller.services.SQLiteService.DatabaseHelper;
 import symatique.smartseller.utils.ClickListener;
 import symatique.smartseller.utils.RecyclerTouchListener;
 
 public class ClientsActivity extends AppCompatActivity {
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.abl_planning)
-    AppBarLayout ablPlanning;
-    @BindView(R.id.rec_clients_listclient)
-    RecyclerView recClientsListclient;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.abl_planning) AppBarLayout ablPlanning;
+    @BindView(R.id.rec_clients_listclient) RecyclerView recClientsListclient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,43 +54,48 @@ public class ClientsActivity extends AppCompatActivity {
         return true;
     }
 
+    private List<Client> getClients() {
+        List<Client> clients = new ArrayList<>();
+
+        try {
+            DatabaseHelper database = DataBaseManager.getInstance(this).getHelper();
+            clients = database.getClients().queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return clients;
+    }
+
     public void setUpClientsList() {
 
-        ApiService.getApiService().getClients(1234, 123).enqueue(new Callback<List<Client>>() {
-            @Override
-            public void onResponse(Call<List<Client>> call, Response<List<Client>> response) {
+        final PlanningAdapter planningAdapter = new PlanningAdapter(getClients());
 
-                PlanningAdapter planningAdapter = new PlanningAdapter(response.body());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recClientsListclient.setLayoutManager(layoutManager);
+        recClientsListclient.setItemAnimator(new DefaultItemAnimator());
+        recClientsListclient.setAdapter(planningAdapter);
 
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-                recClientsListclient.setLayoutManager(layoutManager);
-                recClientsListclient.setItemAnimator(new DefaultItemAnimator());
-                recClientsListclient.setAdapter(planningAdapter);
-
-                recClientsListclient.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
+        recClientsListclient.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
                         recClientsListclient, new ClickListener() {
-                            @Override
-                            public void onClick(View view, int position) {
-                                Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
-                                startActivity(intent);
-                            }
+                    @Override
+                    public void onClick(View view, int position) {
+                        Intent intent = new Intent(getBaseContext(), ProfileActivity.class);
 
-                            @Override
-                            public void onLongClick(View view, int position) {
-                                onClick(view, position);
-                            }
-                        })
-                );
-            }
+                        intent.putExtra(ProfileActivity.KEY_EXTRA_CLIENT,planningAdapter.getClients().get(position));
+                        startActivity(intent);
+                    }
 
-            @Override
-            public void onFailure(Call<List<Client>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Connexion attendu", Toast.LENGTH_LONG).show();
-            }
-        });
+                    @Override
+                    public void onLongClick(View view, int position) {
+                        onClick(view, position);
+                    }
+                })
+        );
 
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

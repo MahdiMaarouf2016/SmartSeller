@@ -9,26 +9,27 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 import symatique.smartseller.bases.RetrofitBases;
-import symatique.smartseller.data.Article;
-import symatique.smartseller.data.AuthenticationResponse;
-import symatique.smartseller.data.Banque;
-import symatique.smartseller.data.BonDeSortie;
-import symatique.smartseller.data.CategorieArticle;
-import symatique.smartseller.data.Client;
-import symatique.smartseller.data.Commande;
-import symatique.smartseller.data.Domaine;
-import symatique.smartseller.data.Entreprise;
-import symatique.smartseller.data.EtatCommande;
-import symatique.smartseller.data.NatureVente;
-import symatique.smartseller.data.PrefixBL;
-import symatique.smartseller.data.PrefixFacture;
-import symatique.smartseller.data.TypeEncaissementVente;
+import symatique.smartseller.data.Articles.Article;
+import symatique.smartseller.data.Stocks.BonDeSortie;
+import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Utilisateurs.AuthenticationResponse;
+import symatique.smartseller.data.Encaissements.Banque;
+import symatique.smartseller.data.Articles.CategorieArticle;
+import symatique.smartseller.data.Ventes.Client;
+import symatique.smartseller.data.Commandes.Commande;
+import symatique.smartseller.data.Articles.Domaine;
+import symatique.smartseller.data.Articles.Entreprise;
+import symatique.smartseller.data.Commandes.EtatCommande;
+import symatique.smartseller.data.Ventes.NatureVente;
+import symatique.smartseller.data.Factures.PrefixBL;
+import symatique.smartseller.data.Factures.PrefixFacture;
+import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
 
 public class ApiService implements ApiRegister {
 
     private static ApiRegister apiService = null;
     private Callback<AuthenticationResponse> authenticatedCallback;
-    private Callback<BonDeSortie> bonSortieCallback;
+    private Callback<BonDeSortiesResponse> bonSortieCallback;
     private Callback<String> updatePrixArticleCallback;
     private Callback<PrefixFacture> prefixsFactureCallback;
     private Callback<PrefixBL> prefixsBLCallback;
@@ -45,7 +46,7 @@ public class ApiService implements ApiRegister {
 
     /*
     private Call<AuthenticationResponse> authenticationResponseCall;
-    private Call<BonDeSortie> bonDeSortieCall;
+    private Call<BonDeSortiesResponse> bonDeSortieCall;
     private Call<List<String>> listCall;
     private Call<List<PrefixFacture>> listPrefixFactureCall;
     private Call<List<PrefixBL>> listPrefixBLCall;
@@ -58,7 +59,7 @@ public class ApiService implements ApiRegister {
     private Call<List<TypeEncaissementVente>> listTypeEncaissementVenteCall;
     private Call<List<Banque>> listBanqueCall;
     private Call<List<Commande>> listCommandeCall;
-    private Call<List<BonDeSortie>> listBonDeSortieCall;
+    private Call<List<BonDeSortiesResponse>> listBonDeSortieCall;
     */
 
     public static ApiRegister getApiService() {
@@ -73,7 +74,7 @@ public class ApiService implements ApiRegister {
     }
 
     @Override
-    public Call<BonDeSortie> getBonSortie(String idLivreur, long idEntreprise, boolean premier_utilisation) {
+    public Call<BonDeSortiesResponse> getBonSortie(String idLivreur, long idEntreprise, boolean premier_utilisation) {
         return getApiService().getBonSortie(idLivreur,idEntreprise,premier_utilisation);
     }
 
@@ -138,8 +139,13 @@ public class ApiService implements ApiRegister {
     }
 
     @Override
-    public Call<List<BonDeSortie>> synchroniserPaquetSupprimer(long id_Livreur) {
+    public Call<List<BonDeSortiesResponse>> synchroniserPaquetSupprimer(long id_Livreur) {
         return getApiService().synchroniserPaquetSupprimer(id_Livreur);
+    }
+
+    @Override
+    public Call<BonDeSortie> exportBonDeSorties(BonDeSortie bonDeSortie) {
+        return getApiService().exportBonDeSorties(bonDeSortie);
     }
 
     public static void standartNotifyFailerResponse(Throwable t){

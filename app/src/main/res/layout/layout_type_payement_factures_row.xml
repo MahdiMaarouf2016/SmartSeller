@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/textView47"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/textView48"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:textAlignment="center"
         android:textSize="18sp" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/textView49"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,13 +32,13 @@
         android:layout_weight="1"
         android:text="TextView"
         android:textAlignment="center"
-        android:textSize="18sp" />
-
-    <ImageButton
+        android:textSize="18sp"
+        />
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/imageButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        android:src="@android:drawable/ic_menu_delete" />
 </android.support.v7.widget.LinearLayoutCompat>

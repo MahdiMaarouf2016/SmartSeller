@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import symatique.smartseller.R;
-import symatique.smartseller.data.PrefixFacture;
+import symatique.smartseller.data.Factures.PrefixFacture;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class FactureFragment extends Fragment {

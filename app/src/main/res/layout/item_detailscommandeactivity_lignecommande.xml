@@ -36,14 +36,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_detailcommandeitem_datesynchro"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="@string/default_textvalue"
-            android:textSize="18sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/txt_detailcommandeitem_categoritearticle"
-            app:layout_constraintStart_toStartOf="parent" />
+                android:id="@+id/txt_detailcommandeitem_montant"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/default_textvalue"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txt_detailcommandeitem_categoritearticle"
+                app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/txt_detailcommandeitem_categoritearticle"

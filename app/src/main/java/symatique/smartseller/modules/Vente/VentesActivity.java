@@ -1,6 +1,6 @@
 package symatique.smartseller.modules.Vente;
 
-import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
@@ -10,15 +10,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Client;
+import symatique.smartseller.data.Ventes.Client;
 import symatique.smartseller.modules.Planning.PlanningAdapter;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 import symatique.smartseller.utils.ClickListener;
@@ -27,11 +27,11 @@ import symatique.smartseller.utils.RecyclerTouchListener;
 public class VentesActivity extends AppCompatActivity {
 
     @BindView(R.id.edttxt_vente_search)
-     AppCompatEditText edttxtVenteSearch;
+    AppCompatEditText edttxtVenteSearch;
     @BindView(R.id.btn_vente_clientpassage)
-     AppCompatButton btnVenteClientpassage;
+    AppCompatButton btnVenteClientpassage;
     @BindView(R.id.rec_vente_listclients)
-     RecyclerView recVenteListclients;
+    RecyclerView recVenteListclients;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,6 @@ public class VentesActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setupToolBar();
         setUpClients();
-
     }
 
     private void setupToolBar() {
@@ -49,31 +48,53 @@ public class VentesActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void setUpClients() {
-
+    public List<Client> getClients() {
+        List<Client> clients = new ArrayList<>();
         try {
-            List<Client> clients = DataBaseManager.getInstance(getApplicationContext()).getHelper().getClients().queryForAll();
-            PlanningAdapter planningAdapter = new PlanningAdapter(clients);
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            recVenteListclients.setLayoutManager(layoutManager);
-            recVenteListclients.setItemAnimator(new DefaultItemAnimator());
-            recVenteListclients.setAdapter(planningAdapter);
-            recVenteListclients.addOnItemTouchListener(new RecyclerTouchListener(this,
-                    recVenteListclients, new ClickListener() {
-                @Override
-                public void onClick(View view, int position) {
-                    DialogRapportVisite dialogRapportVisite = new DialogRapportVisite(view.getContext());
-                    dialogRapportVisite.show();
-                }
-
-                @Override
-                public void onLongClick(View view, int position) {
-                    onClick(view, position);
-                }
-            }));
+            clients = DataBaseManager.getInstance(getApplicationContext()).getHelper().getClients().queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return clients;
+    }
+
+    public void setUpClients() {
+        List<Client> clients = getClients();
+       if(!clients.isEmpty()){
+           final PlanningAdapter planningAdapter = new PlanningAdapter(clients);
+           RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+           recVenteListclients.setLayoutManager(layoutManager);
+           recVenteListclients.setItemAnimator(new DefaultItemAnimator());
+           recVenteListclients.setAdapter(planningAdapter);
+           recVenteListclients.addOnItemTouchListener(new RecyclerTouchListener(this,
+                   recVenteListclients, new ClickListener() {
+               @Override
+               public void onClick(View view, int position) {
+                   final Client client = planningAdapter.getClients().get(position);
+                   DialogRapportVisite dialogRapportVisite = new DialogRapportVisite(view.getContext()) {
+                       @Override
+                       public void OnAccepted() {
+                           Intent intent = new Intent(getContext(), RapportActivity.class);
+                           intent.putExtra(RapportActivity.KEY_EXTRA_CLIENT, client);
+                           getContext().startActivity(intent);
+                       }
+
+                       @Override
+                       public void OnRejected() {
+                           Intent intent = new Intent(getContext(), PanierClientActivity.class);
+                           intent.putExtra(PanierClientActivity.KEY_EXTRA_CLIENT, client);
+                           getContext().startActivity(intent);
+                       }
+                   };
+                   dialogRapportVisite.show();
+               }
+
+               @Override
+               public void onLongClick(View view, int position) {
+                   onClick(view, position);
+               }
+           }));
+       }
     }
 
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Synchronisation.SynchronisationActivity">
+    tools:context="symatique.smartseller.modules.Synchronisation.SynchronisationActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_caisse"
         android:layout_width="match_parent"

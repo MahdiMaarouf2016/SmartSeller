@@ -14,7 +14,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.PrefixFacture;
+import symatique.smartseller.data.Factures.PrefixFacture;
 
 public class PrefixFacturesAdapter extends RecyclerView.Adapter<PrefixFacturesAdapter.FactureItem> {
 

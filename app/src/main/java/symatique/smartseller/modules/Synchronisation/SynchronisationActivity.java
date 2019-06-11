@@ -10,7 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,16 +22,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Article;
-import symatique.smartseller.data.Banque;
-import symatique.smartseller.data.BonDeSortie;
-import symatique.smartseller.data.CategorieArticle;
-import symatique.smartseller.data.Client;
-import symatique.smartseller.data.Commande;
-import symatique.smartseller.data.NatureVente;
-import symatique.smartseller.data.PrefixBL;
-import symatique.smartseller.data.PrefixFacture;
-import symatique.smartseller.data.TypeEncaissementVente;
+import symatique.smartseller.data.Articles.Article;
+import symatique.smartseller.data.Stocks.BonDeSortie;
+import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Encaissements.Banque;
+import symatique.smartseller.data.Articles.CategorieArticle;
+import symatique.smartseller.data.Stocks.Packet;
+import symatique.smartseller.data.Ventes.Client;
+import symatique.smartseller.data.Commandes.Commande;
+import symatique.smartseller.data.Ventes.NatureVente;
+import symatique.smartseller.data.Factures.PrefixBL;
+import symatique.smartseller.data.Factures.PrefixFacture;
+import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
 import symatique.smartseller.modules.Authentification.AuthentificationActivity;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.services.RetrofitService.ApiService;
@@ -37,12 +41,9 @@ import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class SynchronisationActivity extends AppCompatActivity {
 
-    @BindView(R.id.imgbtn_synchronactivity_export)
-     AppCompatImageButton imgbtnSynchronactivityExport;
-    @BindView(R.id.imgbtn_synchronactivity_import)
-     AppCompatImageButton imgbtnSynchronactivityImport;
-    @BindView(R.id.imgbtn_synchronactivity_print)
-     AppCompatImageButton imgbtnSynchronactivityPrint;
+    @BindView(R.id.imgbtn_synchronactivity_export) AppCompatImageButton imgbtnSynchronactivityExport;
+    @BindView(R.id.imgbtn_synchronactivity_import) AppCompatImageButton imgbtnSynchronactivityImport;
+    @BindView(R.id.imgbtn_synchronactivity_print) AppCompatImageButton imgbtnSynchronactivityPrint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,22 @@ public class SynchronisationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // EXPORT DELEAGTE
+                Packet packet = new Packet(379101,"LAB PACK","379101",12d, BigDecimal.valueOf(12.3),true,false,12.4d,378923,"378923",378923,"lab entr",122424,3434234234l,"378923","378923","description","LOT","ART lab",378923,378923,"vvvv",false,23d,BigDecimal.valueOf(12d),"378923","lab a lie",123.4d,false,3123123,378923l,"sdf","AAAAAAAA EN FIN");
+                List<Packet> packets = new ArrayList<>();
+                packets.add(packet);
+                BonDeSortie bonDeSortie = new BonDeSortie(123123,"379101",1234212,379101,"LAB USER","Lige livraispn",379101,"ENTREPRISE LABEL","379101",379101L,"cxcwxcwc","379101",packets);
+                ApiService.getApiService().exportBonDeSorties(bonDeSortie).enqueue(new Callback<BonDeSortie>() {
+                    @Override
+                    public void onResponse(Call<BonDeSortie> call, Response<BonDeSortie> response) {
+                        if(response.isSuccessful())
+                            Log.v("BON DE SORTIE","ENVOYE AVEC SUCCE");
+                    }
+
+                    @Override
+                    public void onFailure(Call<BonDeSortie> call, Throwable t) {
+                        Log.v("BON DE SORTIE","ENVOYE BLOKE");
+                    }
+                });
             }
         });
         imgbtnSynchronactivityImport.setOnClickListener(new View.OnClickListener() {
@@ -327,13 +344,13 @@ public class SynchronisationActivity extends AppCompatActivity {
         });
     }
     public void synchroniseBonDeSorties(){
-        ApiService.getApiService().getBonSortie(AuthentificationActivity.authenticationResponse.getCode(),AuthentificationActivity.authenticationResponse.getIdEntreprise(),false).enqueue(new Callback<BonDeSortie>() {
+        ApiService.getApiService().getBonSortie(AuthentificationActivity.authenticationResponse.getCode(),AuthentificationActivity.authenticationResponse.getIdEntreprise(),false).enqueue(new Callback<BonDeSortiesResponse>() {
             @Override
-            public void onResponse(Call<BonDeSortie> call, Response<BonDeSortie> response) {
+            public void onResponse(Call<BonDeSortiesResponse> call, Response<BonDeSortiesResponse> response) {
                 if(response.isSuccessful()){
                     try {
                         Log.v("BONDESORTIE IN DB",response.body().toString());
-                        DataBaseManager.getInstance(getApplicationContext()).getHelper().getBonDeSortieDao().createOrUpdate(response.body());
+                        DataBaseManager.getInstance(getApplicationContext()).getHelper().getBonDeSorties().createOrUpdate(response.body());
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
@@ -343,7 +360,7 @@ public class SynchronisationActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<BonDeSortie> call, Throwable t) {
+            public void onFailure(Call<BonDeSortiesResponse> call, Throwable t) {
                 ApiService.standartNotifyFailerResponse(t);
             }
         });

@@ -1,5 +1,7 @@
 package symatique.smartseller.modules.Planning;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -14,7 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Client;
+import symatique.smartseller.data.Ventes.Client;
 
 
 public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.PlanningItem> {
@@ -84,7 +86,9 @@ public class PlanningAdapter extends RecyclerView.Adapter<PlanningAdapter.Planni
                 @Override
                 public void onClick(View v) {
                     String gsm = (String) txtPlanningitemStcgsm.getText();
-                    // MAKE A CALL
+                    Intent intent =new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + gsm));
+                    itemView.getContext().startActivity(intent);
                 }
             });
             return this;

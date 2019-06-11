@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Factures.FacturerActivity">
+    tools:context="symatique.smartseller.modules.Factures.FacturerActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_creatvte"
@@ -115,16 +115,17 @@
         </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat3"
-            app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat3"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayoutCompat3"
+                app:layout_constraintStart_toStartOf="@+id/linearLayoutCompat3"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat3"
+                android:id="@+id/rec_facturesactivity_listpayementclient"/>
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout

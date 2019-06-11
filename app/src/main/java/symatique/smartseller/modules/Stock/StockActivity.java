@@ -11,31 +11,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TableLayout;
-import android.widget.TextView;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.DetailStock;
-import symatique.smartseller.data.StockParVendeur;
+import symatique.smartseller.data.Stocks.Packet;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class StockActivity extends AppCompatActivity {
 
-    @BindView(R.id.rec_stockactivity_liststock)
-     RecyclerView recStockactivityListstock;
-    @BindView(R.id.txt_stockactivity_valeurtotal)
-     AppCompatTextView txtStockactivityValeurtotal;
-    @BindView(R.id.txt_stockactivity_nbrarticles)
-     AppCompatTextView txtStockactivityNbrarticles;
-    @BindView(R.id.txt_stockactivity_nbrarticlespanier)
-     AppCompatTextView txtStockactivityNbrarticlespanier;
-    @BindView(R.id.tableLayout4)
-     TableLayout tableLayout4;
+    @BindView(R.id.rec_stockactivity_liststock) RecyclerView recStockactivityListstock;
+    @BindView(R.id.txt_stockactivity_valeurtotal) AppCompatTextView txtStockactivityValeurtotal;
+    @BindView(R.id.txt_stockactivity_nbrarticles) AppCompatTextView txtStockactivityNbrarticles;
+    @BindView(R.id.txt_stockactivity_nbrarticlespanier) AppCompatTextView txtStockactivityNbrarticlespanier;
+    @BindView(R.id.tableLayout4) TableLayout tableLayout4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,26 +37,33 @@ public class StockActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stock);
         ButterKnife.bind(this);
 
-        setUpStocks();
         setupToolBar();
+        setUpStocks();
+    }
+
+    public List<Packet> getLigneStockParVendeurs() {
+        List<Packet> packets = new ArrayList<>();
+
+        try {
+            packets = DataBaseManager.getInstance(getApplicationContext()).getHelper().getPacketsStock().queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return packets;
     }
 
     public void setUpStocks() {
 
-        try {
+        StockAdapter stockAdapter = new StockAdapter(getLigneStockParVendeurs());
 
-            List<DetailStock> detailStocks = DataBaseManager.getInstance(getApplicationContext()).getHelper().getDetailStocks().queryForAll();
-            StockAdapter stockAdapter = new StockAdapter(detailStocks);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recStockactivityListstock.setLayoutManager(layoutManager);
+        recStockactivityListstock.setItemAnimator(new DefaultItemAnimator());
+        recStockactivityListstock.setAdapter(stockAdapter);
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            recStockactivityListstock.setLayoutManager(layoutManager);
-            recStockactivityListstock.setItemAnimator(new DefaultItemAnimator());
-
-            recStockactivityListstock.setAdapter(stockAdapter);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        txtStockactivityNbrarticles.setText(String.valueOf(stockAdapter.getNombreArticles()));
+        txtStockactivityValeurtotal.setText(String.valueOf(stockAdapter.getValeurTotale()));
+        txtStockactivityNbrarticlespanier.setText(String.valueOf(PanierActivity.getPanierAdapter().getItemCount()));
     }
 
     private void setupToolBar() {

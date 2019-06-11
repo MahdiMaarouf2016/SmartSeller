@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Vente.RapportActivity">
+    tools:context="symatique.smartseller.modules.Vente.RapportActivity">
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_produit"
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/abl_produit" />
 
     <android.support.v7.widget.AppCompatSpinner
-        android:id="@+id/appCompatSpinner"
+        android:id="@+id/spinner_rapportactivity_motifs"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_marginStart="23dp"
@@ -50,25 +50,25 @@
     </android.support.v7.widget.AppCompatSpinner>
 
     <MultiAutoCompleteTextView
-        android:id="@+id/multiAutoCompleteTextView"
-        android:layout_width="0dp"
-        android:padding="20dp"
-        android:layout_height="239dp"
-        android:layout_marginTop="23dp"
-        android:background="#5abcc9"
-        android:text="Ecrire quelque chose"
-        app:layout_constraintEnd_toEndOf="@+id/appCompatSpinner"
-        app:layout_constraintStart_toStartOf="@+id/appCompatSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatSpinner" />
+            android:id="@+id/plantext_rapportactivity_description"
+            android:layout_width="0dp"
+            android:padding="20dp"
+            android:layout_height="239dp"
+            android:layout_marginTop="23dp"
+            android:background="#5abcc9"
+            android:text="Ecrire quelque chose"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_rapportactivity_motifs"
+            app:layout_constraintStart_toStartOf="@+id/spinner_rapportactivity_motifs"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_rapportactivity_motifs"/>
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/button4"
+        android:id="@+id/btn_rapportactivity_valider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:background="#FF449B4A"
         android:text="VALIDER"
-        app:layout_constraintEnd_toEndOf="@+id/multiAutoCompleteTextView"
-        app:layout_constraintStart_toStartOf="@+id/multiAutoCompleteTextView"
-        app:layout_constraintTop_toBottomOf="@+id/multiAutoCompleteTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/plantext_rapportactivity_description"
+        app:layout_constraintStart_toStartOf="@+id/plantext_rapportactivity_description"
+        app:layout_constraintTop_toBottomOf="@+id/plantext_rapportactivity_description" />
 </android.support.constraint.ConstraintLayout>

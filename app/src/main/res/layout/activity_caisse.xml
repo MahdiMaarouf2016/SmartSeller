@@ -6,13 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".modules.Caisse.CaisseActivity">
+    tools:context="symatique.smartseller.modules.Caisse.CaisseActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_caisse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,12 +29,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
+        android:id="@+id/tabs_caisseactivity_tabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/background_tab"
         android:minHeight="?attr/actionBarSize"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="@+id/abl_caisse"
         app:layout_constraintStart_toStartOf="@+id/abl_caisse"
         app:layout_constraintTop_toBottomOf="@+id/abl_caisse"
@@ -47,14 +49,16 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:paddingLeft="8dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        app:layout_constraintEnd_toEndOf="@+id/tabs"
-        app:layout_constraintStart_toStartOf="@+id/tabs"
-        app:layout_constraintTop_toBottomOf="@+id/tabs">
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
+        app:layout_constraintEnd_toEndOf="@+id/tabs_caisseactivity_tabs"
+        app:layout_constraintStart_toStartOf="@+id/tabs_caisseactivity_tabs"
+        app:layout_constraintTop_toBottomOf="@+id/tabs_caisseactivity_tabs">
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -99,31 +103,32 @@
     </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="wrap_content"
+        android:id="@+id/pager_caisseactivity_scrolpager"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout7"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/pager"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/pager">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <android.support.v7.widget.AppCompatImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/btnimg_caisseactivity_print"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginStart="24dp"
@@ -150,14 +155,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textView32"
+                android:id="@+id/lab_caisseactivity_medoil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="MEDOIL"
                 android:textSize="18sp" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textView33"
+                android:id="@+id/txt_caisseactivity_medoil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="123.098"
@@ -178,7 +183,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton3">
+            app:layout_constraintTop_toBottomOf="@+id/btnimg_caisseactivity_print">
 
             <android.support.v7.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -187,9 +192,10 @@
                 android:textSize="18sp" />
 
             <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txt_caisseactivity_totalventes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="123.435"
+                android:text="0.0 DT"
                 android:textSize="18sp" />
         </android.support.v7.widget.LinearLayoutCompat>
 
@@ -213,10 +219,10 @@
                 android:text="MEDOIL BM" />
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textView35"
+                android:id="@+id/txt_caisseactivity_medoilbm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="123.435"
+                android:text="0.0 TD"
                 android:textSize="18sp" />
         </android.support.v7.widget.LinearLayoutCompat>
 
@@ -232,7 +238,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>

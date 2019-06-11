@@ -7,25 +7,24 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.j256.ormlite.dao.ForeignCollection;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Commande;
-import symatique.smartseller.data.DetailCommande;
+import symatique.smartseller.data.Commandes.Commande;
+import symatique.smartseller.data.Commandes.LigneCommande;
 import symatique.smartseller.modules.Panier.PanierActivity;
+
+import java.util.List;
 
 public class DetailCommandeActivity extends AppCompatActivity {
 
+    //public final static String KEY_COMMANDE_EXTRA = "COMMANDE";
+    public static Commande WORKING_COMMANDE = new Commande();
     @BindView(R.id.rec_detailscommande_listdetailscommande)
-     RecyclerView recDetailscommandeListdetailscommande;
+    RecyclerView recDetailscommandeListdetailscommande;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +60,15 @@ public class DetailCommandeActivity extends AppCompatActivity {
     }
 
     public void setUp(Bundle savedInstanceState) {
-        try {
 
-            /*Commande commande = (Commande) getIntent().getExtras().get("Commande");
-            List<DetailCommande> detailCommandes = ((ForeignCollection)commande.getDetailCommandes()).getDao().queryForAll();
-            DetailsCommandeAdapter detailsCommandeAdapter = new DetailsCommandeAdapter(detailCommandes);
+        Commande commande = WORKING_COMMANDE;//(Commande) getIntent().getExtras().get(KEY_COMMANDE_EXTRA);
+        List<LigneCommande> detailCommandes = commande.getDetailCommandes();
 
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            recDetailscommandeListdetailscommande.setLayoutManager(layoutManager);
-            recDetailscommandeListdetailscommande.setItemAnimator(new DefaultItemAnimator());
-            recDetailscommandeListdetailscommande.setAdapter(detailsCommandeAdapter);
-            */
-        } catch (Exception ex) {
-            Log.v("COMMANDE DATA MESSAGE", ex.getMessage());
-        }
+        DetailsCommandeAdapter detailsCommandeAdapter = new DetailsCommandeAdapter(detailCommandes);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recDetailscommandeListdetailscommande.setLayoutManager(layoutManager);
+        recDetailscommandeListdetailscommande.setItemAnimator(new DefaultItemAnimator());
+        recDetailscommandeListdetailscommande.setAdapter(detailsCommandeAdapter);
 
     }
 }

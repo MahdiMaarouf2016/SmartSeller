@@ -11,19 +11,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
-import symatique.smartseller.data.Commande;
+import symatique.smartseller.data.Commandes.Commande;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 
 public class CommandesActivity extends AppCompatActivity {
 
     @BindView(R.id.rec_commandes_listcommandes)
-     RecyclerView recCommandesListcommandes;
+    RecyclerView recCommandesListcommandes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +35,25 @@ public class CommandesActivity extends AppCompatActivity {
         setupToolBar();
     }
 
-    private void setUpCommandes() {
+    public List<Commande> getListCommandes() {
+        List<Commande> commandes = new ArrayList<>();
         try {
-            List<Commande> commandes = DataBaseManager.getInstance(getApplicationContext()).getHelper().getCommandes().queryForAll();
-            CommandesAdapter commandesAdapter = new CommandesAdapter(commandes);
+            commandes = DataBaseManager.getInstance(getApplicationContext()).getHelper().getCommandes().queryForAll();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return commandes;
+    }
 
+    private void setUpCommandes() {
+        List<Commande> commandes = getListCommandes();
+        if(!commandes.isEmpty()){
+            CommandesAdapter commandesAdapter = new CommandesAdapter(commandes);
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
             recCommandesListcommandes.setLayoutManager(layoutManager);
             recCommandesListcommandes.setItemAnimator(new DefaultItemAnimator());
             recCommandesListcommandes.setAdapter(commandesAdapter);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
-
-
     }
 
     private void setupToolBar() {
