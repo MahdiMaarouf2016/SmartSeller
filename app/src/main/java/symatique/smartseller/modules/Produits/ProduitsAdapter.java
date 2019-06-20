@@ -6,6 +6,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Picasso;
 import symatique.smartseller.R;
+import symatique.smartseller.bases.RetrofitBases;
 import symatique.smartseller.data.Articles.Article;
 import symatique.smartseller.modules.Panier.PanierActivity;
 
@@ -92,7 +95,7 @@ public class ProduitsAdapter extends RecyclerView.Adapter<ProduitsAdapter.Produi
             txtProduitiemCategorie.setText(article.getLibelleCategorie());
             txtProduitiemProdcode.setText(article.getCode());
             txtPanieritiemProdlibelle.setText(article.getLibelle());
-
+            Picasso.get().load(RetrofitBases.BASE_URL + "/SmartSeller" + article.getPhoto1()).into(imgPanieritemProdbackimg);
             btnPanieritiemPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

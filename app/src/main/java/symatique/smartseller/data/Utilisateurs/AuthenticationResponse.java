@@ -27,7 +27,7 @@ public class AuthenticationResponse {
     @JsonProperty("gsm")
     private String gsm;
     @JsonProperty("idEntreprise")
-    private Long idEntreprise;
+    private long idEntreprise;
     @JsonProperty("immatriculation")
     private String immatriculation;
     @JsonProperty("libelleEntreprise")
@@ -50,6 +50,8 @@ public class AuthenticationResponse {
     private String prenom;
     @JsonProperty("telephoneEntreprise")
     private String telephoneEntreprise;
+    @JsonProperty("id")
+    private long idlivreur;
 
     public AuthenticationResponse(){
 
@@ -87,7 +89,7 @@ public class AuthenticationResponse {
         return gsm;
     }
 
-    public Long getIdEntreprise() {
+    public long getIdEntreprise() {
         return idEntreprise;
     }
 
@@ -167,7 +169,7 @@ public class AuthenticationResponse {
         this.gsm = gsm;
     }
 
-    public void setIdEntreprise(Long idEntreprise) {
+    public void setIdEntreprise(long idEntreprise) {
         this.idEntreprise = idEntreprise;
     }
 
@@ -213,5 +215,9 @@ public class AuthenticationResponse {
 
     public void setTelephoneEntreprise(String telephoneEntreprise) {
         this.telephoneEntreprise = telephoneEntreprise;
+    }
+
+    public long getIdLivreur() {
+        return idlivreur;
     }
 }

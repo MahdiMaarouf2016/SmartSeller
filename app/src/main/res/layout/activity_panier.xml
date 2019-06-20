@@ -46,41 +46,44 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_panier_labeltotalcommande"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            android:text="TOTAL COMMANDES"
-            app:layout_constraintEnd_toStartOf="@+id/txt_panier_totalcommandes"
-            app:layout_constraintTop_toTopOf="parent" />
+                android:id="@+id/txt_panier_labeltotalcommande"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="TOTAL COMMANDES"
+                app:layout_constraintEnd_toStartOf="@+id/txt_panier_totalcommandes"
+                app:layout_constraintTop_toTopOf="parent" android:textSize="18sp"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_panier_totalcommandes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:text="0"
-            app:layout_constraintBaseline_toBaselineOf="@+id/txt_panier_labeltotalcommande"
-            app:layout_constraintEnd_toEndOf="@+id/btn_panier_commander" />
+                android:id="@+id/txt_panier_totalcommandes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="24dp"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent" android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_panier_quantitearticles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            app:layout_constraintBaseline_toBaselineOf="@+id/txt_panier_labelquantite"
-            app:layout_constraintEnd_toEndOf="@+id/txt_panier_totalcommandes" />
+                android:id="@+id/txt_panier_quantitearticles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txt_panier_labelquantite"
+                app:layout_constraintEnd_toEndOf="@+id/txt_panier_totalcommandes" android:textSize="18sp"/>
 
         <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txt_panier_labelquantite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="QTE"
-            app:layout_constraintBottom_toTopOf="@+id/btn_panier_commander"
-            app:layout_constraintEnd_toEndOf="@+id/txt_panier_labeltotalcommande"
-            app:layout_constraintStart_toStartOf="@+id/txt_panier_labeltotalcommande" />
+                android:id="@+id/txt_panier_labelquantite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:text="QTE"
+                app:layout_constraintBottom_toTopOf="@+id/btn_panier_commander"
+                app:layout_constraintEnd_toEndOf="@+id/txt_panier_labeltotalcommande"
+                app:layout_constraintStart_toStartOf="@+id/txt_panier_labeltotalcommande" android:textSize="18sp"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_panier_commander"

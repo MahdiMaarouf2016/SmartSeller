@@ -8,15 +8,17 @@
     tools:context="symatique.smartseller.modules.Produits.ProduitsActivity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_produitsactivity_gocategories"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+            android:id="@+id/fab_produitsactivity_gocategories"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+    />
+    <requestFocus/>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abl_produit"
@@ -36,22 +38,23 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edttxt_produits_findarticle"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/shape_txtedit_"
-        android:ems="10"
-        android:hint="Chercher un produit"
-        android:inputType="textPersonName"
-        android:padding="8dp"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abl_produit" />
+            android:id="@+id/edttxt_produits_findarticle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_txtedit_"
+            android:ems="10"
+            android:hint="Chercher un produit"
+            android:textColorHint="@color/blackAccent"
+            android:inputType="textPersonName"
+            android:padding="8dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abl_produit" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rec_produits_listaricles"

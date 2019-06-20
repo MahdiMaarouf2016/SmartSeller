@@ -10,8 +10,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 import symatique.smartseller.bases.RetrofitBases;
 import symatique.smartseller.data.Articles.Article;
+import symatique.smartseller.data.Factures.Facture;
 import symatique.smartseller.data.Stocks.BonDeSortie;
 import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Stocks.Packet;
 import symatique.smartseller.data.Utilisateurs.AuthenticationResponse;
 import symatique.smartseller.data.Encaissements.Banque;
 import symatique.smartseller.data.Articles.CategorieArticle;
@@ -24,6 +26,7 @@ import symatique.smartseller.data.Ventes.NatureVente;
 import symatique.smartseller.data.Factures.PrefixBL;
 import symatique.smartseller.data.Factures.PrefixFacture;
 import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
+import symatique.smartseller.data.Ventes.RapportVisite;
 
 public class ApiService implements ApiRegister {
 
@@ -78,11 +81,6 @@ public class ApiService implements ApiRegister {
         return getApiService().getBonSortie(idLivreur,idEntreprise,premier_utilisation);
     }
 
-    @Override
-    public Call<List<String>> updatePrixArticle(long idLivreur, long dateSynchro) {
-        return getApiService().updatePrixArticle(idLivreur,dateSynchro);
-    }
-
     @Override//S
     public Call<List<PrefixFacture>> getPrefixsFacture(long idLivreur, long idEntreprise) {
         return getApiService().getPrefixsFacture(idLivreur,idEntreprise);
@@ -91,6 +89,11 @@ public class ApiService implements ApiRegister {
     @Override//S
     public Call<List<PrefixBL>> getPrefixsBL(long idLivreur, long idEntreprise) {
         return getApiService().getPrefixsBL(idLivreur,idEntreprise);
+    }
+
+    @Override
+    public Call<List<Facture>> getFactures(long idLivreur, long idEntreprise) {
+        return getApiService().getFactures(idLivreur, idEntreprise);
     }
 
     @Override//S
@@ -139,13 +142,33 @@ public class ApiService implements ApiRegister {
     }
 
     @Override
-    public Call<List<BonDeSortiesResponse>> synchroniserPaquetSupprimer(long id_Livreur) {
-        return getApiService().synchroniserPaquetSupprimer(id_Livreur);
+    public Call<List<Packet>> stockLivreur(List<Packet> packets) {
+        return getApiService().stockLivreur(packets);
     }
 
     @Override
-    public Call<BonDeSortie> exportBonDeSorties(BonDeSortie bonDeSortie) {
-        return getApiService().exportBonDeSorties(bonDeSortie);
+    public Call<List<RapportVisite>> ajouterRapportVente(List<RapportVisite> rapportVisites) {
+        return getApiService().ajouterRapportVente(rapportVisites);
+    }
+
+    @Override
+    public Call<List<Facture>> exportFacturesBonsLivraisons(List<Facture> factures) {
+        return exportFacturesBonsLivraisons(factures);
+    }
+
+    @Override
+    public Call<List<Facture>> exportFacturesBonsLivraisonsTemp(List<Facture> factures) {
+        return exportFacturesBonsLivraisonsTemp(factures);
+    }
+
+    @Override
+    public Call<Client> ajouterNouveauClient(Client client) {
+        return ajouterNouveauClient(client);
+    }
+
+    @Override
+    public Call<List<Commande>> ajouterCommandes(List<Commande> commandes) {
+        return ajouterCommandes(commandes);
     }
 
     public static void standartNotifyFailerResponse(Throwable t){

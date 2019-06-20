@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.modules.Caisse.CaisseActivity;
 import symatique.smartseller.modules.Client.ClientsActivity;
@@ -28,18 +30,20 @@ import symatique.smartseller.utils.RecyclerTouchListener;
 import symatique.smartseller.utils.ClickListener;
 
 public class HomeActivity extends AppCompatActivity {
-
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
         setupToolBar();
         setUpMenu();
     }
 
     private void setupToolBar() {
-        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

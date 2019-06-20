@@ -11,7 +11,10 @@
             android:id="@+id/img_panieritem_prodbackimg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_jadida_huile_de_mais"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"/>
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="0dp"
@@ -44,22 +47,25 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/guideline15"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" android:gravity="center"/>
 
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_produitiem_prodcode"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="center"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/guideline9"
-                app:layout_constraintBottom_toTopOf="@+id/guideline15" android:textAlignment="textEnd"/>
+                app:layout_constraintBottom_toTopOf="@+id/guideline15" android:textAlignment="textEnd"
+                android:layout_marginTop="8dp" android:layout_marginBottom="8dp"/>
 
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_produitiem_categorie"
@@ -67,17 +73,19 @@
                 android:layout_height="0dp"
                 android:text="@string/default_textvalue"
                 android:textSize="14sp"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/btn_produitiem_ajouter"
                 app:layout_constraintEnd_toEndOf="@+id/txt_produitiem_prodcode"
                 app:layout_constraintStart_toStartOf="@+id/guideline9"
                 app:layout_constraintTop_toTopOf="@+id/guideline15" android:layout_marginEnd="8dp"
-                android:textAlignment="textEnd"/>
+                android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp" android:textStyle="bold"/>
 
 
         <android.support.constraint.ConstraintLayout
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/guideline10"
                 app:layout_constraintEnd_toStartOf="@+id/guideline9"

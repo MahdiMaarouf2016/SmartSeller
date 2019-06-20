@@ -35,7 +35,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
     public double getValeurTotale(){
         double valeurTotale = 0;
         for(Packet packet:stockParVendeurs){
-            valeurTotale += packet.getQuantite() * packet.getPrixUnitaireHT().doubleValue();
+            valeurTotale += packet.getQuantite() * packet.getPrixRevendeur().doubleValue();
         }
 
         return PanierAdapter.round(valeurTotale,3);
@@ -73,7 +73,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItem> {
         public void clone(Packet packet) {
 
             txtStockitemCode.setText(packet.getCodeArticle());
-            txtStockitemPrix.setText(packet.getPrixUnitaireHT().toString());
+            txtStockitemPrix.setText(packet.getPrixRevendeur().toString());
             txtStockitemProduit.setText(packet.getLibelleArticle());
             txtStockitemQte.setText(String.valueOf(packet.getQuantite()));
 

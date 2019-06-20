@@ -1,6 +1,8 @@
 package symatique.smartseller.modules.Factures;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -17,13 +19,14 @@ import java.util.List;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Encaissements.Banque;
 import symatique.smartseller.data.Ventes.Client;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 import symatique.smartseller.services.SQLiteService.DatabaseHelper;
 
-public class DialogChequePayement extends AppCompatDialog {
+public class DialogChequePayement extends AlertDialog.Builder {
     @BindView(R.id.spinner_cheque_societe) Spinner spinnerChequeSociete;
     @BindView(R.id.txt_cheque_restepaye) AppCompatTextView txtChequeRestepaye;
     @BindView(R.id.txtedt_cheque_montant) AppCompatEditText txtedtChequeMontant;
@@ -33,18 +36,30 @@ public class DialogChequePayement extends AppCompatDialog {
     @BindView(R.id.txtedt_cheque_ville) AppCompatEditText txtedtChequeVille;
     @BindView(R.id.btn_cheque_annuler) AppCompatButton btnChequeAnnuler;
     @BindView(R.id.btn_cheque_confirmer) AppCompatButton btnChequeConfirmer;
+    private AlertDialog alertDialog = null;
 
     public DialogChequePayement(Context context) {
         super(context);
-        setUpView();
     }
 
-    void setUpView() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.dialog_payement_cheque);
-        ButterKnife.bind(this);
+    @Override
+    public AlertDialog show() {
+        setView(R.layout.dialog_payement_cheque);
+        alertDialog = super.show();
+        ButterKnife.bind(this, alertDialog);
         setupBanques();
         setUpClients();
+        return alertDialog;
+    }
+
+    @OnClick(R.id.btn_cheque_annuler)
+    public void btnChequeAnnulerOnClick() {
+
+    }
+
+    @OnClick(R.id.btn_cheque_confirmer)
+    public void btnChequeConfirmerOnClick() {
+
     }
 
     public List<Banque> getListBanques(){
@@ -56,15 +71,15 @@ public class DialogChequePayement extends AppCompatDialog {
         }
         return banques;
     }
+
     public void setupBanques() {
         List<String> banqueLibels = new ArrayList<>();
         List<Banque> banques = getListBanques();
-        if(!banqueLibels.isEmpty()){
-            for(Banque banque:banques)
-                banqueLibels.add(banque.getLibelle());
+        if (!banques.isEmpty()) {
+            for (Banque banque : banques) banqueLibels.add(banque.getLibelle());
         }else{
             Toast.makeText(this.getContext(),"Aucune banque trouvé , Merci de sychronisyer",Toast.LENGTH_LONG).show();
-            onBackPressed();
+            //alertDialog.onBackPressed();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, banqueLibels);//setting the country_array to spinner
         spinnerChequeBanque.setAdapter(adapter);
@@ -90,23 +105,10 @@ public class DialogChequePayement extends AppCompatDialog {
                 clientLabes.add(client.getLibelle());
         }else{
             Toast.makeText(this.getContext(),"Aucune banque trouvé , Merci de sychronisyer",Toast.LENGTH_LONG).show();
-            onBackPressed();
+            alertDialog.onBackPressed();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getContext(), android.R.layout.simple_spinner_dropdown_item, (ArrayList)clientLabes);//setting the country_array to spinner
         spinnerChequeSociete.setAdapter(adapter);
     }
-    public void setUpDelegates(){
-        btnChequeAnnuler.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
-        btnChequeConfirmer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-            }
-        });
-    }
 }

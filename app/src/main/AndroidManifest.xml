@@ -1,99 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="symatique.smartseller">
+          package="symatique.smartseller">
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
-        android:name=".SmartSeller"
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Design.NoActionBar">
+            android:name=".SmartSeller"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.Design.NoActionBar">
         <activity
-            android:name=".modules.Authentification.ChargementActivity"
-            android:label="Chargement">
+                android:name=".modules.Vente.AjouterClient"
+                android:label="@string/title_activity_ajouter_client">
+        </activity>
+        <activity
+                android:name=".modules.Authentification.OnExecuteSplashScreen"
+                android:label="Chargement">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".modules.Authentification.AuthentificationActivity"/>
-        <activity android:name=".modules.Home.HomeActivity"
-            android:label="Menu"
-            android:parentActivityName=".modules.Authentification.AuthentificationActivity"/>
         <activity
-            android:name=".modules.Planning.PlanningActivity"
-            android:label="@string/title_activity_planning"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Home.HomeActivity"
+                android:label="Menu"
+                android:parentActivityName=".modules.Authentification.AuthentificationActivity"/>
         <activity
-            android:name=".modules.Produits.ProduitsActivity"
-            android:label="@string/title_activity_produit"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Planning.PlanningActivity"
+                android:label="@string/title_activity_planning"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Panier.PanierActivity"
-            android:label="Panier"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Produits.ProduitsActivity"
+                android:label="@string/title_activity_produit"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Commandes.CommandesActivity"
-            android:label="Commandes"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Panier.PanierActivity"
+                android:label="Panier"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Vente.VentesActivity"
-            android:label="@string/title_activity_vente"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Commandes.CommandesActivity"
+                android:label="Commandes"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Vente.RapportActivity"
-            android:label="@string/title_activity_rapport"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Vente.VentesActivity"
+                android:label="@string/title_activity_vente"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Factures.FacturesActivity"
-            android:label="@string/title_activity_factures"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Vente.RapportActivity"
+                android:label="@string/title_activity_rapport"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Client.ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Factures.FacturesActivity"
+                android:label="@string/title_activity_factures"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Stock.StockActivity"
-            android:label="@string/title_activity_stock"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Client.ProfileActivity"
+                android:label="@string/title_activity_profile"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Commandes.DetailCommandeActivity"
-            android:label="@string/title_activity_detail_commande"
-            android:parentActivityName=".modules.Commandes.CommandesActivity" />
+                android:name=".modules.Stock.StockActivity"
+                android:label="@string/title_activity_stock"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Vente.PanierClientActivity"
-            android:label="@string/title_activity_create_vente"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Commandes.DetailCommandeActivity"
+                android:label="@string/title_activity_detail_commande"
+                android:parentActivityName=".modules.Commandes.CommandesActivity"/>
         <activity
-            android:name=".modules.Vente.CodesActivity"
-            android:label="@string/title_activity_codes"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Vente.PanierClientActivity"
+                android:label="@string/title_activity_create_vente"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Factures.FacturerActivity"
-            android:label="@string/title_activity_facture"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Vente.CodesActivity"
+                android:label="@string/title_activity_codes"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Caisse.CaisseActivity"
-            android:label="@string/title_activity_caisse"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Factures.FacturerActivity"
+                android:label="@string/title_activity_facture"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Synchronisation.SynchronisationActivity"
-            android:label="@string/title_activity_synchronisation"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Caisse.CaisseActivity"
+                android:label="@string/title_activity_caisse"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Parametres.ParametresActivity"
-            android:label="@string/title_activity_parametres"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Synchronisation.SynchronisationActivity"
+                android:label="@string/title_activity_synchronisation"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-            android:name=".modules.Client.ClientsActivity"
-            android:label="@string/title_activity_clients"
-            android:parentActivityName=".modules.Home.HomeActivity" />
+                android:name=".modules.Parametres.ParametresActivity"
+                android:label="@string/title_activity_parametres"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
         <activity
-        android:name=".modules.Factures.PayementFactureActivity"
-        android:label="@string/title_activity_payement_facture" />
+                android:name=".modules.Client.ClientsActivity"
+                android:label="@string/title_activity_clients"
+                android:parentActivityName=".modules.Home.HomeActivity"/>
     </application>
 
 </manifest>

@@ -22,18 +22,24 @@ public class EtatCommande implements Serializable {
     @DatabaseField(id = true)
     private Long id;
 
+    @JsonProperty("choixArticle")
+    @DatabaseField
+    private boolean choixArticle;
     @JsonProperty("couleur")
     @DatabaseField
     private String couleur;
     @JsonProperty("dateSynch")
     @DatabaseField
     private Long dateSynch;
+    @JsonProperty("dernierRang")
+    @DatabaseField
+    private boolean dernierRang;
     @JsonProperty("libelle")
     @DatabaseField
     private String libelle;
-    @JsonProperty("libelleArb")
+    @JsonProperty("nombreHeureTraitement")
     @DatabaseField
-    private String libelleArb;
+    private long nombreHeureTraitement;
     @JsonProperty("rang")
     @DatabaseField
     private Long rang;
@@ -43,77 +49,99 @@ public class EtatCommande implements Serializable {
     @JsonProperty("idEntreprise")
     @DatabaseField
     private long idEntreprise;
+    @JsonProperty("synchroniserMFG")
+    @DatabaseField
+    private boolean synchroniserMFG;
 
 
     public EtatCommande() {
-    }
-
-    public EtatCommande(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getCouleur() {
-        return couleur;
-    }
-
-    public Long getDateSynch() {
-        return dateSynch;
-    }
-
-    public String getLibelle() {
-        return libelle;
-    }
-
-    public String getLibelleArb() {
-        return libelleArb;
-    }
-
-    public Long getRang() {
-        return rang;
-    }
-
-    public Boolean getSupprimer() {
-        return supprimer;
-    }
-
-    public long getIdEntreprise() {
-        return idEntreprise;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isChoixArticle() {
+        return choixArticle;
+    }
+
+    public void setChoixArticle(boolean choixArticle) {
+        this.choixArticle = choixArticle;
+    }
+
+    public String getCouleur() {
+        return couleur;
     }
 
     public void setCouleur(String couleur) {
         this.couleur = couleur;
     }
 
+    public Long getDateSynch() {
+        return dateSynch;
+    }
+
     public void setDateSynch(Long dateSynch) {
         this.dateSynch = dateSynch;
+    }
+
+    public boolean isDernierRang() {
+        return dernierRang;
+    }
+
+    public void setDernierRang(boolean dernierRang) {
+        this.dernierRang = dernierRang;
+    }
+
+    public String getLibelle() {
+        return libelle;
     }
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
 
-    public void setLibelleArb(String libelleArb) {
-        this.libelleArb = libelleArb;
+    public long getNombreHeureTraitement() {
+        return nombreHeureTraitement;
+    }
+
+    public void setNombreHeureTraitement(long nombreHeureTraitement) {
+        this.nombreHeureTraitement = nombreHeureTraitement;
+    }
+
+    public Long getRang() {
+        return rang;
     }
 
     public void setRang(Long rang) {
         this.rang = rang;
     }
 
+    public Boolean getSupprimer() {
+        return supprimer;
+    }
+
     public void setSupprimer(Boolean supprimer) {
         this.supprimer = supprimer;
+    }
+
+    public long getIdEntreprise() {
+        return idEntreprise;
     }
 
     public void setIdEntreprise(long idEntreprise) {
         this.idEntreprise = idEntreprise;
     }
 
+    public boolean isSynchroniserMFG() {
+        return synchroniserMFG;
+    }
+
+    public void setSynchroniserMFG(boolean synchroniserMFG) {
+        this.synchroniserMFG = synchroniserMFG;
+    }
 }

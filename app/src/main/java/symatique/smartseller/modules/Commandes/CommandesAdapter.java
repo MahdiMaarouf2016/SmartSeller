@@ -64,16 +64,14 @@ public class CommandesAdapter extends RecyclerView.Adapter<CommandesAdapter.Comm
 
         public void clone(final Commande commande) {
             txtCommandeitemNumero.setText(commande.getNumero());
-            Date date = new Date(commande.getDateSynch());
-            txtCommandeitemDatesynchro.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date(commande.getDateSynch())));
+            txtCommandeitemDatesynchro.setText(new SimpleDateFormat("dd/MM/yyyy").format(commande.getDateCommande()));
             txtCommandeitemEtat.setText(commande.getLibelleEtatCommande());
-            txtCommandeitemMontant.setText(commande.getMontantHT().toString());
+            txtCommandeitemMontant.setText(commande.getMontantHT().toString() + " TD");
             fabCommandeitemGoprofile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DetailCommandeActivity.WORKING_COMMANDE = commande;
                     Intent intent = new Intent(v.getContext(),DetailCommandeActivity.class);
-                    //intent.putExtra(DetailCommandeActivity.KEY_COMMANDE_EXTRA,commande);
                     v.getContext().startActivity(intent);
                 }
             });

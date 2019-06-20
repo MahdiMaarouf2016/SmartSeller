@@ -95,6 +95,22 @@ public class Client implements Serializable {
 
     }
 
+    public String getCodeVendeur() {
+        return codeVendeur;
+    }
+
+    public long getIdVendeur() {
+        return idVendeur;
+    }
+
+    public PlanificationVenteWS getPlanificationVenteWS() {
+        return planificationVenteWS;
+    }
+
+    public int getType() {
+        return type;
+    }
+
     public long getId() {
         return id;
     }
@@ -262,4 +278,6 @@ public class Client implements Serializable {
     public void setIdEntreprise(long idEntreprise) {
         this.idEntreprise = idEntreprise;
     }
+
+
 }

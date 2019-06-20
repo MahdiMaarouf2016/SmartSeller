@@ -15,7 +15,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Picasso;
 import symatique.smartseller.R;
+import symatique.smartseller.bases.RetrofitBases;
 import symatique.smartseller.data.Commandes.LigneCommande;
 
 public class DetailsCommandeAdapter extends RecyclerView.Adapter<DetailsCommandeAdapter.DetailCommandeItem> {
@@ -56,16 +58,17 @@ public class DetailsCommandeAdapter extends RecyclerView.Adapter<DetailsCommande
         @BindView(R.id.txt_detailcommandeitem_montant) TextView txtDetailcCommandeitemMontant;
         @BindView(R.id.txt_detailcommandeitem_categoritearticle) TextView txtDetailcommandeitemCategoritearticle;
 
+
         public DetailCommandeItem(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
         }
 
         public void clone(LigneCommande ligneCommande) {
-            //? photo
             txtDetailcommandeitemCategoritearticle.setText(ligneCommande.getLibelleCategorie());
             txtDetailcCommandeitemMontant.setText(ligneCommande.getPrixTotal().toString());
             txtDetailcommandeitemLibelarticle.setText(ligneCommande.getLibelle());
+            Picasso.get().load(RetrofitBases.BASE_URL + "/SmartSeller" + ligneCommande.getPhoto1()).into(imgDetailcommandeitemImgarticle);
         }
     }
 }

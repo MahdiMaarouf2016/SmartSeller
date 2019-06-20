@@ -3,14 +3,13 @@ package symatique.smartseller.services.RetrofitService;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 import symatique.smartseller.data.Articles.Article;
 import symatique.smartseller.data.Articles.Domaine;
+import symatique.smartseller.data.Factures.Facture;
 import symatique.smartseller.data.Stocks.BonDeSortie;
 import symatique.smartseller.data.Stocks.BonDeSortiesResponse;
+import symatique.smartseller.data.Stocks.Packet;
 import symatique.smartseller.data.Utilisateurs.AuthenticationResponse;
 import symatique.smartseller.data.Encaissements.Banque;
 import symatique.smartseller.data.Articles.CategorieArticle;
@@ -22,6 +21,7 @@ import symatique.smartseller.data.Ventes.NatureVente;
 import symatique.smartseller.data.Factures.PrefixBL;
 import symatique.smartseller.data.Factures.PrefixFacture;
 import symatique.smartseller.data.Encaissements.TypeEncaissementVente;
+import symatique.smartseller.data.Ventes.RapportVisite;
 
 
 public interface ApiRegister {
@@ -53,13 +53,6 @@ public interface ApiRegister {
     @GET(DOMAIN + "bonSorties.php")
     Call<BonDeSortiesResponse> getBonSortie(@Query(ID_LIVREUR) String idLivreur, @Query(ID_ENTREPRISE) long idEntreprise, @Query(PREMIER_UTILISATION) boolean premier_utilisation);
 
-//______________________________ update Prix Article ____________________________________________________
-
-    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/updatePrixArticle/379101/123313123       ERROR
-
-    @GET(DOMAIN + "updatePrixArticle.php")
-    Call<List<String>> updatePrixArticle(@Query(ID_LIVREUR) long idLivreur, @Query(DATE_SYNCHRO) long dateSynchro);
-
 //______________________________ Get Prefixes Factures ____________________________________________________
 
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/prefixeFacture/379101/378701     DONE with NO DATA
@@ -71,8 +64,16 @@ public interface ApiRegister {
 
     //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/prefixBonLivraison/379101/378701     DONE with NO DATA
 
+    //______________________________ Get Prefixes BL ____________________________________________________
+
+    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/prefixBonLivraison/379101/378701
     @GET(DOMAIN + "prefixBonLivraison.php")
     Call<List<PrefixBL>> getPrefixsBL(@Query(ID_LIVREUR) long idLivreur, @Query(ID_ENTREPRISE) long idEntreprise);
+//______________________________ Get Factures ____________________________________________________
+
+    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/factures/379101/378701
+    @GET(DOMAIN + "factures.php")
+    Call<List<Facture>> getFactures(@Query(ID_LIVREUR) long idLivreur, @Query(ID_ENTREPRISE) long idEntreprise);
 
 //______________________________ update client ____________________________________________________
 
@@ -137,16 +138,43 @@ public interface ApiRegister {
     @GET(DOMAIN + "synchroniserVendeurCommande.php")
     Call<List<Commande>> synchroniserVendeurCommande(@Query(ID_LIVREUR) long id, @Query(DATE_SYNCHRO) long date);
 
-//______________________________ SYNCHRO Paquets Supprime ____________________________________________________
-
-    //http://192.168.1.16:8080/ss/faces/rest/SmartSellerWS/synchroniserPaquetsSupprime/378701   DONE with NO DATA
-
-    @GET(DOMAIN + "synchroniserPaquetsSupprime.php")
-    Call<List<BonDeSortiesResponse>> synchroniserPaquetSupprimer(@Query(ID_LIVREUR) long id_Livreur);
+//______________________________ SYNCHRO stockLivreur ____________________________________________________
 
 
-    @POST(DOMAIN2 + "postdebugger.php")
-    Call<BonDeSortie> exportBonDeSorties(@Body BonDeSortie bonDeSortie);
+    @POST(DOMAIN2 + "stockLivreur")
+    public Call<List<Packet>> stockLivreur(@Body List<Packet> packets);
+
+
+//______________________________ SYNCHRO ajouterRapportVente ____________________________________________________
+
+
+    @POST(DOMAIN2 + "ajouterRapportVente")
+    public Call<List<RapportVisite>> ajouterRapportVente(@Body List<RapportVisite> rapportVisites);
+
+//______________________________ SYNCHRO ajouterRapportVente ____________________________________________________
+
+
+    @POST(DOMAIN2 + "exportFacturesBonsLivraisons")
+    public Call<List<Facture>> exportFacturesBonsLivraisons(@Body List<Facture> factures);
+
+//______________________________ SYNCHRO exportFacturesBonsLivraisons ____________________________________________________
+
+
+    @POST(DOMAIN2 + "exportFacturesBonsLivraisonsTemp")
+    public Call<List<Facture>> exportFacturesBonsLivraisonsTemp(@Body List<Facture> factures);
+
+//______________________________ SYNCHRO ajouterNouveauClient ____________________________________________________
+
+
+    @POST(DOMAIN2 + "ajouterNouveauClient")
+    public Call<Client> ajouterNouveauClient(@Body Client client);
+
+//______________________________ SYNCHRO ajouterCommandes ____________________________________________________
+
+
+    @POST(DOMAIN2 + "ajouterCommandes.php")
+    public Call<List<Commande>> ajouterCommandes(@Body List<Commande> commandes);
+
 }
 
 /*

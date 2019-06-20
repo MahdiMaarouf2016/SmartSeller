@@ -7,8 +7,9 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.io.Serializable;
 
 @DatabaseTable
-public class PrefixBL extends PrefixFacture implements Serializable {
-
+public class PrefixBL implements Serializable {
+    @DatabaseField(generatedId = true)
+    protected long id;
     @JsonProperty("codeVendeur")
     @DatabaseField
     private String codeVendeur;

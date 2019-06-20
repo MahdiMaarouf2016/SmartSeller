@@ -17,7 +17,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import symatique.smartseller.R;
+import symatique.smartseller.data.Articles.Article;
 import symatique.smartseller.data.Ventes.Client;
 import symatique.smartseller.modules.Planning.PlanningAdapter;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
@@ -39,7 +42,23 @@ public class VentesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vente);
         ButterKnife.bind(this);
         setupToolBar();
-        setUpClients();
+        setUpClients(getClients());
+    }
+
+    @OnTextChanged(R.id.edttxt_vente_search)
+    public void edttxtProduitsFindarticleOnTextChanged() {
+        String findWord = edttxtVenteSearch.getText().toString().toLowerCase();
+
+        if (findWord.isEmpty()) {
+            setUpClients(getClients());
+        } else {
+            List<Client> clients = getClients();
+            List<Client> filtredClients = new ArrayList<>();
+            for (Client client : clients) {
+                if (client.getLibelle().toLowerCase().contains(findWord)) filtredClients.add(client);
+            }
+            setUpClients(filtredClients);
+        }
     }
 
     private void setupToolBar() {
@@ -58,43 +77,49 @@ public class VentesActivity extends AppCompatActivity {
         return clients;
     }
 
-    public void setUpClients() {
-        List<Client> clients = getClients();
-       if(!clients.isEmpty()){
-           final PlanningAdapter planningAdapter = new PlanningAdapter(clients);
-           RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-           recVenteListclients.setLayoutManager(layoutManager);
-           recVenteListclients.setItemAnimator(new DefaultItemAnimator());
-           recVenteListclients.setAdapter(planningAdapter);
-           recVenteListclients.addOnItemTouchListener(new RecyclerTouchListener(this,
-                   recVenteListclients, new ClickListener() {
-               @Override
-               public void onClick(View view, int position) {
-                   final Client client = planningAdapter.getClients().get(position);
-                   DialogRapportVisite dialogRapportVisite = new DialogRapportVisite(view.getContext()) {
-                       @Override
-                       public void OnAccepted() {
-                           Intent intent = new Intent(getContext(), RapportActivity.class);
-                           intent.putExtra(RapportActivity.KEY_EXTRA_CLIENT, client);
-                           getContext().startActivity(intent);
-                       }
+    public void setUpClients(List<Client> clients) {
 
-                       @Override
-                       public void OnRejected() {
-                           Intent intent = new Intent(getContext(), PanierClientActivity.class);
-                           intent.putExtra(PanierClientActivity.KEY_EXTRA_CLIENT, client);
-                           getContext().startActivity(intent);
-                       }
-                   };
-                   dialogRapportVisite.show();
-               }
+        if (!clients.isEmpty()) {
+            final PlanningAdapter planningAdapter = new PlanningAdapter(clients);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+            recVenteListclients.setLayoutManager(layoutManager);
+            recVenteListclients.setItemAnimator(new DefaultItemAnimator());
+            recVenteListclients.setAdapter(planningAdapter);
+            recVenteListclients.addOnItemTouchListener(new RecyclerTouchListener(this,
+                    recVenteListclients, new ClickListener() {
+                @Override
+                public void onClick(View view, int position) {
+                    final Client client = planningAdapter.getClients().get(position);
+                    DialogRapportVisite dialogRapportVisite = new DialogRapportVisite(view.getContext()) {
+                        @Override
+                        public void OnAccepted() {
+                            Intent intent = new Intent(getContext(), RapportActivity.class);
+                            intent.putExtra(RapportActivity.KEY_EXTRA_CLIENT, client);
+                            getContext().startActivity(intent);
+                        }
 
-               @Override
-               public void onLongClick(View view, int position) {
-                   onClick(view, position);
-               }
-           }));
-       }
+                        @Override
+                        public void OnRejected() {
+                            Intent intent = new Intent(getContext(), PanierClientActivity.class);
+                            intent.putExtra(PanierClientActivity.KEY_EXTRA_CLIENT, client);
+                            getContext().startActivity(intent);
+                        }
+                    };
+                    dialogRapportVisite.show();
+                }
+
+                @Override
+                public void onLongClick(View view, int position) {
+                    onClick(view, position);
+                }
+            }));
+        }
+    }
+
+    @OnClick(R.id.btn_vente_clientpassage)
+    public void btnVenteClientpassageOnClick() {
+        Intent intent = new Intent(this, AjouterClient.class);
+        startActivity(intent);
     }
 
 }

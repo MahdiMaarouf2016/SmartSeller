@@ -3,68 +3,42 @@
                                               xmlns:app="http://schemas.android.com/apk/res-auto"
                                               xmlns:tools="http://schemas.android.com/tools"
                                               android:layout_width="match_parent"
-                                              android:layout_height="match_parent" android:orientation="vertical"
+                                              android:layout_height="match_parent"
+                                              android:orientation="vertical"
                                               android:background="@color/white">
 
-    <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout8"
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txt_qteprixlayout_lablivrison"
+            android:background="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp"
+            android:text="1"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" android:textAlignment="center" android:padding="18dp"/>
 
-        <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_qteprixlayout_lablivrison"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/default_textvalue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
-                                                 android:layout_height="wrap_content" android:padding="16dp"
-                                                 android:layout_margin="16dp">
-        <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textView38"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="76dp"
-                android:text="Quantite"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-               />
+    <android.support.v7.widget.LinearLayoutCompat android:layout_width="match_parent"
+                                                  android:layout_height="wrap_content" android:padding="16dp"
+                                                  android:layout_margin="16dp"
+                                                  android:layout_weight="1"
+                                                  android:orientation="vertical">
         <android.support.v7.widget.LinearLayoutCompat
-                android:id="@+id/linearLayout10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/textView38"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView38"
-                app:layout_constraintTop_toTopOf="@+id/textView38">
-
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_qteprixlayout_qtemoin"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content">
+            <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/textView38"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:text="Quantite"
                     android:layout_weight="1"
-                    android:background="@drawable/shap_green_none3dp_14dp0dp0dp14dp"
-                    android:text="+"/>
-
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"/>
             <android.support.v7.widget.AppCompatEditText
                     android:id="@+id/edttxt_qteprixlayout_qtelivrison"
                     android:layout_width="wrap_content"
@@ -72,62 +46,47 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="0"
+                    android:inputType="number"
+                    android:text="1"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimary"/>
+        </android.support.v7.widget.LinearLayoutCompat>
 
-            <android.support.v7.widget.AppCompatButton
-                    android:id="@+id/btn_qteprixlayout_qteplus"
+        <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/linearLayout10"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/textView40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:background="@drawable/shap_green_none3dp_0dp14dp14dp0dp"
-                    android:text="-"/>
+                    android:text="Prix :   "
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"/>
+
+            <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edttxt_qteprixlayout_prixlivrison"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="1"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="20sp"/>
+
         </android.support.v7.widget.LinearLayoutCompat>
-        <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/textView40"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="48dp"
-                android:layout_marginEnd="8dp"
-                android:text="Prix :   "
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout10"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textView38"
-                app:layout_constraintTop_toBottomOf="@+id/textView38"/>
-
-        <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/edttxt_qteprixlayout_prixlivrison"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="0"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView40"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView40"
-                app:layout_constraintTop_toTopOf="@+id/textView40"/>
-
-
-    </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
     <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_qteprixlayout_ajouter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="AJOUTER AU PANIER"
-            tools:layout_editor_absoluteX="240dp" tools:layout_editor_absoluteY="0dp"
+            android:layout_weight="1"
             android:padding="24dp" android:layout_margin="24dp"/>
 </android.support.v7.widget.LinearLayoutCompat>

@@ -3,6 +3,7 @@ package symatique.smartseller.modules.Produits;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,9 +23,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.OnTextChanged;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Articles.Article;
 import symatique.smartseller.data.Articles.CategorieArticle;
+import symatique.smartseller.modules.Home.HomeActivity;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.modules.Panier.PanierAdapter;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
@@ -44,6 +49,29 @@ public class ProduitsActivity extends AppCompatActivity {
     @BindView(R.id.abl_produit)
     AppBarLayout ablProduit;
 
+    @OnTextChanged(R.id.edttxt_produits_findarticle)
+    public void edttxtProduitsFindarticleOnTextChanged() {
+        String findWord = edttxtProduitsFindarticle.getText().toString().toLowerCase();
+
+        if (findWord.isEmpty()) {
+            setupProduitsList(getListArticlesFiltrePanier());
+        } else {
+            List<Article> articles = getListArticlesFiltrePanier();
+            List<Article> filtredArticles = new ArrayList<>();
+            for (Article article : articles) {
+                //Log.v("findWord",findWord + ":" + article.getLibelle());
+                if (article.getLibelle().toLowerCase().contains(findWord)) filtredArticles.add(article);
+            }
+            setupProduitsList(filtredArticles);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +79,6 @@ public class ProduitsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         setupToolBar();
         setupProduitsList(getListArticlesFiltrePanier());
-        setUpDelegates();
     }
 
     private void setupToolBar() {
@@ -63,6 +90,40 @@ public class ProduitsActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         this.getMenuInflater().inflate(R.menu.menu_panieroly, menu);
         return true;
+    }
+
+    @OnClick(R.id.fab_produitsactivity_gocategories)
+    public void fabProduitsactivityGocategoriesOnClick() {
+        DialogCategories dialog = new DialogCategories(this) {
+
+            @Override
+            public void btnDialogcategorieToutcategorieOnClick() {
+                setupProduitsList(getListArticlesFiltrePanier());
+                alertDialog.dismiss();
+            }
+
+            @Override
+            public void onCategorieArticleSelected(CategorieArticle categorieArticle) {
+                setupProduitsList(getListArticlesFiltreCategorie(categorieArticle));
+                alertDialog.dismiss();
+                String s = new String("sfsf");
+            }
+        };
+        dialog.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.act_item_panier: {
+                Intent intent = new Intent(this, PanierActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     public List<Article> getListArticles() {
@@ -96,7 +157,7 @@ public class ProduitsActivity extends AppCompatActivity {
         if (!articles.isEmpty()) {
 
             for (Article article : tempArticles) {
-                if(article.getIdCategorie() != categorieArticle.getId())
+                if (article.getIdCategorie() != categorieArticle.getId())
                     articles.remove(article);
             }
         }
@@ -112,59 +173,5 @@ public class ProduitsActivity extends AppCompatActivity {
         recProduitsListaricles.setItemAnimator(new DefaultItemAnimator());
         recProduitsListaricles.setAdapter(produitsAdapter);
 
-    }
-
-    public void setUpDelegates() {
-        final Context context = this;
-        fabProduitsactivityGocategories.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogCategories dialog = new DialogCategories(context) {
-                    @Override
-                    public void OnAccepted() {
-                        this.btnDialogcategorieToutcategorie.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                setupProduitsList(getListArticlesFiltrePanier());
-                            }
-                        });
-                        recDialogcategorieCategories.addOnItemTouchListener(new RecyclerTouchListener(this.getContext(),
-                                        recDialogcategorieCategories, new ClickListener() {
-                                    @Override
-                                    public void onClick(View view, int position) {
-                                        CategorieArticle categorieArticle = ((CategoriesAdapter)recDialogcategorieCategories.getAdapter()).getCategories().get(position);
-                                        setupProduitsList(getListArticlesFiltreCategorie(categorieArticle));
-                                    }
-
-                                    @Override
-                                    public void onLongClick(View view, int position) {
-                                        onClick(view, position);
-                                    }
-                                })
-                        );
-                    }
-
-                    @Override
-                    public void OnRejected() {
-
-                    }
-                };
-                dialog.show();
-            }
-        });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.act_item_panier: {
-                Intent intent = new Intent(this, PanierActivity.class);
-                startActivity(intent);
-                return true;
-            }
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
     }
 }

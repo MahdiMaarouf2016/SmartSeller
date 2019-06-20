@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +19,16 @@ import symatique.smartseller.data.Articles.CategorieArticle;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoriesItem> {
 
-    private List<CategorieArticle> categories;
-
+    private List<CategorieArticle> categories = null;
 
     CategoriesAdapter() {
         this.categories = new ArrayList<>();
     }
 
-    public CategoriesAdapter(List<CategorieArticle> categories) {
-        this.categories = categories;
+    public CategoriesAdapter(final List<CategorieArticle> categories) {
+        setCategories(categories);
     }
 
-    public List<CategorieArticle> getCategories() {
-        return categories;
-    }
 
     public void setCategories(List<CategorieArticle> categories) {
         this.categories = categories;
@@ -50,27 +47,32 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @Override
     public void onBindViewHolder(@NonNull CategoriesItem categoriesItem, int i) {
         CategorieArticle categorie = categories.get(i);
+        Log.e("article cat i : ", i + "");
         categoriesItem.clone(categorie);
     }
 
     @Override
     public int getItemCount() {
+        Log.e("SIZE", categories.size() + "");
         return categories.size();
     }
 
+    public List<CategorieArticle> getCategories() {
+        return categories;
+    }
 
     public class CategoriesItem extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.txt_categorieitem_lebelcategorie) AppCompatTextView txtCategorieitemLebelcategorie;
+        //@BindView(R.id.txt_categorieitem_lebelcategorie) AppCompatTextView txtCategorieitemLebelcategorie;
 
         public CategoriesItem(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            // ButterKnife.bind(this,itemView);
         }
 
-        public CategoriesItem clone(CategorieArticle categorie) {
+        public void clone(CategorieArticle categorie) {
+            AppCompatTextView txtCategorieitemLebelcategorie = itemView.findViewById(R.id.txt_categorieitem_lebelcategorie);
             txtCategorieitemLebelcategorie.setText(categorie.getLibelle());
-            return this;
         }
     }
 

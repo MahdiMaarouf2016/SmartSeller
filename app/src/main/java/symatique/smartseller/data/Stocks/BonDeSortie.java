@@ -18,7 +18,7 @@ public class BonDeSortie {
 
     @JsonProperty("id")
     @DatabaseField(id = true)
-    private long id;
+    private long id = 0;
 
     @JsonProperty("codeLivreur")
     @DatabaseField
@@ -50,11 +50,14 @@ public class BonDeSortie {
     @JsonProperty("libelleDomaine")
     @DatabaseField
     private String libelleDomaine;
+    @JsonProperty("description")
+    @DatabaseField
+    private String description = "";
     @JsonProperty("codeDomaine")
     @DatabaseField
     private String codeDomaine;
     @JsonProperty("listPaquet")
-    @DatabaseField(dataType = DataType.SERIALIZABLE,foreignAutoRefresh = true)
+    @DatabaseField(dataType = DataType.SERIALIZABLE)
     private ArrayList<Packet> listPaquet;
 
     public BonDeSortie() {

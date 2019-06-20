@@ -1,6 +1,6 @@
 package symatique.smartseller.data.Commandes;
 
-import  java.math.BigDecimal;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.j256.ormlite.field.DatabaseField;
@@ -23,105 +23,105 @@ public class LigneCommande implements Serializable {
     private String id;
     @JsonProperty("idArticle")
     @DatabaseField
-    private long idArticle;
+    private long idArticle = 0l;
     @JsonProperty("codeArticle")
     @DatabaseField
-    private String code;
+    private String code = "";
     @JsonProperty("codeEntreprise")
     @DatabaseField
-    private String codeEntreprise;
+    private String codeEntreprise = "";
     @JsonProperty("dateSynchro")
     @DatabaseField
-    private long dateSynchro;
+    private long dateSynchro = 0l;
     @JsonProperty("description")
     @DatabaseField
-    private String description;
+    private String description = "";
     @JsonProperty("descriptionArb")
     @DatabaseField
-    private String descriptionArb;
+    private String descriptionArb = "";
     @JsonProperty("enPromo")
     @DatabaseField
-    private Boolean enPromo;
+    private Boolean enPromo = false;
     @JsonProperty("idCategorie")
     @DatabaseField
-    private long idCategorie;
+    private long idCategorie = 0l;
     @JsonProperty("libelleCategorie")
     @DatabaseField
-    private String libelleCategorie;
+    private String libelleCategorie = "";
     @JsonProperty("libelleArticle")
     @DatabaseField
-    private String libelle;
+    private String libelle = "";
     @JsonProperty("libelleArticleAr")
     @DatabaseField
-    private String libelleArb;
+    private String libelleArb = "";
     @JsonProperty("photo")
     @DatabaseField
-    private String photo1;
+    private String photo1 = "";
     @JsonProperty("photo2")
     @DatabaseField
-    private String photo2;
+    private String photo2 = "";
     @JsonProperty("photo3")
     @DatabaseField
-    private String photo3;
+    private String photo3 = "";
     @JsonProperty("photo4")
     @DatabaseField
-    private String photo4;
+    private String photo4 = "";
     @JsonProperty("photo5")
     @DatabaseField
-    private String photo5;
+    private String photo5 = "";
     @JsonProperty("prixConsommateur")
     @DatabaseField
-    private BigDecimal prixConsommateur;
+    private BigDecimal prixConsommateur = BigDecimal.valueOf(0);
     @JsonProperty("prixUnitaireHT")
     @DatabaseField
-    private BigDecimal prixRevendeur;
+    private BigDecimal prixRevendeur = BigDecimal.valueOf(0);
     @JsonProperty("promoUnitaire")
     @DatabaseField
-    private Integer promoUnitaire;
+    private Integer promoUnitaire = 0;
     @JsonProperty("supprimer")
     @DatabaseField
-    private Boolean supprimer;
+    private Boolean supprimer = false;
     @JsonProperty("tva")
     @DatabaseField
-    private String tva;
+    private String tva = "";
     @JsonProperty("typeMesure")
     @DatabaseField
-    private String typeMesure;
+    private String typeMesure = "";
     @JsonProperty("typeMesureArabe")
     @DatabaseField
-    private String typeMesureArabe;
+    private String typeMesureArabe = "";
     @JsonProperty("quantite")
     @DatabaseField
     private long qteCommande = 0;
     @JsonProperty("dateAchat")
     @DatabaseField
-    long dateAchat;
+    private long dateAchat = 0l;
     @JsonProperty("valpromo")
     @DatabaseField
     private float valpromo = 0;
     @JsonProperty("idcommande")
     @DatabaseField
-    private String idcommande;
+    private String idcommande = "";
 
     @JsonProperty("idDomaine")
     @DatabaseField
-    private long idDomaine;
+    private long idDomaine = 0l;
     @JsonProperty("libelleDomaine")
     @DatabaseField
-    private String libelleDomaine;
+    private String libelleDomaine = "";
     @JsonProperty("codeDomaine")
     @DatabaseField
-    private String codeDomaine;
+    private String codeDomaine = "";
     @JsonProperty("idEntreprise")
     @DatabaseField
-    private long idEntreprise;
+    private long idEntreprise = 0l;
     @DatabaseField
-    private BigDecimal prixTotal;
-
+    private BigDecimal prixTotal = BigDecimal.valueOf(0);
 
     public LigneCommande() {
 
     }
+
     public LigneCommande(final Article article) {
 
         this.setIdArticle(article.getId());
@@ -144,8 +144,9 @@ public class LigneCommande implements Serializable {
         this.setPromoUnitaire(article.getPromoUnitaire());
         this.setLibelleCategorie(article.getLibelleCategorie());
         this.setSupprimer(article.getSupprimer());
-        this.setIdDomaine(article.getIdEntreprise());//
+        this.setIdDomaine(article.getIdEntreprise());
     }
+
     public String getId() {
         return id;
     }

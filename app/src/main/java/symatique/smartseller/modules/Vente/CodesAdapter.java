@@ -12,6 +12,7 @@ import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Stocks.Packet;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,38 @@ public class CodesAdapter extends RecyclerView.Adapter<CodesAdapter.CodeItem> {
             txtCodeCode.setText(packet.getCodeArticle());
             txtCodeQte.setText(String.valueOf(packet.getQuantite()));
             txtCodeProduit.setText(packet.getLibelleArticle());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    affichierDialog(packet);
+                }
+            });
+        }
+
+        public void affichierDialog(Packet packet) {
+
+            DialogPrixQuantiteLivrison dialogPrixQuantiteLivrison = new DialogPrixQuantiteLivrison(itemView.getContext(), packet) {
+                @Override
+                public void OnAccepted() {
+                    //txtCodeQte.setText(packet.getQuantite() - Integer.parseInt(edttxtQteprixlayoutQtelivrison.getText().toString()) + "");
+                    //Packet packet1 = new Packet(packet.getId(),packet.getLibelle(),packet.getCodeBarre(),packet.getQuantite(),packet.getPrixUnitaireHT(),packet.isEtatSynchronisation(),packet.isEtatVendu(),packet.getTva(),packet.getIdArticle(),packet.getCodeArticle(),packet.getIdEntreprise(),packet.getLibelleEntreprise(),packet.getDate(),packet.getDateVente(),packet.getCodeEntreprise(),packet.getCodeClient(),packet.getDescription(),packet.getLot(),packet.getLibelleArticle(),packet.getIdBonSortie(),packet.getIdClient(),packet.getLibelleClient(),packet.isArticleLie(),packet.getTvaLie(),packet.getPrixUnitaireHTLie(),packet.getCodeArticleLie(),packet.getLibelleArticleLie(),packet.getPoids(),packet.isSupprimer(),packet.getDateSynchro(),packet.getIdDomaine(),packet.getLibelleDomaine(),packet.getCodeDomaine());
+                    //packet1.setQuantite(Integer.parseInt(edttxtQteprixlayoutQtelivrison.getText().toString()));
+                    //packet1.setPrixUnitaireHTLie(BigDecimal.valueOf(Double.parseDouble(edttxtQteprixlayoutPrixlivrison.getText().toString())));
+                    //PanierClientActivity.getPanierClientAdapter().ajouterPacket(packet1);
+
+                    packets.remove(packet);
+                    notifyDataSetChanged();
+                    txtCodeQte.setText(packet.getQuantite() - Integer.parseInt(edttxtQteprixlayoutQtelivrison.getText().toString()) + "");
+                    OnRejected();
+                }
+
+                @Override
+                public void OnRejected() {
+                    alertDialog.dismiss();
+                }
+            };
+
+            dialogPrixQuantiteLivrison.show();
         }
     }
 

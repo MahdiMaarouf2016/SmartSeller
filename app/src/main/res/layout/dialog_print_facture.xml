@@ -1,59 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_print" />
+    <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/img_printfacturedialog_printicon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_print" app:layout_constraintEnd_toStartOf="@+id/guideline21"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="8dp"/>
 
-    <TextView
-        android:id="@+id/textView45"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Combien voulez-vous imprimer des compies ?"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView45"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4">
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txt_printfacturedialog_labquestion"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/shap_trasparent_white_8dp"
-            android:text="1" />
+            android:layout_marginEnd="16dp"
+            android:text="Combien voulez-vous imprimer des compies ?"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="@+id/guideline21"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"/>
 
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="wrap_content"
+    <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/shap_trasparent_white_8dp"
-            android:text="2" />
-    </LinearLayout>
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline21"
+            app:layout_constraintTop_toBottomOf="@+id/txt_printfacturedialog_labquestion"
+            android:id="@+id/linearLayout14"
+            android:layout_marginStart="8dp">
+
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_printfacturedialog_oneprint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shap_trasparent_white_8dp"
+                android:text="1"/>
+
+        <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_printfacturedialog_towprint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/shap_trasparent_white_8dp"
+                android:text="2"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.constraint.Guideline android:layout_width="0dp" android:layout_height="0dp"
+                                          android:orientation="vertical" app:layout_constraintGuide_percent="0.3"
+                                          app:layout_constraintStart_toStartOf="parent"
+                                          android:layout_marginStart="123dp" android:layout_marginEnd="288dp"
+                                          app:layout_constraintEnd_toEndOf="parent"
+                                          app:layout_constraintTop_toTopOf="parent"
+                                          app:layout_constraintBottom_toBottomOf="parent"
+                                          android:layout_marginBottom="80dp" android:id="@+id/guideline21"/>
 </android.support.constraint.ConstraintLayout>

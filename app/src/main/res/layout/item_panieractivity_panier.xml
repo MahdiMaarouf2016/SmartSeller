@@ -42,30 +42,35 @@
                                               app:layout_constraintTop_toTopOf="parent"
                                               app:layout_constraintEnd_toEndOf="parent"
                                               app:layout_constraintBottom_toBottomOf="parent"
-                                              app:layout_constraintGuide_percent="0.6"/>
+                                              app:layout_constraintGuide_percent="0.7"/>
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_panieritiem_prodlibelle"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
+                android:textSize="20sp"
+                android:gravity="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/guideline14"
-                app:layout_constraintEnd_toStartOf="@+id/guideline13"/>
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" app:layout_constraintEnd_toStartOf="@+id/txt_produitiem_prodcode"
+                android:layout_marginEnd="8dp"/>
 
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_produitiem_prodcode"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="center"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
+                android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintBottom_toTopOf="@+id/guideline14" android:textAlignment="textEnd"/>
+                app:layout_constraintBottom_toTopOf="@+id/guideline14" android:textAlignment="textEnd"
+                android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/txt_panieritiem_prodlibelle"/>
 
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_panieritiem_categorie"
@@ -73,30 +78,27 @@
                 android:layout_height="0dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
+                android:textSize="20sp"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/guideline7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline13"
-                app:layout_constraintTop_toTopOf="@+id/guideline14" android:textAlignment="textEnd"/>
+                app:layout_constraintTop_toTopOf="@+id/guideline14" android:textAlignment="textEnd"
+                android:layout_marginTop="8dp" android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toEndOf="@+id/txt_panieritiem_prix" android:layout_marginStart="8dp"/>
 
         <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/txt_panieritiem_prix"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="@string/default_textvalue"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toStartOf="@+id/guideline13"
+                android:textSize="22sp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/guideline14"
-                app:layout_constraintBottom_toTopOf="@+id/guideline7" android:layout_marginStart="8dp"/>
+                app:layout_constraintBottom_toTopOf="@+id/guideline7" android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp" android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/txt_panieritiem_categorie" android:layout_marginEnd="8dp"
+                android:gravity="center"/>
 
-        <android.support.constraint.Guideline android:layout_width="0dp" android:layout_height="0dp"
-                                              android:id="@+id/guideline13"
-                                              android:orientation="vertical"
-                                              app:layout_constraintEnd_toEndOf="parent"
-                                              app:layout_constraintTop_toTopOf="parent"
-                                              app:layout_constraintBottom_toBottomOf="parent"
-                                              app:layout_constraintStart_toStartOf="parent"
-                                              app:layout_constraintGuide_percent="0.5"/>
         <android.support.constraint.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
                                               android:id="@+id/guideline14"
                                               android:orientation="horizontal"
@@ -108,15 +110,16 @@
         <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/linearLayoutCompat"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="@+id/guideline7"
-        >
+                android:layout_marginTop="8dp">
 
             <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_panieritiem_plus"

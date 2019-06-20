@@ -42,20 +42,8 @@ public class SmartSeller extends Application {
 
     private void setUpDataBase() {
         DatabaseHelper databaseHelper = DataBaseManager.getInstance(this).getHelper();
-        //databaseHelper.onCreate(databaseHelper.getWritableDatabase(),databaseHelper.getConnectionSource());
-        Packet packet = new Packet();
-        packet.setLibelle("Packet jadida");
-        packet.setLibelleArticle("Jadida Huil 5litre");
-        packet.setCodeArticle("123454");
-        packet.setCodeBarre("123532");
-        packet.setPrixUnitaireHT(BigDecimal.valueOf(23.300));
-        packet.setQuantite(56);
-        try {
-            databaseHelper.getPacketsStock().createOrUpdate(packet);
-            Log.v("Packet","HAS BEEN SUCCES ADDED");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        databaseHelper.onCreate(databaseHelper.getWritableDatabase(), databaseHelper.getConnectionSource());
+
 
         Logger logger = LoggerFactory.getLogger(QueryBuilder.class);
         //logger.debug(databaseHelper.toString());
@@ -63,3 +51,6 @@ public class SmartSeller extends Application {
 
     }
 }
+/*
+Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+ */

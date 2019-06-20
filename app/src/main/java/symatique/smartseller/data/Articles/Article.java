@@ -91,9 +91,42 @@ public class Article implements Serializable {
     @JsonProperty("typeMesureArabe")
     @DatabaseField
     private String typeMesureArabe;
+    @JsonProperty("iddomaine")
+    @DatabaseField
+    private long iddomaine;
+    @JsonProperty("codedomaine")
+    @DatabaseField
+    private long codedomaine;
+    @JsonProperty("libelledomaine")
+    @DatabaseField
+    private String libelledomaine;
 
     public Article() {
 
+    }
+
+    public long getIddomaine() {
+        return iddomaine;
+    }
+
+    public void setIddomaine(long iddomaine) {
+        this.iddomaine = iddomaine;
+    }
+
+    public long getCodedomaine() {
+        return codedomaine;
+    }
+
+    public void setCodedomaine(long codedomaine) {
+        this.codedomaine = codedomaine;
+    }
+
+    public String getLibelledomaine() {
+        return libelledomaine;
+    }
+
+    public void setLibelledomaine(String libelledomaine) {
+        this.libelledomaine = libelledomaine;
     }
 
     public long getId() {

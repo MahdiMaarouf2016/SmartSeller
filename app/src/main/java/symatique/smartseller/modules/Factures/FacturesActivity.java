@@ -44,7 +44,6 @@ public class FacturesActivity extends AppCompatActivity {
     }
 
     private void setupToolBar() {
-        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -59,12 +58,14 @@ public class FacturesActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments to adapter one by one
-        adapter.addFragment(new FactureFragment(), "Factures");
-        adapter.addFragment(new BLFragment(), "BL");
+        adapter.addFragment(new FacturesFactureFragment(), "Factures");
+        adapter.addFragment(new FacturesBonLivraisonFragment(), "BL");
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_caisseactivity_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
     @Override

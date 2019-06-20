@@ -2,6 +2,7 @@ package symatique.smartseller.modules.Vente;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
@@ -9,38 +10,42 @@ import android.view.Window;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import symatique.smartseller.R;
 import symatique.smartseller.utils.DialogResultDelegates;
 
-public abstract class DialogRapportVisite extends AppCompatDialog implements DialogResultDelegates {
+// + ************** GOOOD NOTES ************
+// USE OVERRITE METHODE "CREATE()"
+// - ************** GOOOD NOTES ************
+
+public abstract class DialogRapportVisite extends AlertDialog.Builder implements DialogResultDelegates {
     @BindView(R.id.btn_rapporvistdialog_vente) AppCompatButton btnRapporvistdialogVente;
     @BindView(R.id.btn_rapporvistdialog_rapport) AppCompatButton btnRapporvistdialogRapport;
 
+    private AlertDialog alertDialog = null;
+
     public DialogRapportVisite(Context context) {
         super(context);
-        setUpView();
-        setUpDelegates();
     }
 
-    void setUpView() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.dialog_venteactivity_rapportvisite);
-        ButterKnife.bind(this);
+    @Override
+    public AlertDialog show() {
+        setView(R.layout.dialog_venteactivity_rapportvisite);
+        alertDialog = super.show();
+        ButterKnife.bind(this, alertDialog);
+        return alertDialog;
     }
 
-    void setUpDelegates(){
-        btnRapporvistdialogRapport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OnAccepted();
-            }
-        });
-        btnRapporvistdialogVente.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OnRejected();
-            }
-        });
-
+    @OnClick(R.id.btn_rapporvistdialog_vente)
+    public void btnRapporvistdialogVenteOnClick() {
+        OnRejected();
+        alertDialog.dismiss();
     }
+
+    @OnClick(R.id.btn_rapporvistdialog_rapport)
+    public void btnRapporvistdialogRapportOnClick() {
+        OnAccepted();
+        alertDialog.dismiss();
+    }
+
 }

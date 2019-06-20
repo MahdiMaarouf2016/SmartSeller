@@ -27,6 +27,8 @@ public class CodesActivity extends AppCompatActivity {
 
     public static final String KEY_EXTRA_CLIENT = "CLIENT";
     @BindView(R.id.rec_codesactivity_listcodes) RecyclerView recCodesactivityListcodes;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +45,13 @@ public class CodesActivity extends AppCompatActivity {
     }
 
     private void setupToolBar() {
-        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public List<Packet> getLigneStockParVendeursFiltrePanier(){
-        List<Packet> packets = getLigneStockParVendeurs();
-        List<Packet> ligneStockParVendeurstemp = getLigneStockParVendeurs();// WE SAID THAT AGO , IF YOU REMEMBER MY CODE AS WEEL
+    public List<Packet> getListPacketsFiltrePanier() {
+        List<Packet> packets = getListPackets();
+        List<Packet> ligneStockParVendeurstemp = getListPackets();// WE SAID THAT AGO , IF YOU REMEMBER MY CODE AS WEEL
         if(!packets.isEmpty()){
             for (Packet ligneStockparVendeur:ligneStockParVendeurstemp) {
                 if(PanierClientActivity.getPanierClientAdapter().getPackets().contains(ligneStockparVendeur))
@@ -60,7 +61,7 @@ public class CodesActivity extends AppCompatActivity {
         return packets;
     }
 
-    public List<Packet> getLigneStockParVendeurs() {
+    public List<Packet> getListPackets() {
         List<Packet> packets = new ArrayList<>();
         try {
             DatabaseHelper database = DataBaseManager.getInstance(this).getHelper();
@@ -72,8 +73,8 @@ public class CodesActivity extends AppCompatActivity {
     }
 
     public void setUpCodes() {
-        List<Packet> packets = getLigneStockParVendeursFiltrePanier();
-
+        List<Packet> packets = getListPacketsFiltrePanier();
+        final Context context = this;
         if (!packets.isEmpty()) {
 
             final CodesAdapter codesAdapter = new CodesAdapter(packets);
@@ -81,33 +82,6 @@ public class CodesActivity extends AppCompatActivity {
             recCodesactivityListcodes.setLayoutManager(layoutManager);
             recCodesactivityListcodes.setItemAnimator(new DefaultItemAnimator());
             recCodesactivityListcodes.setAdapter(codesAdapter);
-            recCodesactivityListcodes.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(),
-                    recCodesactivityListcodes, new ClickListener() {
-                        @Override
-                        public void onClick(View view, int position) {
-                            final Packet packet = codesAdapter.getPackets().get(position);
-                            DialogPrixQuantiteLivrison dialogPrixQuantiteLivrison = new DialogPrixQuantiteLivrison(view.getContext(), packet) {
-                                @Override
-                                public void OnAccepted() {
-                                    PanierClientActivity.getPanierClientAdapter().AjouterLigneStockParVendeur(packet);
-                                    hide();
-                                }
-
-                                @Override
-                                public void OnRejected() {
-
-                                }
-                            };
-
-                            dialogPrixQuantiteLivrison.show();
-                        }
-
-                        @Override
-                        public void onLongClick(View view, int position) {
-                            onClick(view, position);
-                        }
-                    })
-            );
         }
     }
 }

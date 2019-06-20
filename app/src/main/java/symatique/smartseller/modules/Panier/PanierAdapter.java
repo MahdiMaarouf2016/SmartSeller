@@ -19,11 +19,15 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.squareup.picasso.Picasso;
 import symatique.smartseller.R;
+import symatique.smartseller.bases.RetrofitBases;
 import symatique.smartseller.data.Articles.Article;
 import symatique.smartseller.data.Commandes.Commande;
 import symatique.smartseller.data.Commandes.LigneCommande;
 import symatique.smartseller.modules.Authentification.AuthentificationActivity;
+import symatique.smartseller.modules.Produits.ProduitsActivity;
+import symatique.smartseller.services.SQLiteService.DatabaseHelper;
 import symatique.smartseller.utils.AdapterDelegates;
 
 import static java.lang.Math.round;
@@ -109,8 +113,8 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
             notifyDataSetChanged();
             this.adapterDelegates.OnPanierPacketInserted(null);
 
-        } else if (panierPacket.getQuantite() != quantite) {
-            panierPacket.setQuantite(quantite);
+        } else {
+            panierPacket.setQuantite(panierPacket.getQuantite() + quantite);
             this.adapterDelegates.OnPanierPacketUpdated(panierPacket);
         }
 
@@ -194,11 +198,11 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
         public void clone(final PanierPacket panierPacket) {
 
             txteditPanieritiemProdqte.setText(String.valueOf(panierPacket.getQuantite()));
-            txtPanieritiemCategorie.setText(panierPacket.getArticle().getLibelleArb());
-            txtPanieritiemPrix.setText(String.valueOf(panierPacket.getArticle().getPrixRevendeur()));
+            txtPanieritiemCategorie.setText(panierPacket.getArticle().getLibelleCategorie());
+            txtPanieritiemPrix.setText(String.valueOf(panierPacket.getArticle().getPrixRevendeur()) + " TD");
             txtProduitiemProdcode.setText(panierPacket.getArticle().getCode());
             txtPanieritiemProdlibelle.setText(panierPacket.getArticle().getLibelle());
-
+            Picasso.get().load(RetrofitBases.BASE_URL + "/SmartSeller" + panierPacket.getArticle().getPhoto1()).into(imgPanieritemProdbackimg);
             btnPanieritiemPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -206,7 +210,6 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
                     txteditPanieritiemProdqte.setText(String.valueOf(currenqte + 1));
                     panierPacket.setQuantite(currenqte);
                     adapterDelegates.OnPanierPacketUpdated(panierPacket);
-                    Log.v("btnPanieritiemPlus", String.valueOf(currenqte));
                 }
             });
             btnPanieritiemMoin.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +220,6 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
                         txteditPanieritiemProdqte.setText(String.valueOf(currenqte - 1));
                         panierPacket.setQuantite(currenqte);
                         adapterDelegates.OnPanierPacketUpdated(panierPacket);
-                        Log.v("btnPanieritiemMoin", String.valueOf(currenqte));
                     }
                 }
             });
@@ -284,42 +286,5 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierItem
         }
     }
 
-    public Commande getCommande() {
-        Commande commande = new Commande(
-                AuthentificationActivity.authenticationResponse.getCodeEntreprise() + new Date().getTime(),
-                AuthentificationActivity.authenticationResponse.getCodeEntreprise(),
-                new Date().getTime(),
-                BigDecimal.valueOf(0d),
-                BigDecimal.valueOf(0d),
-                0l,
-                Long.valueOf(AuthentificationActivity.authenticationResponse.getCode()),
-                AuthentificationActivity.authenticationResponse.getCode(),
-                AuthentificationActivity.authenticationResponse.getLibelleEntreprise(),
-                0l,
-                false,
-                0,
-                null,
-                0l,
-                "",
-                "",
-                AuthentificationActivity.authenticationResponse.getIdEntreprise(),
-                AuthentificationActivity.authenticationResponse.getLibelleEntreprise(),
-                AuthentificationActivity.authenticationResponse.getCodeEntreprise()
-        );
-        List<LigneCommande> ligneCommandes = new ArrayList<>();
-        for (PanierPacket panierpaket : this.panierElements) {
 
-            LigneCommande ligneCommande = new LigneCommande(panierpaket.getArticle());
-            ligneCommande.setCodeEntreprise(AuthentificationActivity.authenticationResponse.getCodeEntreprise());
-            ligneCommande.setCodeDomaine(AuthentificationActivity.authenticationResponse.getCodeEntreprise());
-            ligneCommande.setDateAchat(new Date().getTime());
-            ligneCommande.setQteCommande(panierpaket.getQuantite());
-            ligneCommande.setIdcommande(commande.getId());
-            ligneCommande.setPrixTotal( BigDecimal.valueOf(panierpaket.getArticle().getPrixConsommateur().longValue() * panierpaket.getQuantite()));
-            ligneCommandes.add(ligneCommande);
-        }
-        commande.setDetailCommandes(ligneCommandes);
-        this.setPanierElements(new ArrayList<PanierPacket>());
-        return commande;
-    }
 }

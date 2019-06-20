@@ -38,7 +38,7 @@ public class CommandesActivity extends AppCompatActivity {
     public List<Commande> getListCommandes() {
         List<Commande> commandes = new ArrayList<>();
         try {
-            commandes = DataBaseManager.getInstance(getApplicationContext()).getHelper().getCommandes().queryForAll();
+            commandes = DataBaseManager.getInstance(this).getHelper().getCommandes().queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }

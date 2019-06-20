@@ -26,64 +26,69 @@ public class Commande implements Serializable {
 
     @JsonProperty("numero")
     @DatabaseField
-    private String numero;
+    private String numero = "";
     @JsonProperty("dateCommande")
     @DatabaseField
-    private long dateCommande;
+    private long dateCommande = 0l;
     @JsonProperty("montantHT")
     @DatabaseField
-    private BigDecimal montantHT;
+    private BigDecimal montantHT = BigDecimal.valueOf(0);
     @JsonProperty("montantTTC")
     @DatabaseField
-    private BigDecimal montantTTC;
+    private BigDecimal montantTTC = BigDecimal.valueOf(0);
     @JsonProperty("id_PointDeVente")
     @DatabaseField
-    private Long id_PointDeVente;
+    private Long id_PointDeVente = 0l;
     @JsonProperty("id_Client")
     @DatabaseField
-    private Long id_Client;
+    private Long id_Client = 0l;
     @JsonProperty("codeClient")
     @DatabaseField
-    private String codeClient;
+    private String codeClient = "";
     @JsonProperty("libelleClient")
     @DatabaseField
-    private String libelleClient;
+    private String libelleClient = "";
     @JsonProperty("id_EtatCommande")
     @DatabaseField
-    private Long id_EtatCommande;
+    private Long id_EtatCommande = 0l;
     @JsonProperty("libelleEtatCommande")
     @DatabaseField
-    private String libelleEtatCommande;
+    private String libelleEtatCommande = "";
     @JsonProperty("suppCmd")
     @DatabaseField
-    private boolean suppCmd;
+    private boolean suppCmd = false;
     @JsonProperty("dateSynch")
     @DatabaseField
-    private long dateSynch;
+    private long dateSynch = 0l;
     @JsonProperty("idDomaine")
     @DatabaseField
-    private long idDomaine;
+    private long idDomaine = 0l;
     @JsonProperty("libelleDomaine")
     @DatabaseField
-    private String libelleDomaine;
+    private String libelleDomaine = "";
     @JsonProperty("codeDomaine")
     @DatabaseField
-    private String codeDomaine;
+    private String codeDomaine = "";
     @JsonProperty("idEntreprise")
     @DatabaseField
-    private long idEntreprise;
+    private long idEntreprise = 0l;
     @JsonProperty("libelleEntreprise")
     @DatabaseField
-    private String libelleEntreprise;
+    private String libelleEntreprise = "";
     @JsonProperty("codeEntreprise")
     @DatabaseField
-    private String codeEntreprise;
+    private String codeEntreprise = "";
     @JsonProperty("detailCommandes")
     @DatabaseField(dataType=DataType.SERIALIZABLE)
     private ArrayList<LigneCommande> detailCommandes = new ArrayList<>();
 
     public Commande() {
 
+    }
+
+    public void setEtatCommande(EtatCommande etatCommande) {
+        setLibelleEtatCommande(etatCommande.getLibelle());
+        setId_EtatCommande(etatCommande.getId());
     }
 
     public Commande(String id, String numero, long dateCommande, BigDecimal montantHT, BigDecimal montantTTC, Long id_PointDeVente, Long id_Client, String codeClient, String libelleClient, Long id_EtatCommande, boolean suppCmd, long dateSynch, ArrayList<LigneCommande> detailCommandes, long idDomaine, String libelleDomaine, String codeDomaine, long idEntreprise, String libelleEntreprise, String codeEntreprise) {
@@ -108,6 +113,12 @@ public class Commande implements Serializable {
         this.codeEntreprise = codeEntreprise;
     }
 
+    public void ajouterLigneCommande(LigneCommande ligneCommande) {
+        if (detailCommandes == null) {
+            detailCommandes = new ArrayList<>();
+            detailCommandes.add(ligneCommande);
+        } else detailCommandes.add(ligneCommande);
+    }
     public String getId() {
         return id;
     }
@@ -121,6 +132,13 @@ public class Commande implements Serializable {
     }
 
     public BigDecimal getMontantHT() {
+        if (detailCommandes.isEmpty())
+            return BigDecimal.valueOf(0);
+        else {
+            for (LigneCommande ligneCommande : detailCommandes) {
+                this.montantHT = BigDecimal.valueOf(this.montantHT.doubleValue() + ligneCommande.getPrixTotal().doubleValue());
+            }
+        }
         return montantHT;
     }
 

@@ -1,6 +1,8 @@
 package symatique.smartseller.modules.Vente;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -10,58 +12,42 @@ import android.view.Window;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Stocks.Packet;
 import symatique.smartseller.utils.DialogResultDelegates;
 
-public abstract class DialogPrixQuantiteLivrison extends AppCompatDialog implements DialogResultDelegates {
+public abstract class DialogPrixQuantiteLivrison extends AlertDialog.Builder implements DialogResultDelegates {
     @BindView(R.id.txt_qteprixlayout_lablivrison) AppCompatTextView txtQteprixlayoutLablivrison;
-    @BindView(R.id.btn_qteprixlayout_qtemoin) AppCompatButton btnQteprixlayoutQtemoin;
     @BindView(R.id.edttxt_qteprixlayout_qtelivrison) AppCompatEditText edttxtQteprixlayoutQtelivrison;
-    @BindView(R.id.btn_qteprixlayout_qteplus) AppCompatButton btnQteprixlayoutQteplus;
-    @BindView(R.id.edttxt_qteprixlayout_prixlivrison) AppCompatTextView edttxtQteprixlayoutPrixlivrison;
+    public AlertDialog alertDialog = null;
     @BindView(R.id.btn_qteprixlayout_ajouter) AppCompatButton btnQteprixlayoutAjouter;
-    private Packet workingPacket;
+    @BindView(R.id.edttxt_qteprixlayout_prixlivrison)
+    AppCompatEditText edttxtQteprixlayoutPrixlivrison;
+    private Packet workingPacket = null;
 
-    public DialogPrixQuantiteLivrison(Context context,final Packet packet) {
+    public DialogPrixQuantiteLivrison(Context context, final Packet packet) {
         super(context);
-        setUpView();
-        setWorkingPacket(packet);
-        setUpDelegates();
-    }
-
-    private void setWorkingPacket(final  Packet packet){
         this.workingPacket = packet;
+    }
+
+    private void setWorkingPacket(final Packet packet) {
         txtQteprixlayoutLablivrison.setText(packet.getLibelleArticle());
-    }
-    void setUpView() {
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.dialog_vente_qteprix);
-        ButterKnife.bind(this);
+        edttxtQteprixlayoutPrixlivrison.setText(packet.getPrixConsommateur().toString());
     }
 
-    void setUpDelegates() {
-        btnQteprixlayoutQteplus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentqte = Integer.parseInt(edttxtQteprixlayoutQtelivrison.getText().toString()) + 1;
-                if(workingPacket.getQuantite() >= currentqte)edttxtQteprixlayoutQtelivrison.setText( String.valueOf( currentqte ) );
-            }
-        });
-        btnQteprixlayoutQtemoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentqte = Integer.parseInt(edttxtQteprixlayoutQtelivrison.getText().toString()) - 1;
-                if( currentqte >= 0 ) edttxtQteprixlayoutQtelivrison.setText( String.valueOf(currentqte) );
+    @Override
+    public AlertDialog show() {
+        setView(R.layout.dialog_vente_qteprix);
+        alertDialog = super.show();
+        ButterKnife.bind(this, alertDialog);
+        setWorkingPacket(workingPacket);
+        return alertDialog;
+    }
 
-            }
-        });
-
-        btnQteprixlayoutAjouter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                OnAccepted();
-            }
-        });
+    @OnClick(R.id.btn_qteprixlayout_ajouter)
+    void BtnQteprixlayoutAjouterOnClick() {
+        //if(workingPacket.setPri;)
+        OnAccepted();
     }
 }

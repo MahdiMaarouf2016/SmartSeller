@@ -1,116 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    tools:context="symatique.smartseller.modules.Factures.FacturerActivity">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context="symatique.smartseller.modules.Factures.FacturerActivity">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/abl_creatvte"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/abl_creatvte"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="none"
-            app:layout_collapseParallaxMultiplier="1.0"
-            app:title="Facture"
-            app:titleMargins="3dp" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:id="@+id/linearLayout8"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abl_creatvte">
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView27"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="CLIENT : "
-            android:textSize="18sp" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView28"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="0000"
-            android:textSize="18sp" />
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="!??????????"
-            android:textSize="18sp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout9"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout8"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-        <android.support.v7.widget.LinearLayoutCompat
-            android:id="@+id/linearLayoutCompat3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="8dp"
-            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <android.support.v7.widget.AppCompatTextView
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="none"
+                app:layout_collapseParallaxMultiplier="1.0"
+                app:title="Facture"
+                app:titleMargins="3dp"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/linearLayout8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/abl_creatvte">
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textView27"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ENTREPRISE"
-                android:textSize="16sp" />
+                android:text="CLIENT : "
+                android:textSize="18sp"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txt_factureractivity_codeclient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0000"
+                android:textSize="18sp"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txt_factureractivity_libclient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="!??????????"
+                android:textSize="18sp"/>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6">
+
+        <android.support.v7.widget.LinearLayoutCompat
+                android:id="@+id/linearLayoutCompat3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TOTAL"
-                android:textSize="16sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ENTREPRISE"
+                    android:textSize="16sp"/>
 
             <android.support.v7.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="A PAIER"
-                android:textSize="16sp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TOTAL"
+                    android:textSize="16sp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="A PAIER"
+                    android:textSize="16sp"/>
 
         </android.support.v7.widget.LinearLayoutCompat>
 
@@ -129,15 +128,155 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout9"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout4">
+            android:id="@+id/constraintLayout6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/constraintLayout9"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp">
 
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/textView37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="NOMBRE : "
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txt_factureractivity_nbrfactures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/default_textvalue"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView37"
+                app:layout_constraintStart_toEndOf="@+id/textView37"
+                app:layout_constraintTop_toTopOf="@+id/textView37" android:layout_marginEnd="186dp"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/lab_factureractivity_totale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="TOTALE : "
+                android:textAlignment="center"
+                android:textColor="#FFE6DC47"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt_factureractivity_nbrfactures"
+                app:layout_constraintTop_toBottomOf="@+id/txt_factureractivity_nbrfactures"
+                app:layout_constraintEnd_toStartOf="@+id/txt_factureractivity_totalefactures"
+                android:layout_marginEnd="26dp"/>
+        <android.support.v7.widget.AppCompatTextView
+                android:text="0.0 DT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txt_factureractivity_totalefactures" android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/lab_factureractivity_totale"
+                android:layout_marginEnd="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lab_factureractivity_totale"
+                app:layout_constraintStart_toEndOf="@+id/lab_factureractivity_totale"
+                android:textAlignment="textEnd" android:textColor="#FFE6DC47" android:textSize="18sp"
+                android:layout_marginBottom="8dp"/>
     </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_factureactivity_verifier">
 
+        <android.support.v7.widget.AppCompatButton
+                android:text="Espece"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/btn_factureactivity_especepayement"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintHorizontal_bias="0.5" android:background="@drawable/shap_green_white3dp_8dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_factureactivity_chequepayement"/>
+        <android.support.v7.widget.AppCompatButton
+                android:text="Chéque"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/btn_factureactivity_chequepayement"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_factureactivity_especepayement"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:background="@drawable/shap_green_white3dp_8dp"
+                app:layout_constraintBottom_toTopOf="@+id/btn_factureactivity_creditpayement"
+                android:layout_marginBottom="8dp"/>
+        <android.support.v7.widget.AppCompatButton
+                android:text="Credit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" android:id="@+id/btn_factureactivity_creditpayement"
+                android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_factureactivity_chequepayement"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:background="@drawable/shap_green_white3dp_8dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_factureactivity_verifier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/shap_green_white3dp_8dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="VERIFIER"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/lyc_factureactivity_finalaction" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"/>
 
+    <android.support.v7.widget.LinearLayoutCompat android:layout_width="0dp"
+                                                  android:layout_height="wrap_content"
+                                                  app:layout_constraintEnd_toEndOf="parent"
+                                                  app:layout_constraintStart_toStartOf="parent"
+                                                  app:layout_constraintBottom_toBottomOf="parent"
+                                                  android:id="@+id/lyc_factureactivity_finalaction"
+                                                  android:layout_marginEnd="16dp"
+                                                  android:layout_marginStart="16dp"
+                                                  android:layout_marginBottom="8dp">
+        <android.support.v7.widget.AppCompatButton
+
+                android:text="BL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_factureactivity_bl"
+                android:layout_weight="1"
+                android:background="@drawable/shap_trasparent_white_8dp"
+                android:textAlignment="center"/>
+        <android.support.v7.widget.AppCompatButton
+                android:text="FACTURE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_factureactivity_facture"
+                android:layout_weight="1"
+                android:background="@drawable/shap_trasparent_white_8dp"
+                android:textAlignment="center"/>
+    </android.support.v7.widget.LinearLayoutCompat>
 </android.support.constraint.ConstraintLayout>

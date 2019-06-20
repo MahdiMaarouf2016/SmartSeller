@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import symatique.smartseller.R;
 import symatique.smartseller.data.Ventes.Client;
+import symatique.smartseller.data.Ventes.PlanificationVenteWS;
 import symatique.smartseller.modules.Panier.PanierActivity;
 import symatique.smartseller.services.SQLiteService.DataBaseManager;
 import symatique.smartseller.services.SQLiteService.DatabaseHelper;
@@ -71,23 +74,64 @@ public class PlanningActivity extends AppCompatActivity {
         }
     }
 
-    public void setUpPlaningList() {
+    public List<Client> getFiltredListClient() {
+        List<Client> clients = getLitsClients();
+        List<Client> filtredclients = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if (!clients.isEmpty()) {
+            for (Client client : clients) {
+                PlanificationVenteWS planificationVenteWS = client.getPlanificationVenteWS();
 
-        DatabaseHelper database = DataBaseManager.getInstance(getApplicationContext()).getHelper();
+                switch (calendar.get(Calendar.DAY_OF_WEEK)) {
+                    case 1:
+                        if (planificationVenteWS.isDimanche()) filtredclients.add(client);
+                        break;
+                    case 2:
+                        if (planificationVenteWS.isLundi()) filtredclients.add(client);
+                        break;
+                    case 3:
+                        if (planificationVenteWS.isMardi()) filtredclients.add(client);
+                        break;
+                    case 4:
+                        if (planificationVenteWS.isMercredi()) filtredclients.add(client);
+                        break;
+                    case 5:
+                        if (planificationVenteWS.isJeudi()) filtredclients.add(client);
+                        break;
+                    case 6:
+                        if (planificationVenteWS.isVendredi()) filtredclients.add(client);
+                        break;
+                    case 7:
+                        if (planificationVenteWS.isSamedi()) filtredclients.add(client);
+                        break;
+                }
+            }
+        }
+
+        return filtredclients;
+    }
+
+    private List<Client> getLitsClients() {
+        List<Client> clients = new ArrayList<>();
         try {
-
-            List<Client> clients = database.getClients().queryForAll();
-            //Log.v("ListClients size 0",clients.size() + "");
-            PlanningAdapter planningAdapter = new PlanningAdapter(clients);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-            recPlanningClients.setLayoutManager(layoutManager);
-            recPlanningClients.setItemAnimator(new DefaultItemAnimator());
-            recPlanningClients.setAdapter(planningAdapter);
-
+            DatabaseHelper database = DataBaseManager.getInstance(getApplicationContext()).getHelper();
+            clients = database.getClients().queryForAll();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+        return clients;
+    }
+
+    public void setUpPlaningList() {
+        PlanningAdapter planningAdapter = new PlanningAdapter(getFiltredListClient());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recPlanningClients.setLayoutManager(layoutManager);
+        recPlanningClients.setItemAnimator(new DefaultItemAnimator());
+        recPlanningClients.setAdapter(planningAdapter);
+
     }
 
 }
